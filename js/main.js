@@ -36,3 +36,24 @@
   var id = setInterval(tick, 1000);
   tick();
 })();
+
+// قياس النقرات: يرسل حدث لكل نقرة على الواتساب أو الإنستقرام أو زر باقة (يشتغل لما يكون Google Analytics مفعّل)
+(function () {
+  function track(name, params) {
+    if (typeof window.gtag === 'function') window.gtag('event', name, params);
+    if (typeof window.fbq === 'function') window.fbq('track', 'Contact', params);
+  }
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href]');
+    if (!a) return;
+    var href = a.getAttribute('href');
+    var plan = a.closest('.plan');
+    if (href.indexOf('wa.me') !== -1) {
+      track('whatsapp_click', { package: plan ? plan.querySelector('h3').textContent : 'عام', label: a.textContent.trim() });
+    } else if (href.indexOf('instagram.com') !== -1) {
+      track('instagram_click', { label: a.textContent.trim() });
+    } else if (href.indexOf('drive.google.com') !== -1) {
+      track('videos_click', {});
+    }
+  });
+})();
