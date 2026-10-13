@@ -6,7 +6,7 @@
     pill.addEventListener('click', function () {
       var f = pill.getAttribute('data-filter');
       pills.forEach(function (p) { p.setAttribute('aria-pressed', p === pill ? 'true' : 'false'); });
-      clients.forEach(function (c) { c.hidden = !(f === 'all' || c.getAttribute('data-client') === f); });
+      clients.forEach(function (c) { var show = f === 'all' || c.getAttribute('data-client') === f; c.hidden = !show; if (show) { c.classList.remove('fade'); void c.offsetWidth; c.classList.add('fade'); c.classList.add('in'); } });
     });
   });
 })();
@@ -32,6 +32,7 @@
     el.h.textContent = pad(Math.floor(sec % 86400 / 3600));
     el.m.textContent = pad(Math.floor(sec % 3600 / 60));
     el.s.textContent = pad(sec % 60);
+    el.s.classList.remove('tick'); void el.s.offsetWidth; el.s.classList.add('tick');
   }
   var id = setInterval(tick, 1000);
   tick();
@@ -56,4 +57,26 @@
       track('videos_click', {});
     }
   });
+})();
+
+// الحركة: هيدر عند النزول + ظهور العناصر تدريجياً
+(function () {
+  var header = document.querySelector('.header');
+  function onScroll() { if (header) header.classList.toggle('is-scrolled', window.scrollY > 8); }
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  if (!('IntersectionObserver' in window)) return;
+  document.documentElement.classList.add('js');
+  var groups = ['.hero__text > *', '.hero__img', '.work-head', '.client', '.videos', '.section > .h2', '.section > div:first-child', '.timer', '.services .card', '.plans .plan', '.note', '.contact__text > *', '.contact__logo'];
+  var seen = [];
+  groups.forEach(function (sel) {
+    document.querySelectorAll(sel).forEach(function (el, i) {
+      if (seen.indexOf(el) !== -1) return; seen.push(el);
+      el.classList.add('reveal'); el.style.setProperty('--d', Math.min(i, 5) * 0.08 + 's');
+    });
+  });
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { if (e.isIntersecting) { var t = e.target; t.classList.add('in'); io.unobserve(t); setTimeout(function () { t.classList.remove('reveal', 'in'); t.style.removeProperty('--d'); }, 1400); } });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+  seen.forEach(function (el) { io.observe(el); });
 })();

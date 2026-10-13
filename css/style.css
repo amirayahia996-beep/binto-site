@@ -143,3 +143,35 @@ h1, h2, h3, p { margin: 0; }
   .timer__box { min-width: 64px; }
   .brand img { height: 44px; }
 }
+
+/* ===== الحركة ===== */
+.header { position: sticky; top: 0; z-index: 50; background: rgba(246,242,237,.88); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); transition: box-shadow .3s; }
+.header.is-scrolled { box-shadow: 0 6px 24px -12px rgba(6,43,44,.25); }
+
+.btn { position: relative; overflow: hidden; transition: transform .2s, filter .15s, background-color .15s, color .15s; }
+.btn:hover { transform: translateY(-2px); }
+.btn--gold::after { content: ""; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,.45) 50%, transparent 70%); transform: translateX(120%); transition: transform .7s; }
+.btn--gold:hover::after { transform: translateX(-120%); }
+
+.boards img, .card, .plan { transition: transform .35s cubic-bezier(.2,.7,.2,1), box-shadow .35s; }
+.boards figure:hover img { transform: translateY(-6px) scale(1.01); box-shadow: 0 18px 40px -18px rgba(6,43,44,.45); }
+.card:hover, .plan:hover { transform: translateY(-6px); box-shadow: 0 18px 40px -20px rgba(6,43,44,.4); }
+.pill { transition: background-color .2s, color .2s, transform .2s; }
+.pill:hover { transform: translateY(-1px); }
+
+.hero__img { animation: float 7s ease-in-out infinite; }
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+.timer__box b.tick { animation: tick .45s ease-out; }
+@keyframes tick { from { transform: translateY(-6px); opacity: .3; } to { transform: none; opacity: 1; } }
+
+/* الظهور عند النزول — تنضاف بالجافاسكربت فقط */
+.js .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1); transition-delay: var(--d, 0s); }
+.js .reveal.in { opacity: 1; transform: none; }
+.client.fade { animation: fadeUp .5s ease-out; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .js .reveal { opacity: 1; transform: none; }
+}
