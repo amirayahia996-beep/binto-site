@@ -50,7 +50,8 @@
     var href = a.getAttribute('href');
     var plan = a.closest('.plan');
     if (href.indexOf('wa.me') !== -1) {
-      track('whatsapp_click', { package: plan ? plan.querySelector('h3').textContent : 'عام', label: a.textContent.trim() });
+      var sec = a.closest('section, header, footer');
+      track('whatsapp_click', { package: plan ? plan.querySelector('h3').textContent : 'عام', label: a.textContent.trim(), location: sec ? (sec.id || sec.tagName.toLowerCase()) : 'page' });
     } else if (href.indexOf('instagram.com') !== -1) {
       track('instagram_click', { label: a.textContent.trim() });
     } else if (href.indexOf('drive.google.com') !== -1) {
