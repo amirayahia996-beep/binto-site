@@ -14,6 +14,12 @@
 --f:"Tajawal",system-ui,"Segoe UI",Tahoma,sans-serif;color-scheme:light}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
+.card{position:relative}
+.card .k .badge{display:none}
+.stamp{position:absolute;top:-18px;left:18px;width:92px;height:92px;border-radius:999px;background:#B4483F;color:#fff;display:grid;place-items:center;text-align:center;line-height:1;transform:rotate(-10deg);box-shadow:0 0 0 4px var(--sand)}
+.stamp b{display:block;font-size:30px;font-weight:800}.stamp span{display:block;font-size:14px;font-weight:700;margin-top:4px}
+.card.main .stamp{background:var(--gold);color:var(--night);box-shadow:0 0 0 4px var(--sand)}
+
 html,body{margin:0;background:var(--sand);color:var(--ink)}
 body{font-family:var(--f);font-size:17px;line-height:1.7;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .wrap{max-width:980px;margin-inline:auto;padding-block:28px 48px;display:grid;gap:36px}
@@ -80,6 +86,7 @@ li b{font-weight:800}
   .page{box-sizing:border-box;height:297mm;padding:16mm 15mm;display:flex;flex-direction:column;justify-content:center;gap:9mm;break-after:page;overflow:hidden}
   .page:last-child{break-after:auto}
   .p2 .ptitle{display:grid}
+  .cards{margin-top:8mm}
   .hero{padding:16mm 12mm}.hero h1{font-size:46px}.hero p{font-size:18px}
   .top img{width:70px}
   .cards{grid-template-columns:1fr 1fr;gap:6mm}
@@ -120,7 +127,7 @@ li b{font-weight:800}
 <div class="page p2">
   <div class="ptitle"><span class="tag2">الباقات</span><h2>اختر الباقة اللي تناسبك</h2></div>
   <div class="cards">
-    <article class="card">
+    <article class="card"><div class="stamp" id="st-trial"><div><b>٣٠٪</b><span>خصم</span></div></div>
       <div class="k"><h2>تجربة شهر</h2><span class="badge soft">للبداية</span></div>
       <div><span class="offer" id="o-trial">خصم ٣٠٪ · عرض لفترة محدودة</span><div class="price"><s id="s-trial">١٠٠٠</s><b id="p-trial">٧٠٠</b><span>ريال · مرة واحدة</span></div><p class="for">إذا تبي تجرّب الطريقة قبل ما تلتزم.</p></div>
       <ul>
@@ -137,7 +144,7 @@ li b{font-weight:800}
       </div>
     </article>
 
-    <article class="card main">
+    <article class="card main"><div class="stamp" id="st-basic"><div><b>٣٠٪</b><span>خصم</span></div></div>
       <div class="k"><h2>الباقة الأساسية</h2><span class="badge">الأكثر حضوراً</span></div>
       <div><span class="offer" id="o-basic">خصم ٣٠٪ · عرض لفترة محدودة</span><div class="price"><s id="s-basic">١٥٠٠</s><b id="p-basic">١٠٥٠</b><span>ريال · شهرياً</span></div><p class="for">حضور ثابت كل أسبوع، والكتابة والتصميم علينا.</p></div>
       <ul>
@@ -191,6 +198,7 @@ const AR=n=>String(n).replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]);
 for(const k in OFFER){const o=OFFER[k];const price=Math.round(o.base*(100-o.discount)/100/5)*5;
   document.getElementById('p-'+k).textContent=AR(price);
   const sEl=document.getElementById('s-'+k),oEl=document.getElementById('o-'+k);
+  const stEl=document.getElementById('st-'+k);stEl.hidden=!(o.discount>0);stEl.querySelector('b').textContent=AR(o.discount)+'٪';
   if(o.discount>0){sEl.textContent=AR(o.base);sEl.hidden=false;oEl.textContent='خصم '+AR(o.discount)+'٪ · عرض لفترة محدودة';oEl.hidden=false}
   else{sEl.hidden=true;oEl.hidden=true}
   const msg='السلام عليكم، اخترت «'+o.name+'» لكتابة لينكدإن ('+price+' ريال'+o.unit+'). وش الخطوة الجاية؟';
