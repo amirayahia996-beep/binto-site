@@ -18,3 +18,5 @@
   X-Robots-Tag: noindex, nofollow
 /new.html
   X-Robots-Tag: noindex, nofollow
+/feed/*
+  X-Robots-Tag: noindex, nofollow
