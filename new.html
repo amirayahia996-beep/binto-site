@@ -75,6 +75,7 @@ section{position:relative}
 .fp{flex:none;border-radius:16px;background:#E9E5E0;padding:10px;display:grid;gap:8px}
 .fp .u{display:flex;align-items:center;gap:8px}.fp .u i{width:24px;height:24px;border-radius:99px;background:#C9C3BC;display:block}.fp .u b{height:8px;width:70px;border-radius:4px;background:#C9C3BC;display:block}
 .fp .img{aspect-ratio:4/5;border-radius:10px;background:#D6D0C9;display:grid;place-items:center;font-size:15px;font-weight:700;color:#8E8780;text-align:center;padding:10px;line-height:1.4}
+.fp .img.ph{padding:0;overflow:hidden}.fp .img.ph img{width:100%;height:100%;object-fit:cover;display:block}
 .fp .t{height:7px;border-radius:4px;background:#D6D0C9}.fp .t.s{width:60%}
 .fp.binto{background:var(--sand);box-shadow:0 0 0 3px var(--gold)}
 .fp.binto .img{background:var(--teal);color:var(--sand);display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;padding:16px;text-align:right}
@@ -332,9 +333,10 @@ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 /* ===== الجوال: تمرير لا نهائي ثم توقّف على منشور بنتو ===== */
 const DULL=['خصم خاص لفترة محدودة','نسعى دائماً لتقديم الأفضل','عرض اليوم فقط!!','يسعدنا خدمتكم','جودة وتميز','أفضل الأسعار','تابعونا للمزيد','صباح الخير'];
 const feed=document.getElementById('feed'),phone=document.getElementById('phone'),stop=document.getElementById('stop'),hint=document.getElementById('hint'),toast=document.getElementById('toast');
-function dull(t){return `<div class="fp"><div class="u"><i></i><b></b></div><div class="img">${t}</div><div class="t"></div><div class="t s"></div></div>`}
+const FEED=[1,2,3,4,5,6,7,8].map(n=>`/feed/f${n}.jpg`);
+function dull(t,i){return `<div class="fp"><div class="u"><i></i><b></b></div><div class="img ph"><img src="${FEED[i%FEED.length]}" alt="" loading="lazy" decoding="async"></div><div class="t"></div><div class="t s"></div></div>`}
 const BINTO=`<div class="fp binto" id="bp"><div class="u"><i style="background:var(--gold)"></i><b style="background:var(--teal)"></b></div><div class="img"><small>عرض الشتاء · مثال</small><strong>ابتسامتك<br><em>تستاهل موعد</em></strong><span class="book" id="book">احجز موعدك ←</span></div><div class="t"></div><div class="t s"></div></div>`;
-let html='';for(let i=0;i<24;i++)html+=dull(DULL[i%DULL.length]);feed.innerHTML=html+html;
+let html='';for(let i=0;i<24;i++)html+=dull(DULL[i%DULL.length],i);feed.innerHTML=html+html;
 let y=0,speed=1.6,running=true,raf;
 function step(){if(!running)return;y+=speed;const half=feed.scrollHeight/2;if(y>half)y-=half;feed.style.transform=`translateY(${-y}px)`;raf=requestAnimationFrame(step)}
 if(!reduce)raf=requestAnimationFrame(step);
