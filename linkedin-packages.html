@@ -65,7 +65,7 @@ li b{font-weight:800}
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:12px;counter-reset:s}
 .step{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;display:grid;gap:6px;align-content:start}
 .steps.id .step::before{content:"";display:block;width:28px;height:6px;border-radius:3px;background:var(--rose)}
-.step::before{counter-increment:s;content:counter(s,arabic-indic);font-size:30px;font-weight:800;color:var(--gold);line-height:1}
+.step::before{counter-increment:s;content:counter(s);font-size:30px;font-weight:800;color:var(--gold);line-height:1}
 .step b{font-size:18px;color:var(--teal)}.step p{font-size:15px;color:var(--mute)}
 .promise{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px}
 .promise div{display:flex;gap:12px;align-items:flex-start;background:#EFE9E2;border-radius:14px;padding:14px 16px;font-size:16px}
@@ -78,6 +78,23 @@ li b{font-weight:800}
 .ptitle{display:grid;gap:8px}.ptitle h2{font-size:clamp(26px,4vw,40px);font-weight:800;color:var(--teal)}
 .tag2{justify-self:start;background:var(--rose);color:var(--night);font-weight:700;font-size:14px;padding:4px 14px;border-radius:6px}
 .p2 .ptitle{display:none}
+.card{display:flex;flex-direction:column;gap:18px;padding:30px 26px 26px}
+.card .head{display:grid;gap:4px;padding-left:96px;min-height:72px}
+.card h2{font-size:24px;white-space:nowrap}
+.card .for{min-height:1.7em}
+.pricebox{display:grid;gap:8px;justify-items:start}
+.price{display:flex;align-items:baseline;gap:8px}
+.price b{font-size:52px}
+.price s{font-size:20px}
+.rows{display:grid;border-top:1px solid var(--line)}
+.card.main .rows{border-color:var(--teal2)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:46px;border-bottom:1px solid var(--line);font-size:16px}
+.card.main .row{border-color:var(--teal2)}
+.row b{font-weight:800;text-align:left;white-space:nowrap}
+.ok{font-style:normal;font-weight:800;color:var(--gold);font-size:18px}
+.terms{border:0;padding:0;margin-top:auto}
+.stamp{top:22px;left:22px;transform:rotate(-8deg);width:84px;height:84px}
+
 @media print{
   @page{size:A4;margin:0}
   html,body{background:var(--sand)}
@@ -117,7 +134,7 @@ li b{font-weight:800}
   <section class="sec">
     <h2>هويتك على لينكدإن</h2>
     <div class="steps id">
-      <div class="step"><b>ألوانك</b><p>من مجالك وشخصيتك: ٣ إلى ٤ ألوان تميّزك عن غيرك.</p></div>
+      <div class="step"><b>ألوانك</b><p>من مجالك وشخصيتك: 3 إلى 4 ألوان تميّزك عن غيرك.</p></div>
       <div class="step"><b>خطك</b><p>خط عربي يناسب نبرتك: رسمي، أو قريب، أو جريء.</p></div>
       <div class="step"><b>بانرك</b><p>بانر حسابك بنفس الهوية، أول شي يشوفه الزائر.</p></div>
       <div class="step"><b>كل تصاميمك</b><p>تمشي على هويتك، فيعرف الناس منشورك قبل ما يقرأ اسمك.</p></div>
@@ -127,38 +144,21 @@ li b{font-weight:800}
 <div class="page p2">
   <div class="ptitle"><span class="tag2">الباقات</span><h2>اختر الباقة اللي تناسبك</h2></div>
   <div class="cards">
-    <article class="card"><div class="stamp" id="st-trial"><div><b>٣٠٪</b><span>خصم</span></div></div>
-      <div class="k"><h2>تجربة شهر</h2><span class="badge soft">للبداية</span></div>
-      <div><span class="offer" id="o-trial">خصم ٣٠٪ · عرض لفترة محدودة</span><div class="price"><s id="s-trial">١٠٠٠</s><b id="p-trial">٧٠٠</b><span>ريال · مرة واحدة</span></div><p class="for">إذا تبي تجرّب الطريقة قبل ما تلتزم.</p></div>
-      <ul>
-        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>٥ منشورات</b> عربية بصوتك: ٤ + منشور <span class="free">مجاناً</span></span></li>
-        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>تصميمان</b> للمنشورات</span></li>
-        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>هوية بصرية خاصة فيك</b>: ألوانك وخطك</span></li>
-        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>بانر لينكدإن</b> مصمم بهويتك</span></li>
-        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>تحسين العنوان والنبذة</b> في حسابك</span></li>
-        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>مكالمة تعارف</b> ٢٠ دقيقة نطلع فيها بصوتك</span></li>
-      </ul>
-      <div style="display:grid;gap:12px">
-        <p class="terms">شهر واحد، بدون أي التزام بعده.</p>
-        <a class="pick" id="w-trial" href="https://wa.me/966534189330" target="_blank" rel="noopener">اختر تجربة الشهر</a>
-      </div>
+    <article class="card">
+      <div class="stamp" id="st-trial"><div><b>30%</b><span>خصم</span></div></div>
+      <div class="head"><h2>تجربة شهر</h2><p class="for">تجرّب الطريقة قبل ما تلتزم.</p></div>
+      <div class="pricebox"><span class="offer" id="o-trial">عرض لفترة محدودة</span><div class="price"><b id="p-trial">0</b><span>ريال · مرة واحدة</span><s id="s-trial">0</s></div></div>
+      <div class="rows"><div class="row"><span>المنشورات</span><b>5 (4 + 1 مجاناً)</b></div><div class="row"><span>التصاميم</span><b>2</b></div><div class="row"><span>هوية بصرية خاصة فيك</span><b><i class="ok" aria-label="مشمول">✓</i></b></div><div class="row"><span>بانر لينكدإن</span><b><i class="ok" aria-label="مشمول">✓</i></b></div><div class="row"><span>تحسين العنوان والنبذة</span><b><i class="ok" aria-label="مشمول">✓</i></b></div><div class="row"><span>المكالمات</span><b>تعارف 20 دقيقة</b></div></div>
+      <p class="terms">شهر واحد، بدون أي التزام بعده.</p>
+      <a class="pick" id="w-trial" href="https://wa.me/966534189330">اختر تجربة الشهر</a>
     </article>
-
-    <article class="card main"><div class="stamp" id="st-basic"><div><b>٣٠٪</b><span>خصم</span></div></div>
-      <div class="k"><h2>الباقة الأساسية</h2><span class="badge">الأكثر حضوراً</span></div>
-      <div><span class="offer" id="o-basic">خصم ٣٠٪ · عرض لفترة محدودة</span><div class="price"><s id="s-basic">١٥٠٠</s><b id="p-basic">١٠٥٠</b><span>ريال · شهرياً</span></div><p class="for">حضور ثابت كل أسبوع، والكتابة والتصميم علينا.</p></div>
-      <ul>
-        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>٩ منشورات</b> عربية بصوتك: ٨ + منشور <span class="free">مجاناً</span></span></li>
-        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>كاروسيل مصمم</b> + <b>٤ تصاميم</b> للمنشورات</span></li>
-        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>هوية بصرية خاصة فيك</b>: ألوانك وخطك</span></li>
-        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>بانر لينكدإن</b> مصمم بهويتك</span></li>
-        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>تحسين العنوان والنبذة</b> في الشهر الأول</span></li>
-        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>مكالمة شهرية</b> + <b>ملخص أداء</b> آخر كل شهر</span></li>
-      </ul>
-      <div style="display:grid;gap:12px">
-        <p class="terms">شهري بدون حد أدنى، والإلغاء بإشعار قبل ١٤ يوماً.</p>
-        <a class="pick" id="w-basic" href="https://wa.me/966534189330" target="_blank" rel="noopener">اختر الباقة الأساسية</a>
-      </div>
+    <article class="card main">
+      <div class="stamp" id="st-basic"><div><b>30%</b><span>خصم</span></div></div>
+      <div class="head"><h2>الباقة الأساسية</h2><p class="for">حضور ثابت كل أسبوع.</p></div>
+      <div class="pricebox"><span class="offer" id="o-basic">عرض لفترة محدودة</span><div class="price"><b id="p-basic">0</b><span>ريال · شهرياً</span><s id="s-basic">0</s></div></div>
+      <div class="rows"><div class="row"><span>المنشورات</span><b>9 (8 + 1 مجاناً)</b></div><div class="row"><span>التصاميم</span><b>كاروسيل + 4</b></div><div class="row"><span>هوية بصرية خاصة فيك</span><b><i class="ok" aria-label="مشمول">✓</i></b></div><div class="row"><span>بانر لينكدإن</span><b><i class="ok" aria-label="مشمول">✓</i></b></div><div class="row"><span>تحسين العنوان والنبذة</span><b><i class="ok" aria-label="مشمول">✓</i></b></div><div class="row"><span>المكالمات</span><b>شهرية + ملخص أداء</b></div></div>
+      <p class="terms">شهري بدون حد أدنى، والإلغاء بإشعار قبل 14 يوماً.</p>
+      <a class="pick" id="w-basic" href="https://wa.me/966534189330">اختر الباقة الأساسية</a>
     </article>
   </div>
   <p class="small">أسعار العرض لفترة محدودة، وبعدها ترجع الأسعار للسعر الأصلي.</p>
@@ -194,12 +194,12 @@ const OFFER={
   trial:{name:'تجربة شهر',base:1000,discount:30,unit:''},
   basic:{name:'الباقة الأساسية',base:1500,discount:30,unit:' شهرياً'}
 };
-const AR=n=>String(n).replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]);
+const AR=n=>String(n);
 for(const k in OFFER){const o=OFFER[k];const price=Math.round(o.base*(100-o.discount)/100/5)*5;
   document.getElementById('p-'+k).textContent=AR(price);
   const sEl=document.getElementById('s-'+k),oEl=document.getElementById('o-'+k);
-  const stEl=document.getElementById('st-'+k);stEl.hidden=!(o.discount>0);stEl.querySelector('b').textContent=AR(o.discount)+'٪';
-  if(o.discount>0){sEl.textContent=AR(o.base);sEl.hidden=false;oEl.textContent='خصم '+AR(o.discount)+'٪ · عرض لفترة محدودة';oEl.hidden=false}
+  const stEl=document.getElementById('st-'+k);stEl.hidden=!(o.discount>0);stEl.querySelector('b').textContent=o.discount+'%';
+  if(o.discount>0){sEl.textContent=AR(o.base);sEl.hidden=false;oEl.textContent='خصم '+o.discount+'% · عرض لفترة محدودة';oEl.hidden=false}
   else{sEl.hidden=true;oEl.hidden=true}
   const msg='السلام عليكم، اخترت «'+o.name+'» لكتابة لينكدإن ('+price+' ريال'+o.unit+'). وش الخطوة الجاية؟';
   document.getElementById('w-'+k).href='https://wa.me/966534189330?text='+encodeURIComponent(msg);}
