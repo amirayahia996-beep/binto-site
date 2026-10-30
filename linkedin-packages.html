@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>باقات لينكدإن بصوتك</title>
+<style>
+@font-face{font-family:"Tajawal";src:url("/fonts/Tajawal-Regular.ttf");font-weight:400}
+@font-face{font-family:"Tajawal";src:url("/fonts/Tajawal-Medium.ttf");font-weight:500}
+@font-face{font-family:"Tajawal";src:url("/fonts/Tajawal-Bold.ttf");font-weight:700}
+@font-face{font-family:"Tajawal";src:url("/fonts/Tajawal-ExtraBold.ttf");font-weight:800}
+:root{--night:#062B2C;--teal:#0B3D3F;--teal2:#2F6B6E;--gold:#C8A24A;--rose:#CFA2A2;--sand:#F6F2ED;--ink:#1F2328;--line:#D9D2CB;--mute:#5E7A7A;
+--f:"Tajawal",system-ui,"Segoe UI",Tahoma,sans-serif;color-scheme:light}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--sand);color:var(--ink)}
+body{font-family:var(--f);font-size:17px;line-height:1.7;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:980px;margin-inline:auto;padding-block:28px 48px;display:grid;gap:36px}
+h1,h2,h3,p{margin:0}
+h1,h2{text-wrap:balance;line-height:1.2}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.top img{width:64px;height:auto}
+.top span{font-size:14px;color:var(--mute)}
+.hero{background:var(--teal);color:var(--sand);border-radius:24px;padding:clamp(26px,5vw,48px);display:grid;gap:14px;position:relative;overflow:hidden}
+.hero svg.fl{position:absolute;left:-60px;top:-60px;width:200px;height:200px}
+.hero .tag{justify-self:start;background:var(--rose);color:var(--night);font-weight:700;font-size:14px;padding:4px 14px;border-radius:6px}
+.hero h1{font-size:clamp(32px,5.4vw,56px);font-weight:800}
+.hero h1 em{font-style:normal;color:var(--gold)}
+.hero p{font-size:clamp(17px,2vw,20px);max-width:52ch;color:#DCE7E6}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:18px;align-items:stretch}
+.card{background:#fff;border:2px solid var(--line);border-radius:22px;padding:28px;display:grid;gap:18px;grid-template-rows:auto auto 1fr auto;min-width:0}
+.card.main{border-color:var(--gold);background:var(--night);color:var(--sand)}
+.card .k{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.card h2{font-size:26px;font-weight:800}
+.badge{font-size:13px;font-weight:800;padding:4px 12px;border-radius:999px;background:var(--gold);color:var(--night);white-space:nowrap}
+.badge.soft{background:#EFE9E2;color:var(--teal)}
+.price{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.price b{font-size:56px;font-weight:800;line-height:1;color:var(--teal);font-variant-numeric:tabular-nums}
+.card.main .price b{color:var(--gold)}
+.price span{font-size:17px;font-weight:500;color:var(--mute)}
+.card.main .price span{color:#AFC6C5}
+.for{font-size:16px;color:var(--mute)}.card.main .for{color:#AFC6C5}
+ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+li{display:grid;grid-template-columns:24px 1fr;gap:10px;align-items:start;font-size:17px}
+li svg{margin-top:5px}
+li b{font-weight:800}
+.terms{font-size:14px;color:var(--mute);border-top:1px solid var(--line);padding-top:12px}
+.card.main .terms{color:#AFC6C5;border-color:var(--teal2)}
+.pick{display:block;text-align:center;text-decoration:none;font-weight:800;font-size:18px;border-radius:999px;padding:14px 20px;background:var(--teal);color:var(--sand)}
+.card.main .pick{background:var(--gold);color:var(--night)}
+.pick:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.sec{display:grid;gap:16px}
+.sec h2{font-size:26px;font-weight:800;color:var(--teal)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:12px;counter-reset:s}
+.step{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;display:grid;gap:6px;align-content:start}
+.step::before{counter-increment:s;content:counter(s,arabic-indic);font-size:30px;font-weight:800;color:var(--gold);line-height:1}
+.step b{font-size:18px;color:var(--teal)}.step p{font-size:15px;color:var(--mute)}
+.promise{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px}
+.promise div{display:flex;gap:12px;align-items:flex-start;background:#EFE9E2;border-radius:14px;padding:14px 16px;font-size:16px}
+.promise svg{flex:none;margin-top:4px}
+.foot{background:var(--teal);color:var(--sand);border-radius:20px;padding:22px 26px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.foot p{font-size:16px}.foot b{color:var(--gold)}
+.foot .num{font-size:20px;font-weight:800;direction:ltr;unicode-bidi:isolate;color:var(--gold)}
+.small{font-size:13px;color:var(--mute);text-align:center}
+@media print{
+  @page{size:A4;margin:10mm}
+  body{padding:0;font-size:13px}
+  .wrap{padding:0;gap:12px;max-width:none;zoom:.84}
+  .step p{font-size:12px}.step b{font-size:15px}.hero svg.fl{width:150px;height:150px}
+  .hero{padding:22px}.hero h1{font-size:34px}.hero p{font-size:15px}
+  .cards{grid-template-columns:1fr 1fr;gap:12px}
+  .card{padding:18px;gap:10px;break-inside:avoid}
+  .price b{font-size:42px}
+  li{font-size:13.5px}
+  .pick{padding:9px;font-size:14px}
+  .step{padding:12px}.step::before{font-size:22px}.steps{grid-template-columns:repeat(4,1fr)}
+  .promise{grid-template-columns:repeat(3,1fr)}.promise div{font-size:12.5px;padding:10px}
+  .sec h2{font-size:19px}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><img src="/images/logo-dark.png" alt="شعار بنتو"><span>باقات كتابة لينكدإن · سعر افتتاحي لأول ٥ عملاء</span></div>
+
+  <header class="hero">
+    <svg class="fl" viewBox="0 0 200 200" aria-hidden="true"><g fill="#CFA2A2" stroke="#C8A24A" stroke-width="2"><ellipse cx="100" cy="52" rx="27" ry="46" transform="rotate(45 100 100)"/><ellipse cx="100" cy="52" rx="27" ry="46" transform="rotate(135 100 100)"/><ellipse cx="100" cy="52" rx="27" ry="46" transform="rotate(225 100 100)"/><ellipse cx="100" cy="52" rx="27" ry="46" transform="rotate(315 100 100)"/></g><rect x="91" y="91" width="18" height="18" fill="#C8A24A"/></svg>
+    <span class="tag">لينكدإن بصوتك</span>
+    <h1>أنت تتكلم.<br><em>نحن نكتب وننشر.</em></h1>
+    <p>منشورات لينكدإن بصوتك أنت، من كلامك وقراراتك الحقيقية. اختر الباقة اللي تناسبك، واضغط «اختر» ويوصلنا طلبك على الواتساب.</p>
+  </header>
+
+  <div class="cards">
+    <article class="card">
+      <div class="k"><h2>تجربة شهر</h2><span class="badge soft">للبداية</span></div>
+      <div><div class="price"><b>٧٥٠</b><span>ريال · مرة واحدة</span></div><p class="for">إذا تبي تجرّب الطريقة قبل ما تلتزم.</p></div>
+      <ul>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>٤ منشورات</b> عربية بصوتك (منشور كل أسبوع)</span></li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>تصميم واحد</b> لأحد المنشورات</span></li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>تحسين العنوان والنبذة</b> في حسابك</span></li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>مكالمة تعارف</b> ٢٠ دقيقة نطلع فيها بصوتك</span></li>
+      </ul>
+      <div style="display:grid;gap:12px">
+        <p class="terms">شهر واحد، بدون أي التزام بعده.</p>
+        <a class="pick" href="https://wa.me/966534189330?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A7%D8%AE%D8%AA%D8%B1%D8%AA%20%D8%A8%D8%A7%D9%82%D8%A9%20%C2%AB%D8%AA%D8%AC%D8%B1%D8%A8%D8%A9%20%D8%B4%D9%87%D8%B1%C2%BB%20%D9%84%D9%83%D8%AA%D8%A7%D8%A8%D8%A9%20%D9%84%D9%8A%D9%86%D9%83%D8%AF%D8%A5%D9%86%20%28750%20%D8%B1%D9%8A%D8%A7%D9%84%29.%20%D9%88%D8%B4%20%D8%A7%D9%84%D8%AE%D8%B7%D9%88%D8%A9%20%D8%A7%D9%84%D8%AC%D8%A7%D9%8A%D8%A9%D8%9F" target="_blank" rel="noopener">اختر تجربة الشهر</a>
+      </div>
+    </article>
+
+    <article class="card main">
+      <div class="k"><h2>الباقة الأساسية</h2><span class="badge">الأكثر حضوراً</span></div>
+      <div><div class="price"><b>١٢٠٠</b><span>ريال · شهرياً</span></div><p class="for">حضور ثابت كل أسبوع، والكتابة والتصميم علينا.</p></div>
+      <ul>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>٨ منشورات</b> عربية بصوتك (منشوران كل أسبوع)</span></li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>كاروسيل مصمم</b> + <b>تصميمان</b> للمنشورات</span></li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>تحسين العنوان والنبذة</b> في الشهر الأول</span></li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>مكالمة شهرية</b> + <b>ملخص أداء</b> آخر كل شهر</span></li>
+      </ul>
+      <div style="display:grid;gap:12px">
+        <p class="terms">شهري بدون حد أدنى، والإلغاء بإشعار قبل ١٤ يوماً.</p>
+        <a class="pick" href="https://wa.me/966534189330?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A7%D8%AE%D8%AA%D8%B1%D8%AA%20%C2%AB%D8%A7%D9%84%D8%A8%D8%A7%D9%82%D8%A9%20%D8%A7%D9%84%D8%A3%D8%B3%D8%A7%D8%B3%D9%8A%D8%A9%C2%BB%20%D9%84%D9%83%D8%AA%D8%A7%D8%A8%D8%A9%20%D9%84%D9%8A%D9%86%D9%83%D8%AF%D8%A5%D9%86%20%281200%20%D8%B1%D9%8A%D8%A7%D9%84%20%D8%B4%D9%87%D8%B1%D9%8A%D8%A7%D9%8B%29.%20%D9%88%D8%B4%20%D8%A7%D9%84%D8%AE%D8%B7%D9%88%D8%A9%20%D8%A7%D9%84%D8%AC%D8%A7%D9%8A%D8%A9%D8%9F" target="_blank" rel="noopener">اختر الباقة الأساسية</a>
+      </div>
+    </article>
+  </div>
+
+  <section class="sec">
+    <h2>كيف نشتغل معك</h2>
+    <div class="steps">
+      <div class="step"><b>تعارف</b><p>مكالمة قصيرة نفهم فيها قصتك ومواقفك وجمهورك.</p></div>
+      <div class="step"><b>كلامك</b><p>كل أسبوع نسألك أسئلة بسيطة، وإجاباتك هي المادة.</p></div>
+      <div class="step"><b>نكتب ونصمم</b><p>نحوّل كلامك لمنشورات بصوتك، مع التصميم.</p></div>
+      <div class="step"><b>توافق ثم ننشر</b><p>يوصلك كل منشور قبل نشره، وتعتمده أو تعدّله.</p></div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <h2>اللي نلتزم فيه</h2>
+    <div class="promise">
+      <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B3D3F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span>ما ينزل أي منشور بدون موافقتك.</span></div>
+      <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B3D3F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span>ما نطلب كلمة مرور حسابك أبداً.</span></div>
+      <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B3D3F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span>لا قصص مختلقة ولا أرقام بدون مصدر.</span></div>
+    </div>
+  </section>
+
+  <div class="foot">
+    <p><b>الدفع:</b> تحويل بنكي قبل البدء، ونبدأ بعد التحويل مباشرة.</p>
+    <p>للتواصل على الواتساب: <span class="num">+966 53 418 9330</span></p>
+  </div>
+  <p class="small">الأسعار افتتاحية لأول خمسة عملاء.</p>
+</div>
+</body>
+</html>
