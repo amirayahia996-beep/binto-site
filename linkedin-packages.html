@@ -37,6 +37,10 @@ h1,h2{text-wrap:balance;line-height:1.2}
 .price{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
 .price b{font-size:56px;font-weight:800;line-height:1;color:var(--teal);font-variant-numeric:tabular-nums}
 .card.main .price b{color:var(--gold)}
+.price s{font-size:24px;font-weight:700;color:#B4483F;text-decoration-thickness:2px;font-variant-numeric:tabular-nums}
+.card.main .price s{color:var(--rose)}
+.free{display:inline-block;font-size:12px;font-weight:800;background:var(--rose);color:var(--night);padding:1px 8px;border-radius:999px;margin-inline-start:6px;vertical-align:2px}
+.offer{justify-self:start;font-size:13px;font-weight:800;color:var(--night);background:var(--gold);padding:4px 12px;border-radius:6px}
 .price span{font-size:17px;font-weight:500;color:var(--mute)}
 .card.main .price span{color:#AFC6C5}
 .for{font-size:16px;color:var(--mute)}.card.main .for{color:#AFC6C5}
@@ -82,7 +86,7 @@ li b{font-weight:800}
 </head>
 <body>
 <div class="wrap">
-  <div class="top"><img src="/images/logo-dark.png" alt="شعار بنتو"><span>باقات كتابة لينكدإن · سعر افتتاحي لأول ٥ عملاء</span></div>
+  <div class="top"><img src="/images/logo-dark.png" alt="شعار بنتو"><span>باقات كتابة لينكدإن · عرض لفترة محدودة</span></div>
 
   <header class="hero">
     <svg class="fl" viewBox="0 0 200 200" aria-hidden="true"><g fill="#CFA2A2" stroke="#C8A24A" stroke-width="2"><ellipse cx="100" cy="52" rx="27" ry="46" transform="rotate(45 100 100)"/><ellipse cx="100" cy="52" rx="27" ry="46" transform="rotate(135 100 100)"/><ellipse cx="100" cy="52" rx="27" ry="46" transform="rotate(225 100 100)"/><ellipse cx="100" cy="52" rx="27" ry="46" transform="rotate(315 100 100)"/></g><rect x="91" y="91" width="18" height="18" fill="#C8A24A"/></svg>
@@ -94,10 +98,10 @@ li b{font-weight:800}
   <div class="cards">
     <article class="card">
       <div class="k"><h2>تجربة شهر</h2><span class="badge soft">للبداية</span></div>
-      <div><div class="price"><b>٧٥٠</b><span>ريال · مرة واحدة</span></div><p class="for">إذا تبي تجرّب الطريقة قبل ما تلتزم.</p></div>
+      <div><span class="offer">عرض لفترة محدودة</span><div class="price"><s>٩٩٠</s><b>٧٥٠</b><span>ريال · مرة واحدة</span></div><p class="for">إذا تبي تجرّب الطريقة قبل ما تلتزم.</p></div>
       <ul>
-        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>٤ منشورات</b> عربية بصوتك (منشور كل أسبوع)</span></li>
-        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>تصميم واحد</b> لأحد المنشورات</span></li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>٥ منشورات</b> عربية بصوتك: ٤ + منشور <span class="free">مجاناً</span></span></li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>تصميمان</b> للمنشورات</span></li>
         <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>تحسين العنوان والنبذة</b> في حسابك</span></li>
         <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>مكالمة تعارف</b> ٢٠ دقيقة نطلع فيها بصوتك</span></li>
       </ul>
@@ -109,9 +113,9 @@ li b{font-weight:800}
 
     <article class="card main">
       <div class="k"><h2>الباقة الأساسية</h2><span class="badge">الأكثر حضوراً</span></div>
-      <div><div class="price"><b>١٢٠٠</b><span>ريال · شهرياً</span></div><p class="for">حضور ثابت كل أسبوع، والكتابة والتصميم علينا.</p></div>
+      <div><span class="offer">عرض لفترة محدودة</span><div class="price"><s>١٥٠٠</s><b>١٢٠٠</b><span>ريال · شهرياً</span></div><p class="for">حضور ثابت كل أسبوع، والكتابة والتصميم علينا.</p></div>
       <ul>
-        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>٨ منشورات</b> عربية بصوتك (منشوران كل أسبوع)</span></li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>٩ منشورات</b> عربية بصوتك: ٨ + منشور <span class="free">مجاناً</span></span></li>
         <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>كاروسيل مصمم</b> + <b>تصميمان</b> للمنشورات</span></li>
         <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>تحسين العنوان والنبذة</b> في الشهر الأول</span></li>
         <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>مكالمة شهرية</b> + <b>ملخص أداء</b> آخر كل شهر</span></li>
@@ -146,7 +150,7 @@ li b{font-weight:800}
     <p><b>الدفع:</b> تحويل بنكي قبل البدء، ونبدأ بعد التحويل مباشرة.</p>
     <p>للتواصل على الواتساب: <span class="num">+966 53 418 9330</span></p>
   </div>
-  <p class="small">الأسعار افتتاحية لأول خمسة عملاء.</p>
+  <p class="small">أسعار العرض لفترة محدودة، وبعدها ترجع الأسعار للسعر الأصلي.</p>
 </div>
 </body>
 </html>
