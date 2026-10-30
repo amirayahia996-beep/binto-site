@@ -13,6 +13,7 @@
 :root{--night:#062B2C;--teal:#0B3D3F;--teal2:#2F6B6E;--gold:#C8A24A;--rose:#CFA2A2;--sand:#F6F2ED;--ink:#1F2328;--line:#D9D2CB;--mute:#5E7A7A;
 --f:"Tajawal",system-ui,"Segoe UI",Tahoma,sans-serif;color-scheme:light}
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html,body{margin:0;background:var(--sand);color:var(--ink)}
 body{font-family:var(--f);font-size:17px;line-height:1.7;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .wrap{max-width:980px;margin-inline:auto;padding-block:28px 48px;display:grid;gap:36px}
@@ -99,7 +100,7 @@ li b{font-weight:800}
   <div class="cards">
     <article class="card">
       <div class="k"><h2>تجربة شهر</h2><span class="badge soft">للبداية</span></div>
-      <div><span class="offer">عرض لفترة محدودة</span><div class="price"><s>٩٩٠</s><b>٧٥٠</b><span>ريال · مرة واحدة</span></div><p class="for">إذا تبي تجرّب الطريقة قبل ما تلتزم.</p></div>
+      <div><span class="offer" id="o-trial">خصم ٢٥٪ · عرض لفترة محدودة</span><div class="price"><s id="s-trial">١٠٠٠</s><b id="p-trial">٧٥٠</b><span>ريال · مرة واحدة</span></div><p class="for">إذا تبي تجرّب الطريقة قبل ما تلتزم.</p></div>
       <ul>
         <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>٥ منشورات</b> عربية بصوتك: ٤ + منشور <span class="free">مجاناً</span></span></li>
         <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>تصميمان</b> للمنشورات</span></li>
@@ -110,13 +111,13 @@ li b{font-weight:800}
       </ul>
       <div style="display:grid;gap:12px">
         <p class="terms">شهر واحد، بدون أي التزام بعده.</p>
-        <a class="pick" href="https://wa.me/966534189330?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A7%D8%AE%D8%AA%D8%B1%D8%AA%20%D8%A8%D8%A7%D9%82%D8%A9%20%C2%AB%D8%AA%D8%AC%D8%B1%D8%A8%D8%A9%20%D8%B4%D9%87%D8%B1%C2%BB%20%D9%84%D9%83%D8%AA%D8%A7%D8%A8%D8%A9%20%D9%84%D9%8A%D9%86%D9%83%D8%AF%D8%A5%D9%86%20%28750%20%D8%B1%D9%8A%D8%A7%D9%84%29.%20%D9%88%D8%B4%20%D8%A7%D9%84%D8%AE%D8%B7%D9%88%D8%A9%20%D8%A7%D9%84%D8%AC%D8%A7%D9%8A%D8%A9%D8%9F" target="_blank" rel="noopener">اختر تجربة الشهر</a>
+        <a class="pick" id="w-trial" href="https://wa.me/966534189330" target="_blank" rel="noopener">اختر تجربة الشهر</a>
       </div>
     </article>
 
     <article class="card main">
       <div class="k"><h2>الباقة الأساسية</h2><span class="badge">الأكثر حضوراً</span></div>
-      <div><span class="offer">عرض لفترة محدودة</span><div class="price"><s>١٥٠٠</s><b>١٢٠٠</b><span>ريال · شهرياً</span></div><p class="for">حضور ثابت كل أسبوع، والكتابة والتصميم علينا.</p></div>
+      <div><span class="offer" id="o-basic">خصم ٢٠٪ · عرض لفترة محدودة</span><div class="price"><s id="s-basic">١٥٠٠</s><b id="p-basic">١٢٠٠</b><span>ريال · شهرياً</span></div><p class="for">حضور ثابت كل أسبوع، والكتابة والتصميم علينا.</p></div>
       <ul>
         <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>٩ منشورات</b> عربية بصوتك: ٨ + منشور <span class="free">مجاناً</span></span></li>
         <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>كاروسيل مصمم</b> + <b>٤ تصاميم</b> للمنشورات</span></li>
@@ -127,7 +128,7 @@ li b{font-weight:800}
       </ul>
       <div style="display:grid;gap:12px">
         <p class="terms">شهري بدون حد أدنى، والإلغاء بإشعار قبل ١٤ يوماً.</p>
-        <a class="pick" href="https://wa.me/966534189330?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A7%D8%AE%D8%AA%D8%B1%D8%AA%20%C2%AB%D8%A7%D9%84%D8%A8%D8%A7%D9%82%D8%A9%20%D8%A7%D9%84%D8%A3%D8%B3%D8%A7%D8%B3%D9%8A%D8%A9%C2%BB%20%D9%84%D9%83%D8%AA%D8%A7%D8%A8%D8%A9%20%D9%84%D9%8A%D9%86%D9%83%D8%AF%D8%A5%D9%86%20%281200%20%D8%B1%D9%8A%D8%A7%D9%84%20%D8%B4%D9%87%D8%B1%D9%8A%D8%A7%D9%8B%29.%20%D9%88%D8%B4%20%D8%A7%D9%84%D8%AE%D8%B7%D9%88%D8%A9%20%D8%A7%D9%84%D8%AC%D8%A7%D9%8A%D8%A9%D8%9F" target="_blank" rel="noopener">اختر الباقة الأساسية</a>
+        <a class="pick" id="w-basic" href="https://wa.me/966534189330" target="_blank" rel="noopener">اختر الباقة الأساسية</a>
       </div>
     </article>
   </div>
@@ -167,5 +168,21 @@ li b{font-weight:800}
   </div>
   <p class="small">أسعار العرض لفترة محدودة، وبعدها ترجع الأسعار للسعر الأصلي.</p>
 </div>
+<script>
+/* ===== أسعار الشهر: عدّلي هنا فقط =====
+   base = السعر الأساسي، discount = نسبة الخصم (0 = بدون خصم) */
+const OFFER={
+  trial:{name:'تجربة شهر',base:1000,discount:25,unit:''},
+  basic:{name:'الباقة الأساسية',base:1500,discount:20,unit:' شهرياً'}
+};
+const AR=n=>String(n).replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]);
+for(const k in OFFER){const o=OFFER[k];const price=Math.round(o.base*(100-o.discount)/100/5)*5;
+  document.getElementById('p-'+k).textContent=AR(price);
+  const sEl=document.getElementById('s-'+k),oEl=document.getElementById('o-'+k);
+  if(o.discount>0){sEl.textContent=AR(o.base);sEl.hidden=false;oEl.textContent='خصم '+AR(o.discount)+'٪ · عرض لفترة محدودة';oEl.hidden=false}
+  else{sEl.hidden=true;oEl.hidden=true}
+  const msg='السلام عليكم، اخترت «'+o.name+'» لكتابة لينكدإن ('+price+' ريال'+o.unit+'). وش الخطوة الجاية؟';
+  document.getElementById('w-'+k).href='https://wa.me/966534189330?text='+encodeURIComponent(msg);}
+</script>
 </body>
 </html>
