@@ -14,3 +14,7 @@
   X-Robots-Tag: noindex, nofollow
 /p
   X-Robots-Tag: noindex, nofollow
+/new
+  X-Robots-Tag: noindex, nofollow
+/new.html
+  X-Robots-Tag: noindex, nofollow
