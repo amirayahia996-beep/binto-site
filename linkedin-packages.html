@@ -57,6 +57,7 @@ li b{font-weight:800}
 .sec h2{font-size:26px;font-weight:800;color:var(--teal)}
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:12px;counter-reset:s}
 .step{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;display:grid;gap:6px;align-content:start}
+.steps.id .step::before{content:"";display:block;width:28px;height:6px;border-radius:3px;background:var(--rose)}
 .step::before{counter-increment:s;content:counter(s,arabic-indic);font-size:30px;font-weight:800;color:var(--gold);line-height:1}
 .step b{font-size:18px;color:var(--teal)}.step p{font-size:15px;color:var(--mute)}
 .promise{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px}
@@ -69,7 +70,7 @@ li b{font-weight:800}
 @media print{
   @page{size:A4;margin:10mm}
   body{padding:0;font-size:13px}
-  .wrap{padding:0;gap:12px;max-width:none;zoom:.84}
+  .wrap{padding:0;gap:12px;max-width:none;zoom:.74}
   .step p{font-size:12px}.step b{font-size:15px}.hero svg.fl{width:150px;height:150px}
   .hero{padding:22px}.hero h1{font-size:34px}.hero p{font-size:15px}
   .cards{grid-template-columns:1fr 1fr;gap:12px}
@@ -102,6 +103,8 @@ li b{font-weight:800}
       <ul>
         <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>٥ منشورات</b> عربية بصوتك: ٤ + منشور <span class="free">مجاناً</span></span></li>
         <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>تصميمان</b> للمنشورات</span></li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>هوية بصرية خاصة فيك</b>: ألوانك وخطك</span></li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>بانر لينكدإن</b> مصمم بهويتك</span></li>
         <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>تحسين العنوان والنبذة</b> في حسابك</span></li>
         <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>مكالمة تعارف</b> ٢٠ دقيقة نطلع فيها بصوتك</span></li>
       </ul>
@@ -117,6 +120,8 @@ li b{font-weight:800}
       <ul>
         <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>٩ منشورات</b> عربية بصوتك: ٨ + منشور <span class="free">مجاناً</span></span></li>
         <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>كاروسيل مصمم</b> + <b>٤ تصاميم</b> للمنشورات</span></li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>هوية بصرية خاصة فيك</b>: ألوانك وخطك</span></li>
+        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>بانر لينكدإن</b> مصمم بهويتك</span></li>
         <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>تحسين العنوان والنبذة</b> في الشهر الأول</span></li>
         <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span><b>مكالمة شهرية</b> + <b>ملخص أداء</b> آخر كل شهر</span></li>
       </ul>
@@ -126,6 +131,16 @@ li b{font-weight:800}
       </div>
     </article>
   </div>
+
+  <section class="sec">
+    <h2>هويتك على لينكدإن</h2>
+    <div class="steps id">
+      <div class="step"><b>ألوانك</b><p>من مجالك وشخصيتك: ٣ إلى ٤ ألوان تميّزك عن غيرك.</p></div>
+      <div class="step"><b>خطك</b><p>خط عربي يناسب نبرتك: رسمي، أو قريب، أو جريء.</p></div>
+      <div class="step"><b>بانرك</b><p>بانر حسابك بنفس الهوية، أول شي يشوفه الزائر.</p></div>
+      <div class="step"><b>كل تصاميمك</b><p>تمشي على هويتك، فيعرف الناس منشورك قبل ما يقرأ اسمك.</p></div>
+    </div>
+  </section>
 
   <section class="sec">
     <h2>كيف نشتغل معك</h2>
