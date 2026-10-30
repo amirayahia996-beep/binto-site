@@ -123,6 +123,42 @@ section{position:relative}
 .videos{margin-top:18px;background:var(--teal);color:var(--sand);border-radius:22px;padding:26px 28px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
 .videos h3{font-size:24px}.videos p{color:var(--soft)}
 
+
+/* حساب إنستقرام */
+.ig{display:grid;gap:16px}
+.ig__tabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+.igt{flex:none;font-family:inherit;font-size:15px;font-weight:700;border:2px solid var(--line);background:#fff;color:var(--teal);border-radius:999px;padding:8px 16px;cursor:pointer;transition:all .3s}
+.igt[aria-selected="true"]{background:var(--teal);border-color:var(--teal);color:var(--sand)}
+.ig__screen{background:#fff;border:1px solid var(--line);border-radius:26px;overflow:hidden;max-width:760px;margin-inline:auto;width:100%;box-shadow:0 30px 70px -40px rgba(6,43,44,.4)}
+.ig__bar{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;border-bottom:1px solid #EFEAE4}
+.ig__name{font-weight:800;font-size:18px;color:var(--ink)}
+.ig__dots{color:var(--mute);letter-spacing:2px}
+.ig__bio{padding:14px 20px 10px;display:grid;gap:2px}.ig__bio b{font-size:16px}.ig__bio small{color:var(--mute);font-size:14px}
+.ig__strip{display:flex;border-top:1px solid #EFEAE4;color:#B8B1AA}.ig__strip span{flex:1;display:grid;place-items:center;padding:10px 0}.ig__strip span.on{color:var(--ink);box-shadow:inset 0 -2px 0 var(--ink)}
+.ig__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px}
+.cell{position:relative;aspect-ratio:3/4;overflow:hidden;background:#EFEAE4;border:0;padding:0;cursor:pointer;opacity:0;transform:scale(.9);animation:cellIn .55s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes cellIn{to{opacity:1;transform:none}}
+.cell img{width:100%;height:100%;object-fit:cover;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.cell:hover img{transform:scale(1.07)}
+.cell::after{content:"♥";position:absolute;inset:0;display:grid;place-items:center;color:#fff;font-size:30px;background:rgba(6,43,44,.35);opacity:0;transition:opacity .3s}
+@media(hover:hover){.cell:hover::after{opacity:1}}
+.lb{position:fixed;inset:0;z-index:100;background:rgba(6,43,44,.88);display:grid;place-items:center;padding:20px;animation:fade .3s}
+.lb[hidden]{display:none}
+@keyframes fade{from{opacity:0}}
+.lb__card{background:#fff;border-radius:20px;width:min(460px,100%);overflow:hidden;animation:pop .45s cubic-bezier(.2,.8,.2,1)}
+@keyframes pop{from{transform:scale(.85) translateY(20px);opacity:0}}
+.lb__top{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;font-size:16px}
+.lb__x{background:none;border:0;font-size:20px;cursor:pointer;color:var(--ink)}
+.lb__img{position:relative;user-select:none}.lb__img img{width:100%;display:block;max-height:68vh;object-fit:contain;background:#F3EFEA}
+.heart{position:absolute;inset:0;display:grid;place-items:center;font-size:110px;color:#fff;opacity:0;transform:scale(.3);pointer-events:none;text-shadow:0 6px 30px rgba(0,0,0,.3)}
+.heart.go{animation:heart .9s ease forwards}
+@keyframes heart{30%{opacity:1;transform:scale(1.1)}60%{transform:scale(.95)}100%{opacity:0;transform:scale(1.2)}}
+.lb__acts{display:flex;align-items:center;gap:16px;padding:10px 16px;font-size:22px}
+.like{transition:transform .3s,color .3s}.like.on{color:#E0245E;transform:scale(1.2)}
+.lb__acts .nav{margin-inline-start:auto;display:flex;gap:6px}
+.lb__acts .nav button{width:36px;height:36px;border-radius:99px;border:1px solid var(--line);background:#fff;font-size:22px;line-height:1;cursor:pointer;color:var(--teal)}
+.lb__cap{display:block;padding:0 16px 14px;color:var(--mute);font-size:13px}
+
 /* الخدمات */
 .services{background:var(--night);color:var(--sand);padding-block:80px}
 .sgrid{margin-top:34px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:16px}
@@ -224,27 +260,35 @@ footer a{color:var(--soft)}
 
 <section class="wrap work" id="work">
   <div class="work__head reveal">
-    <div><h2 class="h2"><span>نماذج من</span>أعمال بنتو</h2><p>اسحب يمين ويسار، أو اختر الجهة.</p></div>
-    <div class="filters" role="group" aria-label="تصفية حسب الجهة">
-      <button type="button" class="pill" data-f="all" aria-pressed="true">الكل</button>
-      <button type="button" class="pill" data-f="mubarak" aria-pressed="false">مجمع مبارك الطبي</button>
-      <button type="button" class="pill" data-f="celine" aria-pressed="false">Céline Beauty Clinics</button>
-      <button type="button" class="pill" data-f="alaa" aria-pressed="false">مجمع آلاء</button>
-      <button type="button" class="pill" data-f="mehwar" aria-pressed="false">محور الأبطال</button>
-    </div>
+    <div><h2 class="h2"><span>نماذج من</span>أعمال بنتو</h2><p>اختر الجهة، وتصفّح تصاميمها كأنك في حسابها.</p></div>
   </div>
-  <div class="rail reveal" id="rail">
-    <figure class="shot" data-c="mubarak"><img src="/images/work-mubarak.jpg" alt="حملة عروض 1448 والمحتوى التعريفي لمجمع مبارك الطبي" loading="lazy" width="1700" height="970"><figcaption><strong>مجمع مبارك الطبي</strong><span>حملة عروض 1448 والمحتوى التعريفي</span></figcaption></figure>
-    <figure class="shot" data-c="celine"><img src="/images/work-celine-brand.jpg" alt="منشورات الهوية والعروض لعيادات Céline" loading="lazy" width="1280" height="730"><figcaption><strong>Céline Beauty Clinics</strong><span>منشورات الهوية والعروض</span></figcaption></figure>
-    <figure class="shot" data-c="celine"><img src="/images/work-celine-offers.jpg" alt="عروض 2026 لعيادات Céline: الليزر والفيلر والتشقير" loading="lazy" width="1280" height="730"><figcaption><strong>Céline Beauty Clinics</strong><span>عروض 2026: الليزر والفيلر والتشقير</span></figcaption></figure>
-    <figure class="shot" data-c="alaa"><img src="/images/work-alaa.jpg" alt="منشورات خدمات الأسنان لمجمع آلاء" loading="lazy" width="1280" height="730"><figcaption><strong>مجمع آلاء لطب الأسنان</strong><span>منشورات خدمات الأسنان</span></figcaption></figure>
-    <figure class="shot" data-c="mehwar"><img src="/images/work-mehwar.jpg" alt="منشورات محور الأبطال وخصم نهاية السنة" loading="lazy" width="1280" height="730"><figcaption><strong>محور الأبطال</strong><span>منشورات الأبطال وخصم نهاية السنة</span></figcaption></figure>
+  <div class="ig reveal" id="ig">
+    <div class="ig__tabs" role="tablist" aria-label="الجهات">
+      <button role="tab" class="igt" data-c="mubarak" aria-selected="true">مجمع مبارك الطبي</button>
+      <button role="tab" class="igt" data-c="celine" aria-selected="false">Céline Beauty Clinics</button>
+      <button role="tab" class="igt" data-c="alaa" aria-selected="false">مجمع آلاء لطب الأسنان</button>
+      <button role="tab" class="igt" data-c="mehwar" aria-selected="false">محور الأبطال</button>
+    </div>
+    <div class="ig__screen">
+      <div class="ig__bar"><span class="ig__name" id="igName">مجمع مبارك الطبي</span><span class="ig__dots" aria-hidden="true">•••</span></div>
+      <div class="ig__bio"><b id="igBio">عيادات أسنان وجلدية وتجميل · مكة المكرمة</b><small>تصاميم بنتو للجهة</small></div>
+      <div class="ig__strip" aria-hidden="true"><span class="on"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></span><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M10 9l5 3-5 3z"/></svg></span><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12v18l-6-4-6 4z"/></svg></span></div>
+      <div class="ig__grid" id="igGrid"></div>
+    </div>
   </div>
   <div class="videos reveal">
     <div><h3>فيديوهات وموشن</h3><p>نماذج من الفيديوهات والريلز والموشن جرافيك.</p></div>
     <a class="btn btn--gold" href="https://drive.google.com/drive/folders/1wZTfzkRVaO_IkWG4Zu9j4FS_bHQN-bGn?usp=sharing" target="_blank" rel="noopener">مشاهدة الفيديوهات</a>
   </div>
 </section>
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="عرض التصميم">
+  <div class="lb__card">
+    <div class="lb__top"><b id="lbName"></b><button class="lb__x" id="lbX" aria-label="إغلاق">✕</button></div>
+    <div class="lb__img" id="lbImgWrap"><img id="lbImg" alt=""><span class="heart" id="heart" aria-hidden="true">♥</span></div>
+    <div class="lb__acts"><span id="lbLike" class="like" aria-hidden="true">♡</span><span aria-hidden="true">💬</span><span aria-hidden="true">➤</span><span class="nav"><button id="lbPrev" aria-label="السابق">›</button><button id="lbNext" aria-label="التالي">‹</button></span></div>
+    <small class="lb__cap">اضغط مرتين على التصميم ❤︎</small>
+  </div>
+</div>
 
 <section class="services on-dark" id="services">
   <div class="wrap">
@@ -323,13 +367,24 @@ const rv=[...document.querySelectorAll('.reveal')];
 if('IntersectionObserver' in window&&!reduce){rv.forEach(e=>{if(e.getBoundingClientRect().top>innerHeight)e.classList.add('wait')});
   const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.remove('wait');io.unobserve(en.target)}}),{threshold:.12});rv.forEach(e=>io.observe(e))}
 
-/* ===== الأعمال: سحب + تصفية + ميلان ===== */
-const rail=document.getElementById('rail');let down=false,sx=0,sl=0,moved=false;
-rail.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')return;down=true;moved=false;sx=e.clientX;sl=rail.scrollLeft;rail.classList.add('drag')});
-addEventListener('pointermove',e=>{if(!down)return;const d=e.clientX-sx;if(Math.abs(d)>4)moved=true;rail.scrollLeft=sl-d});
-addEventListener('pointerup',()=>{down=false;rail.classList.remove('drag')});
-rail.querySelectorAll('.shot').forEach(s=>{s.addEventListener('pointermove',e=>{if(down||reduce||e.pointerType!=='mouse')return;const r=s.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,yy=(e.clientY-r.top)/r.height-.5;s.style.transform=`rotateY(${x*8}deg) rotateX(${-yy*8}deg) translateY(-4px)`});s.addEventListener('pointerleave',()=>s.style.transform='')});
-document.querySelectorAll('.pill').forEach(p=>p.addEventListener('click',()=>{document.querySelectorAll('.pill').forEach(q=>q.setAttribute('aria-pressed',q===p));const f=p.dataset.f;rail.querySelectorAll('.shot').forEach(s=>s.classList.toggle('hide',f!=='all'&&s.dataset.c!==f));rail.scrollTo({left:0,behavior:'smooth'})}));
+
+/* ===== الأعمال: حساب إنستقرام لكل جهة ===== */
+const W={mubarak:{n:'مجمع مبارك الطبي',b:'عيادات أسنان وجلدية وتجميل · مكة المكرمة',c:9},celine:{n:'Céline Beauty Clinics',b:'عيادات تجميل وليزر · مكة المكرمة',c:18},alaa:{n:'مجمع آلاء لطب الأسنان',b:'عيادة أسنان · Alaa Dental Clinic',c:8},mehwar:{n:'محور الأبطال',b:'مركز رياضي للأطفال · كيك بوكسنق',c:8}};
+const grid=document.getElementById('igGrid');let cur='mubarak',list=[],li=0;
+function show(k){cur=k;const w=W[k];document.getElementById('igName').textContent=w.n;document.getElementById('igBio').textContent=w.b;
+  list=[...Array(w.c)].map((_,i)=>`/work/${k}-${String(i+1).padStart(2,'0')}.jpg`);
+  grid.innerHTML=list.map((src,i)=>`<button class="cell" style="animation-delay:${i*45}ms" data-i="${i}" aria-label="تصميم ${i+1} من ${w.n}"><img src="${src}" alt="تصميم من أعمال بنتو لـ${w.n}" loading="lazy"></button>`).join('');
+  document.querySelectorAll('.igt').forEach(t=>t.setAttribute('aria-selected',t.dataset.c===k));}
+document.querySelectorAll('.igt').forEach(t=>t.addEventListener('click',()=>show(t.dataset.c)));show('mubarak');
+const lb=document.getElementById('lb'),lbImg=document.getElementById('lbImg'),heart=document.getElementById('heart'),like=document.getElementById('lbLike');
+function open(i){li=(i+list.length)%list.length;lbImg.src=list[li];lbImg.alt='تصميم من أعمال بنتو لـ'+W[cur].n;document.getElementById('lbName').textContent=W[cur].n;like.classList.remove('on');like.textContent='♡';lb.hidden=false;document.getElementById('lbX').focus()}
+grid.addEventListener('click',e=>{const c=e.target.closest('.cell');if(c)open(+c.dataset.i)});
+document.getElementById('lbX').onclick=()=>lb.hidden=true;lb.addEventListener('click',e=>{if(e.target===lb)lb.hidden=true});
+document.getElementById('lbNext').onclick=()=>open(li+1);document.getElementById('lbPrev').onclick=()=>open(li-1);
+addEventListener('keydown',e=>{if(lb.hidden)return;if(e.key==='Escape')lb.hidden=true;if(e.key==='ArrowLeft')open(li+1);if(e.key==='ArrowRight')open(li-1)});
+let lastTap=0;document.getElementById('lbImgWrap').addEventListener('click',()=>{const n=Date.now();if(n-lastTap<350){heart.classList.remove('go');void heart.offsetWidth;heart.classList.add('go');like.classList.add('on');like.textContent='♥'}lastTap=n});
+let tx=0;document.getElementById('lbImgWrap').addEventListener('touchstart',e=>tx=e.touches[0].clientX,{passive:true});
+document.getElementById('lbImgWrap').addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>50)open(li+(d>0?1:-1))});
 
 /* ===== الخدمات: بطاقات تنقلب ===== */
 const S=[['تصميم المحتوى','منشورات وستوري لإنستقرام وسناب وتيك توك بهوية علامتك، جاهزة للنشر بمقاساتها الصحيحة.','M4 5h16v14H4zM4 15l5-5 4 4 3-3 4 4'],
