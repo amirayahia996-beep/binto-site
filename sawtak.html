@@ -54,6 +54,7 @@ canvas{position:fixed;inset:0;width:100%;height:100%;display:block}
 .vn-cap{font-size:16px;color:var(--gold);font-weight:800}
 .link{pointer-events:auto;background:none;border:0;font-family:inherit;font-size:15px;color:var(--mute);text-decoration:underline;text-underline-offset:4px;cursor:pointer;padding:6px}
 .link:focus-visible,.vn:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.final:not(.show) .vn,.final:not(.show) .link{pointer-events:none;visibility:hidden}
 @media (prefers-reduced-motion:reduce){.mic::after,.vn{animation:none}}
 </style>
 </head>
@@ -61,28 +62,28 @@ canvas{position:fixed;inset:0;width:100%;height:100%;display:block}
 
 
 <canvas id="c" aria-hidden="true"></canvas>
-<button id="hold" aria-label="اضغط مطولاً لتتكلم بصوتك. أو اضغط مسافة مطولاً"></button>
+<button id="hold" aria-label="اضغط على المايك للبدء، ثم أي ضغطة تنقلك للخطوة التالية"></button>
 <div class="ui">
   <div class="top"><span></span><div class="dots" aria-hidden="true"><i></i><i></i><i></i></div></div>
   <div class="center">
     <div class="hint" id="hint">
       <div class="mic"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></div>
       <span>هذا لينكدإن اليوم: نفس الكلمات عند الجميع.</span>
-      <span style="color:var(--gold);font-weight:800">اضغط مطوّلاً… وتكلّم.</span>
+      <span style="color:var(--gold);font-weight:800">اضغط على المايك… وتكلّم.</span>
     </div>
     <p class="line" id="line" aria-live="polite"></p>
   </div>
   <div class="bottom">
     <div class="final" id="final">
       <p><b>خلّ اسمك يُسمَع، مو يُقرأ وبس.</b><br><span style="color:var(--mute);font-size:.85em">نكتب بصوتك على لينكدإن. نص ساعة منك كل أسبوع.</span></p>
-      <div class="vn" id="vn" role="button" tabindex="0" aria-label="تواصل معانا على الواتساب: اضغط مطولاً وأرسل رسالة صوت">
+      <div class="vn" id="vn" role="button" tabindex="0" aria-label="تواصل معانا على الواتساب واطلب خطة لإدارة لينكدإن">
         <span class="vn-mic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#062B2C" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></span>
         <span class="vn-wave" id="vnwave" aria-hidden="true"></span>
         <span class="vn-t" id="vnt">٠:٠٠</span>
       </div>
-      <span class="vn-cap" id="vncap">تواصل معانا: اضغط مطوّلاً وقل «صوت»</span>
+      <span class="vn-cap" id="vncap">تواصل معانا: اضغط واطلب خطتك على الواتساب</span>
       <div class="row">
-        <a class="link" href="https://wa.me/966534189330?text=%D8%B5%D9%88%D8%AA" target="_blank" rel="noopener">أو افتح الواتساب مباشرة</a>
+        <a class="link" href="https://wa.me/966534189330?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%AE%D8%B7%D8%A9%20%D9%84%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9%20%D8%AD%D8%B3%D8%A7%D8%A8%D9%8A%20%D9%81%D9%8A%20%D9%84%D9%8A%D9%86%D9%83%D8%AF%D8%A5%D9%86%20%D9%88%D9%83%D8%AA%D8%A7%D8%A8%D8%A9%20%D8%A7%D9%84%D9%85%D8%AD%D8%AA%D9%88%D9%89%20%D8%A8%D8%B5%D9%88%D8%AA%D9%8A.%20%D9%88%D8%B4%20%D8%A7%D9%84%D8%AE%D8%B7%D9%88%D8%A9%20%D8%A7%D9%84%D8%A3%D9%88%D9%84%D9%89%D8%9F" target="_blank" rel="noopener">أو افتح الواتساب مباشرة</a>
         <button class="link" id="again">جرّب مرة ثانية</button>
       </div>
     </div>
@@ -104,16 +105,18 @@ size();seed();addEventListener('resize',()=>{size();if(!form)seed()});
 
 /* ===== الضغط المطوّل ===== */
 const hold=document.getElementById('hold'),hint=document.getElementById('hint'),line=document.getElementById('line'),dots=[...document.querySelectorAll('.dots i')],fin=document.getElementById('final');
-function start(x,y){if(stage>=3||form)return;holding=true;holdT=performance.now();hx=x;hy=y;ring=0;hint.classList.add('gone');line.classList.remove('show')}
-function end(){if(!holding)return;holding=false;const d=performance.now()-holdT;
- if(d>450){const [q,who]=LINES[stage];line.innerHTML=q+'<small>'+who+'</small>';requestAnimationFrame(()=>line.classList.add('show'));dots[stage].classList.add('on');stage++;
-  if(stage===3)setTimeout(gather,2600)}
- else{hint.classList.remove('gone')}}
-hold.addEventListener('pointerdown',e=>{hold.setPointerCapture(e.pointerId);start(e.clientX,e.clientY)});
-hold.addEventListener('pointermove',e=>{if(holding){hx+=(e.clientX-hx)*.3;hy+=(e.clientY-hy)*.3}});
-hold.addEventListener('pointerup',end);hold.addEventListener('pointercancel',end);
-addEventListener('keydown',e=>{if((e.code==='Space'||e.key==='Enter')&&!e.repeat&&document.activeElement!==document.getElementById('again')){e.preventDefault();start(W/2,H/2)}});
-addEventListener('keyup',e=>{if(e.code==='Space'||e.key==='Enter')end()});
+const micEl=document.querySelector('.mic');
+function onMic(x,y){const r=micEl.getBoundingClientRect();return x>=r.left-24&&x<=r.right+24&&y>=r.top-24&&y<=r.bottom+24}
+function advance(x,y){if(form||busy)return;
+ if(stage===0&&!onMic(x,y)){micEl.animate([{transform:'scale(1)'},{transform:'scale(1.25)'},{transform:'scale(1)'}],{duration:500});return}
+ if(stage===0){const r=micEl.getBoundingClientRect();x=r.left+r.width/2;y=r.top+r.height/2}
+ if(stage>=3){busy=true;hx=x;hy=y;holdT=performance.now();holding=true;setTimeout(()=>{holding=false;busy=false},700);gather();return}
+ busy=true;holding=true;holdT=performance.now();hx=x;hy=y;ring=0;hint.classList.add('gone');line.classList.remove('show');
+ setTimeout(()=>{const [q,who]=LINES[stage];line.innerHTML=q+'<small>'+who+'</small>';line.classList.add('show');dots[stage].classList.add('on');stage++},350);
+ setTimeout(()=>{holding=false;busy=false},900)}
+let busy=false;
+hold.addEventListener('pointerdown',e=>advance(e.clientX,e.clientY));
+addEventListener('keydown',e=>{if((e.code==='Space'||e.key==='Enter')&&!e.repeat&&!e.target.closest('.final')){e.preventDefault();const r=micEl.getBoundingClientRect();advance(stage===0?r.left+r.width/2:W/2,stage===0?r.top+r.height/2:H/2)}});
 
 /* ===== التجمّع: الضجيج يكتب «صوتك» ===== */
 function gather(){
@@ -131,18 +134,18 @@ function gather(){
 /* ===== الرسالة الصوتية: تواصل معانا ===== */
 const vn=document.getElementById('vn'),vw=document.getElementById('vnwave'),vt=document.getElementById('vnt'),cap=document.getElementById('vncap');
 for(let i=0;i<30;i++){const b=document.createElement('i');b.style.height='6px';vw.appendChild(b)}
-let rec=false,rs=0,raf=0;const WA='https://wa.me/966534189330?text=%D8%B5%D9%88%D8%AA';
+let rec=false,rs=0,raf=0;const WA='https://wa.me/966534189330?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%AE%D8%B7%D8%A9%20%D9%84%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9%20%D8%AD%D8%B3%D8%A7%D8%A8%D9%8A%20%D9%81%D9%8A%20%D9%84%D9%8A%D9%86%D9%83%D8%AF%D8%A5%D9%86%20%D9%88%D9%83%D8%AA%D8%A7%D8%A8%D8%A9%20%D8%A7%D9%84%D9%85%D8%AD%D8%AA%D9%88%D9%89%20%D8%A8%D8%B5%D9%88%D8%AA%D9%8A.%20%D9%88%D8%B4%20%D8%A7%D9%84%D8%AE%D8%B7%D9%88%D8%A9%20%D8%A7%D9%84%D8%A3%D9%88%D9%84%D9%89%D8%9F';
 const AR=n=>String(n).replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]);
-function vstart(e){if(e)e.preventDefault();rec=true;rs=performance.now();vn.classList.add('rec');cap.textContent='قل «صوت»… وارفع إصبعك';loop()}
+function vstart(e){if(e)e.preventDefault();rec=true;rs=performance.now();vn.classList.add('rec');cap.textContent='نسجّل طلبك…';loop()}
 function loop(){if(!rec)return;const d=performance.now()-rs,p=Math.min(1,d/1600);vn.style.setProperty('--p',p);
  [...vw.children].forEach((b,i)=>b.style.height=(6+Math.abs(Math.sin(d/110+i*.7))*26*(0.4+p*.6))+'px');
  vt.textContent='٠:٠'+AR(Math.min(9,Math.floor(d/1000)));raf=requestAnimationFrame(loop)}
 function vend(){if(!rec)return;rec=false;cancelAnimationFrame(raf);vn.classList.remove('rec');const d=performance.now()-rs;
  if(d>=900){vn.style.setProperty('--p',1);cap.textContent='وصلت. نفتح لك الواتساب…';setTimeout(()=>{location.href=WA},500)}
  else{vn.style.setProperty('--p',0);[...vw.children].forEach(b=>b.style.height='6px');vt.textContent='٠:٠٠';cap.textContent='اضغط مطوّلاً شوي أكثر'}}
-vn.addEventListener('pointerdown',e=>{vn.setPointerCapture(e.pointerId);vstart(e)});vn.addEventListener('pointerup',vend);vn.addEventListener('pointercancel',vend);
-vn.addEventListener('keydown',e=>{if((e.key==='Enter'||e.code==='Space')&&!e.repeat){e.preventDefault();e.stopPropagation();vstart()}});
-vn.addEventListener('keyup',e=>{if(e.key==='Enter'||e.code==='Space'){e.stopPropagation();vend()}});
+function vtap(e){if(e)e.preventDefault();if(rec)return;vstart();setTimeout(()=>{rs=performance.now()-1600;setTimeout(vend2,50)},1400)}
+function vend2(){rec=false;cancelAnimationFrame(raf);vn.classList.remove('rec');vn.style.setProperty('--p',1);cap.textContent='وصلت. نفتح لك الواتساب…';setTimeout(()=>{location.href=WA},450)}
+vn.addEventListener('click',vtap);vn.addEventListener('keydown',e=>{if(e.key==='Enter'||e.code==='Space'){e.preventDefault();e.stopPropagation();vtap()}});
 document.getElementById('again').onclick=()=>{form=null;stage=0;dots.forEach(d=>d.classList.remove('on'));fin.classList.remove('show');hint.classList.remove('gone');seed()};
 
 /* ===== الرسم ===== */
