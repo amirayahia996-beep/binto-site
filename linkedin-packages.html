@@ -68,26 +68,37 @@ li b{font-weight:800}
 .foot p{font-size:16px}.foot b{color:var(--gold)}
 .foot .num{font-size:20px;font-weight:800;direction:ltr;unicode-bidi:isolate;color:var(--gold)}
 .small{font-size:13px;color:var(--mute);text-align:center}
+.page{display:grid;gap:36px;align-content:start}
+.ptitle{display:grid;gap:8px}.ptitle h2{font-size:clamp(26px,4vw,40px);font-weight:800;color:var(--teal)}
+.tag2{justify-self:start;background:var(--rose);color:var(--night);font-weight:700;font-size:14px;padding:4px 14px;border-radius:6px}
+.p2 .ptitle{display:none}
 @media print{
-  @page{size:A4;margin:10mm}
-  body{padding:0;font-size:13px}
-  .wrap{padding:0;gap:12px;max-width:none;zoom:.74}
-  .step p{font-size:12px}.step b{font-size:15px}.hero svg.fl{width:150px;height:150px}
-  .hero{padding:22px}.hero h1{font-size:34px}.hero p{font-size:15px}
-  .cards{grid-template-columns:1fr 1fr;gap:12px}
-  .card{padding:18px;gap:10px;break-inside:avoid}
-  .price b{font-size:42px}
-  li{font-size:13.5px}
-  .pick{padding:9px;font-size:14px}
-  .step{padding:12px}.step::before{font-size:22px}.steps{grid-template-columns:repeat(4,1fr)}
-  .promise{grid-template-columns:repeat(3,1fr)}.promise div{font-size:12.5px;padding:10px}
-  .sec h2{font-size:19px}
+  @page{size:A4;margin:0}
+  html,body{background:var(--sand)}
+  body{padding:0;font-size:15px}
+  .wrap{padding:0;gap:0;max-width:none;display:block}
+  .page{box-sizing:border-box;height:297mm;padding:16mm 15mm;display:flex;flex-direction:column;justify-content:center;gap:9mm;break-after:page;overflow:hidden}
+  .page:last-child{break-after:auto}
+  .p2 .ptitle{display:grid}
+  .hero{padding:16mm 12mm}.hero h1{font-size:46px}.hero p{font-size:18px}
+  .top img{width:70px}
+  .cards{grid-template-columns:1fr 1fr;gap:6mm}
+  .card{padding:22px;gap:14px;break-inside:avoid}
+  .price b{font-size:52px}
+  li{font-size:15.5px}
+  .pick{padding:12px;font-size:16px}
+  .steps{grid-template-columns:repeat(2,1fr);gap:5mm}.step{padding:18px}.step::before{font-size:30px}.step b{font-size:19px}.step p{font-size:15px}
+  .promise{grid-template-columns:1fr;gap:4mm}.promise div{font-size:16px;padding:14px 16px}
+  .sec h2{font-size:28px}
+  .foot{padding:22px}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
 }
 </style>
 </head>
 <body>
 <div class="wrap">
+<div class="page p1">
   <div class="top"><img src="/images/logo-dark.png" alt="شعار بنتو"><span>باقات كتابة لينكدإن · عرض لفترة محدودة</span></div>
 
   <header class="hero">
@@ -96,7 +107,18 @@ li b{font-weight:800}
     <h1>أنت تتكلم.<br><em>نحن نكتب وننشر.</em></h1>
     <p>منشورات لينكدإن بصوتك أنت، من كلامك وقراراتك الحقيقية. اختر الباقة اللي تناسبك، واضغط «اختر» ويوصلنا طلبك على الواتساب.</p>
   </header>
-
+  <section class="sec">
+    <h2>هويتك على لينكدإن</h2>
+    <div class="steps id">
+      <div class="step"><b>ألوانك</b><p>من مجالك وشخصيتك: ٣ إلى ٤ ألوان تميّزك عن غيرك.</p></div>
+      <div class="step"><b>خطك</b><p>خط عربي يناسب نبرتك: رسمي، أو قريب، أو جريء.</p></div>
+      <div class="step"><b>بانرك</b><p>بانر حسابك بنفس الهوية، أول شي يشوفه الزائر.</p></div>
+      <div class="step"><b>كل تصاميمك</b><p>تمشي على هويتك، فيعرف الناس منشورك قبل ما يقرأ اسمك.</p></div>
+    </div>
+  </section>
+</div>
+<div class="page p2">
+  <div class="ptitle"><span class="tag2">الباقات</span><h2>اختر الباقة اللي تناسبك</h2></div>
   <div class="cards">
     <article class="card">
       <div class="k"><h2>تجربة شهر</h2><span class="badge soft">للبداية</span></div>
@@ -132,17 +154,9 @@ li b{font-weight:800}
       </div>
     </article>
   </div>
-
-  <section class="sec">
-    <h2>هويتك على لينكدإن</h2>
-    <div class="steps id">
-      <div class="step"><b>ألوانك</b><p>من مجالك وشخصيتك: ٣ إلى ٤ ألوان تميّزك عن غيرك.</p></div>
-      <div class="step"><b>خطك</b><p>خط عربي يناسب نبرتك: رسمي، أو قريب، أو جريء.</p></div>
-      <div class="step"><b>بانرك</b><p>بانر حسابك بنفس الهوية، أول شي يشوفه الزائر.</p></div>
-      <div class="step"><b>كل تصاميمك</b><p>تمشي على هويتك، فيعرف الناس منشورك قبل ما يقرأ اسمك.</p></div>
-    </div>
-  </section>
-
+  <p class="small">أسعار العرض لفترة محدودة، وبعدها ترجع الأسعار للسعر الأصلي.</p>
+</div>
+<div class="page p3">
   <section class="sec">
     <h2>كيف نشتغل معك</h2>
     <div class="steps">
@@ -152,7 +166,6 @@ li b{font-weight:800}
       <div class="step"><b>توافق ثم ننشر</b><p>يوصلك كل منشور قبل نشره، وتعتمده أو تعدّله.</p></div>
     </div>
   </section>
-
   <section class="sec">
     <h2>اللي نلتزم فيه</h2>
     <div class="promise">
@@ -161,12 +174,11 @@ li b{font-weight:800}
       <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B3D3F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span>لا قصص مختلقة ولا أرقام بدون مصدر.</span></div>
     </div>
   </section>
-
   <div class="foot">
     <p><b>الدفع:</b> تحويل بنكي قبل البدء، ونبدأ بعد التحويل مباشرة.</p>
     <p>للتواصل على الواتساب: <span class="num">+966 53 418 9330</span></p>
   </div>
-  <p class="small">أسعار العرض لفترة محدودة، وبعدها ترجع الأسعار للسعر الأصلي.</p>
+</div>
 </div>
 <script>
 /* ===== أسعار الشهر: عدّلي هنا فقط =====
