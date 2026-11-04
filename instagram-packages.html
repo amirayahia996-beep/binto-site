@@ -148,10 +148,9 @@ button{font:inherit;cursor:pointer}
 .faq details[open] summary::after{transform:rotate(45deg)}
 .faq details p{padding:0 0 16px;color:var(--teal2);font-size:16px}
 
-.foot{background:var(--teal);color:var(--sand);border-radius:14px;padding:22px 26px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
-.foot p{font-size:16px}.foot b{color:var(--gold)}
-.foot a{font-size:20px;font-weight:800;direction:ltr;unicode-bidi:isolate;color:var(--gold);text-decoration:none}
-.acct{font-size:14px;color:var(--teal2);text-align:center;direction:ltr}
+.foot{display:flex;justify-content:center;gap:18px;padding-block:8px}
+.foot a{width:60px;height:60px;border-radius:50%;background:var(--teal);display:grid;place-items:center;transition:transform .25s var(--ease),background .25s}
+.foot a:hover{transform:translateY(-3px);background:var(--teal2)}
 
 /* ===== الشريط السفلي ===== */
 .bar{position:fixed;inset-inline:0;bottom:0;z-index:10;padding:10px max(16px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px));background:var(--night);border-top:2px solid var(--gold);transform:translateY(110%);transition:transform .4s var(--ease)}
@@ -303,11 +302,10 @@ button{font:inherit;cursor:pointer}
     </div>
   </section>
 
-  <div class="foot rv">
-    <p><b>الدفع:</b> تحويل بنكي قبل البدء، والشغل يبدأ بعد التحويل مباشرة.</p>
-    <p>الواتساب: <a href="https://wa.me/966534189330">+966 53 418 9330</a></p>
-  </div>
-  <p class="acct">@bintodesign</p>
+  <nav class="foot rv" aria-label="التواصل">
+    <a href="https://wa.me/966534189330" aria-label="الواتساب" target="_blank" rel="noopener"><svg width="28" height="28" viewBox="0 0 24 24" aria-hidden="true"><path fill="#C8A24A" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s1 2.6 1.1 2.7c.1.2 1.9 2.9 4.6 4.1 1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.8-1.2.2-.6.2-1.1.1-1.2l-.5-.3z"/></svg></a>
+    <a href="https://www.instagram.com/bintodesign/" aria-label="إنستقرام" target="_blank" rel="noopener"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" fill="#C8A24A" stroke="none"/></svg></a>
+  </nav>
 </div>
 
 <div class="bar" id="bar" aria-live="polite"><div class="in"><p>الباقة المختارة<b id="bar-n">باقة النمو · <em>999</em> ر.س</b></p><a id="bar-w" href="https://wa.me/966534189330">طلب الباقة</a></div></div>
