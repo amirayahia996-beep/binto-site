@@ -130,7 +130,7 @@ button{font:inherit;cursor:pointer}
 .cmp td,.cmp th{transition:background .25s,color .25s}
 
 /* ===== الخطوات والالتزام ===== */
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px;counter-reset:s}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:12px;counter-reset:s}
 .step{background:var(--sand);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:6px;align-content:start}
 .step::before{counter-increment:s;content:counter(s);font-size:30px;font-weight:800;color:var(--gold);line-height:1}
 .steps.inc .step::before{content:"";display:block;width:28px;height:6px;border-radius:3px;background:var(--rose)}
@@ -153,15 +153,6 @@ button{font:inherit;cursor:pointer}
 .foot a{width:60px;height:60px;border-radius:50%;background:var(--teal);display:grid;place-items:center;transition:transform .25s var(--ease),background .25s}
 .foot a:hover{transform:translateY(-3px);background:var(--teal2)}
 
-.inc{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:10px}
-.inc li{border:1.5px solid var(--line);border-radius:999px;padding:8px 18px;font-weight:700;color:var(--teal);display:flex;align-items:center;gap:8px}
-.inc li::before{content:"✓";color:var(--gold);font-weight:800}
-.flow{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,170px),1fr));gap:10px;counter-reset:f}
-.flow li{counter-increment:f;border:1px solid var(--line);border-radius:14px;padding:14px 16px;font-weight:700;color:var(--teal);display:grid;gap:4px;align-content:start}
-.flow li::before{content:counter(f);font-size:26px;font-weight:800;color:var(--gold);line-height:1}
-.flow li:last-child{background:var(--teal);color:var(--sand);border-color:var(--teal)}
-.card h3{margin-bottom:-6px}
-
 /* ===== الشريط السفلي ===== */
 .bar{position:fixed;inset-inline:0;bottom:0;z-index:10;padding:10px max(16px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px));background:var(--night);border-top:2px solid var(--gold);transform:translateY(110%);transition:transform .4s var(--ease)}
 .bar.on{transform:none}
@@ -183,62 +174,137 @@ button{font:inherit;cursor:pointer}
 </head>
 <body>
 <div class="wrap">
-  <div class="top"><img src="/images/logo-dark.png" alt="شعار بنتو"></div>
+  <div class="top"><img src="/images/logo-dark.png" alt="شعار بنتو"><span id="topnote">باقات تصميم إنستقرام · عرض خاص حتى 30 نوفمبر</span></div>
 
   <header class="hero">
     <svg class="fl" viewBox="0 0 200 200" aria-hidden="true"><g fill="#CFA2A2" stroke="#C8A24A" stroke-width="2"><ellipse cx="100" cy="52" rx="27" ry="46" transform="rotate(45 100 100)"/><ellipse cx="100" cy="52" rx="27" ry="46" transform="rotate(135 100 100)"/><ellipse cx="100" cy="52" rx="27" ry="46" transform="rotate(225 100 100)"/><ellipse cx="100" cy="52" rx="27" ry="46" transform="rotate(315 100 100)"/></g><rect x="91" y="91" width="18" height="18" fill="#C8A24A"/></svg>
     <span class="tag">تصميم إنستقرام</span>
     <h1><span class="l">حســـاب مرتّـــب بهويـــة وحـــدة،</span><span class="b">ومحتوى يجيب <span class="m">طلبات</span></span></h1>
+    <p>كتابة المحتوى وتصاميم المنشورات والكاروسيل والستوري والموشن بهوية علامتك. وقبل أي باقة: <span class="free">ملاحظة مجانية</span> على الحساب.</p>
     <div class="timer" id="timer" role="timer" aria-label="الوقت المتبقي على نهاية العرض">
-      <span>العرض ينتهي خلال</span>
+      <span>ينتهي العرض خلال</span>
       <div class="tbox"><div><b id="td">–</b><small>يوم</small></div><div><b id="th">–</b><small>ساعة</small></div><div><b id="tm">–</b><small>دقيقة</small></div><div><b id="ts">–</b><small>ثانية</small></div></div>
     </div>
-    <a class="go" href="#fit">اختيار الباقة ↓</a>
+    <a class="go" href="#fit">اختيار الباقة المناسبة ↓</a>
   </header>
 
   <section class="sec rv">
     <h2>في كل باقة</h2>
-    <ul class="inc">
-      <li>كتابة المحتوى والكابشن</li><li>هوية علامتك</li><li>مقاسات المنصات</li><li>تعديلان لكل تصميم</li><li>ملف إكسل جاهز للنشر</li>
-    </ul>
+    <div class="steps inc">
+      <div class="step"><b>كتابة المحتوى</b><p>أفكار الشهر والنص على التصميم والكابشن والهاشتاقات.</p></div>
+      <div class="step"><b>هوية علامتك</b><p>كل تصميم بألوان علامتك وخطها وشعارها.</p></div>
+      <div class="step"><b>مقاسات المنصات</b><p>تسليم بمقاس الشبكة والستوري والريلز، جاهز للنشر.</p></div>
+      <div class="step"><b>تعديلان لكل تصميم</b><p>ملاحظات الاعتماد تُطبّق قبل التسليم النهائي.</p></div>
+      <div class="step"><b>ملف جاهز للنشر</b><p>جدول إكسل فيه المحتوى والكابشن وروابط التصاميم.</p></div>
+    </div>
   </section>
 
   <section class="quiz rv" id="fit" aria-labelledby="fit-h">
-    <h2 id="fit-h">وش <span class="m">يناسبكم</span>؟</h2>
-    <div class="q"><b>منشورات بالأسبوع</b>
-      <div class="chips" data-q="posts"><button class="chip" data-v="0" aria-pressed="false">2</button><button class="chip" data-v="1" aria-pressed="false">3</button><button class="chip" data-v="2" aria-pressed="false">4+</button></div></div>
-    <div class="q"><b>موشن وكاروسيل</b>
-      <div class="chips" data-q="motion"><button class="chip" data-v="0" aria-pressed="false">لا</button><button class="chip" data-v="1" aria-pressed="false">أحياناً</button><button class="chip" data-v="2" aria-pressed="false">كل أسبوع</button></div></div>
+    <h2 id="fit-h">وش <span class="m">يناسبكم</span>؟ سؤالين بس</h2>
+    <div class="q"><b>كم منشور بالأسبوع؟</b>
+      <div class="chips" data-q="posts">
+        <button class="chip" data-v="0" aria-pressed="false">منشورين</button>
+        <button class="chip" data-v="1" aria-pressed="false">3 منشورات</button>
+        <button class="chip" data-v="2" aria-pressed="false">4 وأكثر</button>
+      </div></div>
+    <div class="q"><b>فيديو موشن أو كاروسيل؟</b>
+      <div class="chips" data-q="motion">
+        <button class="chip" data-v="0" aria-pressed="false">مو ضروري</button>
+        <button class="chip" data-v="1" aria-pressed="false">مرة أو مرتين بالشهر</button>
+        <button class="chip" data-v="2" aria-pressed="false">كل أسبوع</button>
+      </div></div>
     <p class="ans" id="ans" aria-live="polite"></p>
   </section>
 
   <section class="sec" id="plans">
     <h2>الباقات</h2>
+    <p class="sub" id="plansub">أسعار العرض سارية حتى 30 نوفمبر 2026.</p>
     <div class="cards">
       <article class="card rv" data-k="start" tabindex="0" role="radio" aria-checked="false">
-        <h3><span class="dot" aria-hidden="true"></span>الانطلاقة</h3>
-        <div class="pricebox"><div class="price"><b id="p-start">499</b><span>ر.س · شهرياً</span></div><span class="after" data-a>بدل <s id="s-start">800</s></span></div>
-        <div class="rows"><div class="row"><span>منشورات</span><b>8</b></div><div class="row"><span>كاروسيل</span><b class="no">—</b></div><div class="row"><span>ستوري</span><b>4</b></div><div class="row"><span>موشن</span><b class="no">—</b></div></div>
-        <a class="pick" id="w-start" href="https://wa.me/966534189330">طلب الباقة</a>
+        <div class="head"><h3><span class="dot" aria-hidden="true"></span>باقة الانطلاقة</h3><p class="for">لبداية حضور مرتب على السوشال ميديا.</p></div>
+        <div class="pricebox"><span class="offer" data-o>عرض خاص</span><div class="price"><b id="p-start">499</b><span>ر.س · شهرياً</span></div><span class="after" data-a>بعد العرض: <s id="s-start">800</s> ر.س · توفير <em id="v-start">301</em></span></div>
+        <div class="rows">
+          <div class="row"><span>كتابة المحتوى والكابشن</span><b class="ok">✓</b></div>
+          <div class="row"><span>تصاميم منشورات</span><b>8</b></div>
+          <div class="row"><span>كاروسيل</span><b class="no">—</b></div>
+          <div class="row"><span>تصاميم ستوري</span><b>4</b></div>
+          <div class="row"><span>فيديو موشن</span><b class="no">—</b></div>
+          <div class="row"><span>تعديلات لكل تصميم</span><b>2</b></div>
+          <div class="row"><span>ملف إكسل جاهز للنشر</span><b class="ok">✓</b></div>
+        </div>
+        <a class="pick" id="w-start" href="https://wa.me/966534189330">طلب باقة الانطلاقة</a>
       </article>
       <article class="card main rv" data-k="grow" tabindex="0" role="radio" aria-checked="false">
-        <span class="flag">ننصح فيها</span><h3><span class="dot" aria-hidden="true"></span>النمو</h3>
-        <div class="pricebox"><div class="price"><b id="p-grow">999</b><span>ر.س · شهرياً</span></div><span class="after" data-a>بدل <s id="s-grow">1,500</s></span></div>
-        <div class="rows"><div class="row"><span>منشورات</span><b>12</b></div><div class="row"><span>كاروسيل</span><b>1</b></div><div class="row"><span>ستوري</span><b>8</b></div><div class="row"><span>موشن</span><b>2</b></div></div>
-        <a class="pick" id="w-grow" href="https://wa.me/966534189330">طلب الباقة</a>
+        <span class="flag">ننصح فيها</span>
+        <div class="head"><h3><span class="dot" aria-hidden="true"></span>باقة النمو</h3><p class="for">للعلامات النشطة اللي تنشر باستمرار.</p></div>
+        <div class="pricebox"><span class="offer" data-o>عرض خاص</span><div class="price"><b id="p-grow">999</b><span>ر.س · شهرياً</span></div><span class="after" data-a>بعد العرض: <s id="s-grow">1,500</s> ر.س · توفير <em id="v-grow">501</em></span></div>
+        <div class="rows">
+          <div class="row"><span>كتابة المحتوى والكابشن</span><b class="ok">✓</b></div>
+          <div class="row"><span>تصاميم منشورات</span><b>12</b></div>
+          <div class="row new"><span>كاروسيل</span><b>1</b></div>
+          <div class="row"><span>تصاميم ستوري</span><b>8</b></div>
+          <div class="row"><span>فيديو موشن</span><b>2</b></div>
+          <div class="row"><span>تعديلات لكل تصميم</span><b>2</b></div>
+          <div class="row"><span>ملف إكسل جاهز للنشر</span><b class="ok">✓</b></div>
+        </div>
+        <a class="pick" id="w-grow" href="https://wa.me/966534189330">طلب باقة النمو</a>
       </article>
       <article class="card rv" data-k="pro" tabindex="0" role="radio" aria-checked="false">
-        <h3><span class="dot" aria-hidden="true"></span>الاحتراف</h3>
-        <div class="pricebox"><div class="price"><b id="p-pro">1,699</b><span>ر.س · شهرياً</span></div><span class="after" data-a>بدل <s id="s-pro">2,500</s></span></div>
-        <div class="rows"><div class="row"><span>منشورات</span><b>18</b></div><div class="row"><span>كاروسيل</span><b>2</b></div><div class="row"><span>ستوري</span><b>10</b></div><div class="row"><span>موشن</span><b>4</b></div></div>
-        <a class="pick" id="w-pro" href="https://wa.me/966534189330">طلب الباقة</a>
+        <div class="head"><h3><span class="dot" aria-hidden="true"></span>باقة الاحتراف</h3><p class="for">حضور كامل ومحتوى متنوع طوال الشهر.</p></div>
+        <div class="pricebox"><span class="offer" data-o>عرض خاص</span><div class="price"><b id="p-pro">1,699</b><span>ر.س · شهرياً</span></div><span class="after" data-a>بعد العرض: <s id="s-pro">2,500</s> ر.س · توفير <em id="v-pro">801</em></span></div>
+        <div class="rows">
+          <div class="row"><span>كتابة المحتوى والكابشن</span><b class="ok">✓</b></div>
+          <div class="row"><span>تصاميم منشورات</span><b>18</b></div>
+          <div class="row new"><span>كاروسيل</span><b>2</b></div>
+          <div class="row"><span>تصاميم ستوري</span><b>10</b></div>
+          <div class="row"><span>فيديو موشن</span><b>4</b></div>
+          <div class="row"><span>تعديلات لكل تصميم</span><b>2</b></div>
+          <div class="row"><span>ملف إكسل جاهز للنشر</span><b class="ok">✓</b></div>
+        </div>
+        <a class="pick" id="w-pro" href="https://wa.me/966534189330">طلب باقة الاحتراف</a>
       </article>
     </div>
+    <p class="small">الأسعار بالريال السعودي.</p>
   </section>
 
   <section class="sec rv">
-    <h2>التسليم</h2>
-    <ol class="flow"><li>تعارف</li><li>المواد</li><li>المحتوى والتصميم</li><li>الاعتماد</li><li>ملف إكسل بالمحتوى والكابشن وروابط التصاميم</li></ol>
+    <h2>مقارنة سريعة</h2>
+    <div class="cmp"><table id="cmp">
+      <thead><tr><th scope="col">المحتوى الشهري</th><th scope="col" data-c="start">الانطلاقة</th><th scope="col" data-c="grow">النمو</th><th scope="col" data-c="pro">الاحتراف</th></tr></thead>
+      <tbody>
+        <tr><td>كتابة المحتوى والكابشن</td><td data-c="start">✓</td><td data-c="grow">✓</td><td data-c="pro">✓</td></tr>
+        <tr><td>ملف إكسل جاهز للنشر</td><td data-c="start">✓</td><td data-c="grow">✓</td><td data-c="pro">✓</td></tr>
+        <tr><td>تصاميم منشورات</td><td data-c="start">8</td><td data-c="grow">12</td><td data-c="pro">18</td></tr>
+        <tr><td>كاروسيل</td><td data-c="start" class="no">—</td><td data-c="grow">1</td><td data-c="pro">2</td></tr>
+        <tr><td>تصاميم ستوري</td><td data-c="start">4</td><td data-c="grow">8</td><td data-c="pro">10</td></tr>
+        <tr><td>فيديو موشن</td><td data-c="start" class="no">—</td><td data-c="grow">2</td><td data-c="pro">4</td></tr>
+        <tr><td>تعديلات لكل تصميم</td><td data-c="start">2</td><td data-c="grow">2</td><td data-c="pro">2</td></tr>
+        <tr><td>السعر الشهري (ر.س)</td><td data-c="start" id="c-start">499</td><td data-c="grow" id="c-grow">999</td><td data-c="pro" id="c-pro">1,699</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="sec rv">
+    <h2>طريقة الشغل والتسليم</h2>
+    <div class="steps">
+      <div class="step"><b>تعارف</b><p>محادثة قصيرة على الواتساب نفهم فيها النشاط والجمهور والهدف.</p></div>
+      <div class="step"><b>المواد</b><p>الشعار والألوان والصور وتفاصيل الخدمات أو المنتجات.</p></div>
+      <div class="step"><b>التصميم</b><p>تصاميم الشهر بهوية علامتك وبمقاسات المنصات.</p></div>
+      <div class="step"><b>الاعتماد</b><p>كل تصميم يوصل للمراجعة قبل التسليم النهائي.</p></div>
+      <div class="step"><b>التسليم</b><p>ملف إكسل للشهر فيه المحتوى والكابشن والتفاصيل وروابط التصاميم، والباقي ترتيب النشر بس.</p></div>
+    </div>
+  </section>
+
+
+  <section class="sec rv">
+    <h2>أسئلة متكررة</h2>
+    <div class="faq">
+      <details><summary>وش الفرق بين المنشور والكاروسيل؟</summary><p>المنشور تصميم واحد، والكاروسيل مجموعة شرائح يتم تصفّحها بالسحب، وتناسب الشرح والخطوات والمقارنات.</p></details>
+      <details><summary>متى يبدأ الشغل؟</summary><p>بعد التحويل البنكي مباشرة، ونبدأ بمحادثة التعارف وجمع المواد.</p></details>
+      <details><summary>كيف يتم تسليم الشغل؟</summary><p>ملف إكسل للشهر، فيه لكل منشور: التاريخ المقترح، والنص على التصميم، والكابشن، والهاشتاقات، ورابط التصميم.</p></details>
+      <details><summary>هل النشر على الحساب ضمن الباقة؟</summary><p>النشر من طرفكم، والملف يجي مرتب بحيث يكون النشر نسخ ولصق.</p></details>
+      <details><summary>وش معنى الملاحظة المجانية؟</summary><p>نظرة على الحساب الحالي وملاحظة عملية وحدة للتحسين، بلا أي التزام.</p></details>
+    </div>
   </section>
 
   <nav class="foot rv" aria-label="التواصل">
@@ -270,12 +336,15 @@ const msg=k=>WA+encodeURIComponent('السلام عليكم، طلب «'+PLANS[k
 for(const k in PLANS){
   const p=PLANS[k];
   $('p-'+k).textContent=fmt(price(k));$('p-'+k).dataset.n=price(k);
-  $('s-'+k).textContent=fmt(p.base);
+  $('s-'+k).textContent=fmt(p.base);$('v-'+k).textContent=fmt(p.base-p.offer);
+  $('c-'+k).textContent=fmt(price(k));
   $('w-'+k).href=msg(k);
 }
 if(!live){
   document.querySelectorAll('[data-o],[data-a]').forEach(e=>e.hidden=true);
   $('timer').hidden=true;
+  $('plansub').textContent='ضغطة على الباقة تختارها.';
+  $('topnote').textContent='باقات تصميم إنستقرام';
 }
 
 /* العدّاد */
@@ -296,7 +365,8 @@ let current=null;
 function select(k,scroll){
   current=k;
   cards.forEach(c=>{const on=c.dataset.k===k;c.classList.toggle('sel',on);c.setAttribute('aria-checked',on)});
-    $('bar-n').innerHTML=PLANS[k].name+' · <em>'+fmt(price(k))+'</em> ر.س';
+  document.querySelectorAll('#cmp [data-c]').forEach(c=>c.classList.toggle('hl',c.dataset.c===k));
+  $('bar-n').innerHTML=PLANS[k].name+' · <em>'+fmt(price(k))+'</em> ر.س';
   $('bar-w').href=msg(k);
   $('bar').classList.add('on');
   if(scroll){document.querySelector('.card[data-k="'+k+'"]').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'center'})}
