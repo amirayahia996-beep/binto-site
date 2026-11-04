@@ -11,44 +11,83 @@
 @font-face{font-family:"Tajawal";src:url("/fonts/Tajawal-Bold.ttf");font-weight:700}
 @font-face{font-family:"Tajawal";src:url("/fonts/Tajawal-ExtraBold.ttf");font-weight:800}
 :root{--night:#062B2C;--teal:#0B3D3F;--teal2:#2F6B6E;--gold:#C8A24A;--rose:#CFA2A2;--sand:#F6F2ED;--ink:#1F2328;--line:#D9D2CB;
---soft:rgba(246,242,237,.75);--f:"Tajawal",system-ui,"Segoe UI",Tahoma,sans-serif;color-scheme:light}
+--soft:rgba(246,242,237,.75);--f:"Tajawal",system-ui,"Segoe UI",Tahoma,sans-serif;--ease:cubic-bezier(.2,.8,.2,1);color-scheme:light}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
+html{scroll-behavior:smooth}
 html,body{margin:0;background:var(--sand);color:var(--ink)}
-body{font-family:var(--f);font-size:17px;line-height:1.7;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.wrap{max-width:1080px;margin-inline:auto;padding-block:28px 48px;display:grid;gap:40px}
+body{font-family:var(--f);font-size:17px;line-height:1.7;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-bottom:96px}
+.wrap{max-width:1080px;margin-inline:auto;padding-block:28px 48px;display:grid;gap:44px}
 h1,h2,h3,p{margin:0}
 h1,h2{text-wrap:balance;line-height:1.25}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 .top{display:flex;justify-content:space-between;align-items:center;gap:12px}
 .top img{width:64px;height:auto}
 .top span{font-size:14px;color:var(--teal2);text-align:left}
 
-.hero{background:var(--teal);color:var(--sand);border-radius:14px;padding:clamp(26px,5vw,52px);display:grid;gap:16px;position:relative;overflow:hidden}
-.hero svg.fl{position:absolute;left:-60px;top:-60px;width:200px;height:200px}
+/* ===== الهيرو ===== */
+.hero{background:var(--teal);color:var(--sand);border-radius:14px;padding:clamp(26px,5vw,52px);display:grid;gap:18px;position:relative;overflow:hidden}
+.hero svg.fl{position:absolute;left:-60px;top:-60px;width:200px;height:200px;animation:spin 40s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
 .hero .tag{justify-self:start;background:var(--rose);color:var(--night);font-weight:700;font-size:14px;padding:4px 14px;border-radius:6px}
 .hero h1{display:grid;gap:2px}
 .hero h1 .l,.hero h1 .b{white-space:nowrap}
-.hero h1 .l{font-size:clamp(23px,4.3vw,44px);font-weight:500}
-.hero h1 .b{font-size:clamp(30px,6.4vw,58px);font-weight:800}
+.hero h1 .l{font-size:min(44px,5.3vw);font-weight:500}
+.hero h1 .b{font-size:min(58px,7.4vw);font-weight:800}
 .m{position:relative;display:inline-block;z-index:0}
-.m::before{content:"";position:absolute;inset:52% -6px 12% -6px;background:var(--gold);z-index:-1}
+.m::before{content:"";position:absolute;inset:52% -6px 12% -6px;background:var(--gold);z-index:-1;transform-origin:right;animation:bar .8s .5s var(--ease) both}
+@keyframes bar{from{transform:scaleX(0)}}
 .hero .m{color:var(--sand)}
 .hero p{font-size:clamp(17px,2vw,20px);max-width:54ch;color:var(--soft)}
 .hero .free{color:var(--gold);font-weight:800}
+.timer{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.timer>span{font-size:15px;color:var(--soft)}
+.tbox{display:flex;gap:8px;direction:rtl}
+.tbox div{min-width:62px;background:var(--night);border:1px solid var(--teal2);border-radius:10px;padding:6px 8px;text-align:center;line-height:1.1}
+.tbox b{display:block;font-size:26px;font-weight:800;color:var(--gold);font-variant-numeric:tabular-nums}
+.tbox small{font-size:12px;color:var(--soft)}
+.hero .go{justify-self:start;display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--night);font-weight:800;font-size:17px;border:0;border-radius:999px;padding:12px 24px;text-decoration:none;transition:transform .25s var(--ease)}
+.hero .go:hover{transform:translateY(-2px)}
 
+/* ===== الأقسام ===== */
 .sec{display:grid;gap:16px}
 .sec>h2{font-size:clamp(24px,3.4vw,32px);font-weight:800;color:var(--teal)}
 .sec>p.sub{color:var(--teal2);font-size:16px;margin-top:-8px}
 
+/* ===== وش يناسبكم ===== */
+.quiz{background:var(--teal2);color:var(--sand);border-radius:14px;padding:clamp(22px,4vw,34px);display:grid;gap:18px}
+.quiz h2{font-size:clamp(22px,3vw,28px);font-weight:800}
+.quiz h2 .m{color:var(--sand)}
+.q{display:grid;gap:10px}
+.q>b{font-size:17px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{background:transparent;color:var(--sand);border:1.5px solid var(--soft);border-radius:999px;padding:8px 18px;font-weight:700;font-size:16px;transition:background .2s,color .2s,border-color .2s}
+.chip:hover{border-color:var(--gold)}
+.chip[aria-pressed="true"]{background:var(--gold);border-color:var(--gold);color:var(--night)}
+.ans{min-height:1.7em;font-size:17px;font-weight:700}
+.ans b{color:var(--gold)}
+.ans a{color:var(--sand);font-weight:800;margin-inline-start:6px}
+
+/* ===== البطاقات ===== */
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px;align-items:stretch}
-.card{position:relative;background:var(--sand);border:2px solid var(--line);border-radius:14px;padding:28px 24px 24px;display:flex;flex-direction:column;gap:18px;min-width:0}
-.card.main{border-color:var(--gold);background:var(--night);color:var(--sand)}
+.card{position:relative;background:var(--sand);border:2px solid var(--line);border-radius:14px;padding:28px 24px 24px;display:flex;flex-direction:column;gap:18px;min-width:0;cursor:pointer;transition:translate .35s var(--ease),border-color .25s}
+.card:hover{translate:0 -4px}
+.card.main{background:var(--night);color:var(--sand);border-color:var(--teal2)}
+.card.sel{border-color:var(--gold);translate:0 -6px}
 .card .head{display:grid;gap:4px}
-.card h3{font-size:24px;font-weight:800;color:var(--teal)}
+.card h3{font-size:24px;font-weight:800;color:var(--teal);display:flex;align-items:center;gap:10px}
 .card.main h3{color:var(--sand)}
+.card .dot{width:22px;height:22px;flex:none;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;transition:border-color .2s}
+.card.main .dot{border-color:var(--teal2)}
+.card .dot::after{content:"";width:10px;height:10px;border-radius:50%;background:var(--gold);transform:scale(0);transition:transform .25s var(--ease)}
+.card.sel .dot{border-color:var(--gold)}
+.card.sel .dot::after{transform:scale(1)}
 .card .for{font-size:16px;color:var(--teal2);min-height:3.4em}
 .card.main .for{color:var(--soft)}
 .flag{position:absolute;top:-14px;right:22px;background:var(--gold);color:var(--night);font-size:13px;font-weight:800;padding:3px 14px;border-radius:999px}
+.fit{position:absolute;top:-14px;left:22px;background:var(--rose);color:var(--night);font-size:13px;font-weight:800;padding:3px 14px;border-radius:999px;animation:pop .4s var(--ease)}
+@keyframes pop{from{transform:scale(.6);opacity:0}}
 .pricebox{display:grid;gap:6px;justify-items:start}
 .offer{font-size:13px;font-weight:800;color:var(--night);background:var(--rose);padding:3px 12px;border-radius:6px}
 .card.main .offer{background:var(--gold)}
@@ -59,7 +98,9 @@ h1,h2{text-wrap:balance;line-height:1.25}
 .card.main .price span{color:var(--soft)}
 .after{font-size:14px;color:var(--teal2)}
 .after s{font-weight:700;text-decoration-thickness:2px;font-variant-numeric:tabular-nums}
+.after em{font-style:normal;font-weight:800;color:var(--teal)}
 .card.main .after{color:var(--soft)}
+.card.main .after em{color:var(--gold)}
 .rows{display:grid;border-top:1px solid var(--line)}
 .card.main .rows{border-color:var(--teal2)}
 .row{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:46px;border-bottom:1px solid var(--line);font-size:16px}
@@ -67,26 +108,68 @@ h1,h2{text-wrap:balance;line-height:1.25}
 .row b{font-weight:800;white-space:nowrap;font-variant-numeric:tabular-nums}
 .row .no{color:var(--line);font-weight:700}
 .card.main .row .no{color:var(--teal2)}
-.pick{margin-top:auto;display:block;text-align:center;text-decoration:none;font-weight:800;font-size:18px;border-radius:999px;padding:14px 20px;background:var(--teal);color:var(--sand)}
+.row.new span::after{content:"جديد";font-size:11px;font-weight:800;background:var(--gold);color:var(--night);border-radius:999px;padding:0 8px;margin-inline-start:8px;vertical-align:2px}
+.pick{margin-top:auto;display:block;text-align:center;text-decoration:none;font-weight:800;font-size:18px;border-radius:999px;padding:14px 20px;background:var(--teal);color:var(--sand);transition:transform .25s var(--ease)}
+.pick:hover{transform:scale(1.02)}
 .card.main .pick{background:var(--gold);color:var(--night)}
-.pick:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 .small{font-size:14px;color:var(--teal2);text-align:center}
 
+/* ===== مقارنة ===== */
+.cmp{overflow-x:auto;border:1px solid var(--line);border-radius:14px}
+.cmp table{width:100%;border-collapse:collapse;font-size:16px}
+@media (max-width:560px){.cmp table{font-size:14px}.cmp th,.cmp td{padding:10px 6px}}
+.cmp th,.cmp td{padding:12px 14px;text-align:center;border-bottom:1px solid var(--line)}
+.cmp th:first-child,.cmp td:first-child{text-align:right;color:var(--teal2);font-weight:500}
+.cmp thead th{font-weight:800;color:var(--teal);background:var(--sand)}
+.cmp tbody td{font-weight:800;font-variant-numeric:tabular-nums}
+.cmp tr:last-child td{border-bottom:0}
+.cmp .hl{background:var(--teal);color:var(--sand)}
+.cmp thead .hl{background:var(--teal);color:var(--gold)}
+.cmp .hl.no,.cmp .no{color:var(--line)}
+.cmp td,.cmp th{transition:background .25s,color .25s}
+
+/* ===== الخطوات والالتزام ===== */
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px;counter-reset:s}
 .step{background:var(--sand);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:6px;align-content:start}
 .step::before{counter-increment:s;content:counter(s);font-size:30px;font-weight:800;color:var(--gold);line-height:1}
 .steps.inc .step::before{content:"";display:block;width:28px;height:6px;border-radius:3px;background:var(--rose)}
 .step b{font-size:18px;color:var(--teal)}
 .step p{font-size:15px;color:var(--teal2)}
-
 .promise{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:12px}
 .promise div{display:flex;gap:12px;align-items:flex-start;background:var(--teal2);color:var(--sand);border-radius:14px;padding:14px 16px;font-size:16px}
 .promise svg{flex:none;margin-top:4px}
+
+/* ===== أسئلة ===== */
+.faq{display:grid;gap:10px}
+.faq details{border:1px solid var(--line);border-radius:14px;padding:0 18px;background:var(--sand)}
+.faq summary{list-style:none;cursor:pointer;padding:16px 0;font-weight:800;color:var(--teal);display:flex;justify-content:space-between;gap:12px;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:24px;line-height:1;color:var(--gold);transition:transform .25s var(--ease)}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 0 16px;color:var(--teal2);font-size:16px}
 
 .foot{background:var(--teal);color:var(--sand);border-radius:14px;padding:22px 26px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
 .foot p{font-size:16px}.foot b{color:var(--gold)}
 .foot a{font-size:20px;font-weight:800;direction:ltr;unicode-bidi:isolate;color:var(--gold);text-decoration:none}
 .acct{font-size:14px;color:var(--teal2);text-align:center;direction:ltr}
+
+/* ===== الشريط السفلي ===== */
+.bar{position:fixed;inset-inline:0;bottom:0;z-index:10;padding:10px max(16px,env(safe-area-inset-left,0px)) calc(10px + env(safe-area-inset-bottom,0px));background:var(--night);border-top:2px solid var(--gold);transform:translateY(110%);transition:transform .4s var(--ease)}
+.bar.on{transform:none}
+.bar .in{max-width:1080px;margin-inline:auto;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.bar p{color:var(--sand);font-size:15px;line-height:1.4}
+.bar p b{display:block;font-size:18px}
+.bar p b em{font-style:normal;color:var(--gold)}
+.bar a{flex:none;background:var(--gold);color:var(--night);font-weight:800;text-decoration:none;border-radius:999px;padding:12px 22px;font-size:16px}
+
+/* ===== الظهور عند التمرير (بالسكربت فقط) ===== */
+.js .rv{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease),translate .35s var(--ease),border-color .25s}
+.js .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .rv{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
 </style>
 </head>
 <body>
@@ -97,10 +180,15 @@ h1,h2{text-wrap:balance;line-height:1.25}
     <svg class="fl" viewBox="0 0 200 200" aria-hidden="true"><g fill="#CFA2A2" stroke="#C8A24A" stroke-width="2"><ellipse cx="100" cy="52" rx="27" ry="46" transform="rotate(45 100 100)"/><ellipse cx="100" cy="52" rx="27" ry="46" transform="rotate(135 100 100)"/><ellipse cx="100" cy="52" rx="27" ry="46" transform="rotate(225 100 100)"/><ellipse cx="100" cy="52" rx="27" ry="46" transform="rotate(315 100 100)"/></g><rect x="91" y="91" width="18" height="18" fill="#C8A24A"/></svg>
     <span class="tag">تصميم إنستقرام</span>
     <h1><span class="l">حســـاب مرتّـــب بهويـــة وحـــدة،</span><span class="b">ومحتوى يجيب <span class="m">طلبات</span></span></h1>
-    <p>تصاميم منشورات وستوري وموشن بهوية علامتك، للعيادات والمتاجر. ثلاث باقات شهرية، وطلب الباقة بضغطة توصل للواتساب. وقبل أي باقة: <span class="free">ملاحظة مجانية</span> على الحساب، بلا التزام.</p>
+    <p>تصاميم منشورات وكاروسيل وستوري وموشن بهوية علامتك، للعيادات والمتاجر. ثلاث باقات شهرية، وطلب الباقة بضغطة توصل للواتساب. وقبل أي باقة: <span class="free">ملاحظة مجانية</span> على الحساب، بلا التزام.</p>
+    <div class="timer" id="timer" role="timer" aria-label="الوقت المتبقي على نهاية العرض">
+      <span>ينتهي العرض خلال</span>
+      <div class="tbox"><div><b id="td">–</b><small>يوم</small></div><div><b id="th">–</b><small>ساعة</small></div><div><b id="tm">–</b><small>دقيقة</small></div><div><b id="ts">–</b><small>ثانية</small></div></div>
+    </div>
+    <a class="go" href="#fit">اختيار الباقة المناسبة ↓</a>
   </header>
 
-  <section class="sec">
+  <section class="sec rv">
     <h2>في كل باقة</h2>
     <div class="steps inc">
       <div class="step"><b>هوية علامتك</b><p>كل تصميم بألوان علامتك وخطها وشعارها، فيُعرف المنشور قبل قراءة الاسم.</p></div>
@@ -109,38 +197,58 @@ h1,h2{text-wrap:balance;line-height:1.25}
     </div>
   </section>
 
+  <section class="quiz rv" id="fit" aria-labelledby="fit-h">
+    <h2 id="fit-h">وش <span class="m">يناسبكم</span>؟ سؤالين بس</h2>
+    <div class="q"><b>كم منشور بالأسبوع؟</b>
+      <div class="chips" data-q="posts">
+        <button class="chip" data-v="0" aria-pressed="false">منشورين</button>
+        <button class="chip" data-v="1" aria-pressed="false">3 منشورات</button>
+        <button class="chip" data-v="2" aria-pressed="false">4 وأكثر</button>
+      </div></div>
+    <div class="q"><b>فيديو موشن أو كاروسيل؟</b>
+      <div class="chips" data-q="motion">
+        <button class="chip" data-v="0" aria-pressed="false">مو ضروري</button>
+        <button class="chip" data-v="1" aria-pressed="false">مرة أو مرتين بالشهر</button>
+        <button class="chip" data-v="2" aria-pressed="false">كل أسبوع</button>
+      </div></div>
+    <p class="ans" id="ans" aria-live="polite"></p>
+  </section>
+
   <section class="sec" id="plans">
     <h2>الباقات</h2>
-    <p class="sub" id="plansub">أسعار العرض سارية حتى 30 نوفمبر 2026.</p>
+    <p class="sub" id="plansub">أسعار العرض سارية حتى 30 نوفمبر 2026. ضغطة على الباقة تختارها.</p>
     <div class="cards">
-      <article class="card">
-        <div class="head"><h3>باقة الانطلاقة</h3><p class="for">لبداية حضور مرتب على السوشال ميديا.</p></div>
-        <div class="pricebox"><span class="offer" data-o>عرض خاص</span><div class="price"><b id="p-start">499</b><span>ر.س · شهرياً</span></div><span class="after" data-a>بعد العرض: <s id="s-start">800</s> ر.س</span></div>
+      <article class="card rv" data-k="start" tabindex="0" role="radio" aria-checked="false">
+        <div class="head"><h3><span class="dot" aria-hidden="true"></span>باقة الانطلاقة</h3><p class="for">لبداية حضور مرتب على السوشال ميديا.</p></div>
+        <div class="pricebox"><span class="offer" data-o>عرض خاص</span><div class="price"><b id="p-start">499</b><span>ر.س · شهرياً</span></div><span class="after" data-a>بعد العرض: <s id="s-start">800</s> ر.س · توفير <em id="v-start">301</em></span></div>
         <div class="rows">
           <div class="row"><span>تصاميم منشورات</span><b>8</b></div>
+          <div class="row"><span>كاروسيل</span><b class="no">—</b></div>
           <div class="row"><span>تصاميم ستوري</span><b>4</b></div>
           <div class="row"><span>فيديو موشن</span><b class="no">—</b></div>
           <div class="row"><span>تعديلات لكل تصميم</span><b>2</b></div>
         </div>
         <a class="pick" id="w-start" href="https://wa.me/966534189330">طلب باقة الانطلاقة</a>
       </article>
-      <article class="card main">
+      <article class="card main rv" data-k="grow" tabindex="0" role="radio" aria-checked="false">
         <span class="flag">ننصح فيها</span>
-        <div class="head"><h3>باقة النمو</h3><p class="for">للعلامات النشطة اللي تنشر باستمرار.</p></div>
-        <div class="pricebox"><span class="offer" data-o>عرض خاص</span><div class="price"><b id="p-grow">999</b><span>ر.س · شهرياً</span></div><span class="after" data-a>بعد العرض: <s id="s-grow">1,500</s> ر.س</span></div>
+        <div class="head"><h3><span class="dot" aria-hidden="true"></span>باقة النمو</h3><p class="for">للعلامات النشطة اللي تنشر باستمرار.</p></div>
+        <div class="pricebox"><span class="offer" data-o>عرض خاص</span><div class="price"><b id="p-grow">999</b><span>ر.س · شهرياً</span></div><span class="after" data-a>بعد العرض: <s id="s-grow">1,500</s> ر.س · توفير <em id="v-grow">501</em></span></div>
         <div class="rows">
           <div class="row"><span>تصاميم منشورات</span><b>12</b></div>
+          <div class="row new"><span>كاروسيل</span><b>1</b></div>
           <div class="row"><span>تصاميم ستوري</span><b>8</b></div>
           <div class="row"><span>فيديو موشن</span><b>2</b></div>
           <div class="row"><span>تعديلات لكل تصميم</span><b>2</b></div>
         </div>
         <a class="pick" id="w-grow" href="https://wa.me/966534189330">طلب باقة النمو</a>
       </article>
-      <article class="card">
-        <div class="head"><h3>باقة الاحتراف</h3><p class="for">حضور كامل ومحتوى متنوع طوال الشهر.</p></div>
-        <div class="pricebox"><span class="offer" data-o>عرض خاص</span><div class="price"><b id="p-pro">1,699</b><span>ر.س · شهرياً</span></div><span class="after" data-a>بعد العرض: <s id="s-pro">2,500</s> ر.س</span></div>
+      <article class="card rv" data-k="pro" tabindex="0" role="radio" aria-checked="false">
+        <div class="head"><h3><span class="dot" aria-hidden="true"></span>باقة الاحتراف</h3><p class="for">حضور كامل ومحتوى متنوع طوال الشهر.</p></div>
+        <div class="pricebox"><span class="offer" data-o>عرض خاص</span><div class="price"><b id="p-pro">1,699</b><span>ر.س · شهرياً</span></div><span class="after" data-a>بعد العرض: <s id="s-pro">2,500</s> ر.س · توفير <em id="v-pro">801</em></span></div>
         <div class="rows">
           <div class="row"><span>تصاميم منشورات</span><b>18</b></div>
+          <div class="row new"><span>كاروسيل</span><b>2</b></div>
           <div class="row"><span>تصاميم ستوري</span><b>10</b></div>
           <div class="row"><span>فيديو موشن</span><b>4</b></div>
           <div class="row"><span>تعديلات لكل تصميم</span><b>2</b></div>
@@ -151,7 +259,22 @@ h1,h2{text-wrap:balance;line-height:1.25}
     <p class="small">الأسعار بالريال السعودي.</p>
   </section>
 
-  <section class="sec">
+  <section class="sec rv">
+    <h2>مقارنة سريعة</h2>
+    <div class="cmp"><table id="cmp">
+      <thead><tr><th scope="col">المحتوى الشهري</th><th scope="col" data-c="start">الانطلاقة</th><th scope="col" data-c="grow">النمو</th><th scope="col" data-c="pro">الاحتراف</th></tr></thead>
+      <tbody>
+        <tr><td>تصاميم منشورات</td><td data-c="start">8</td><td data-c="grow">12</td><td data-c="pro">18</td></tr>
+        <tr><td>كاروسيل</td><td data-c="start" class="no">—</td><td data-c="grow">1</td><td data-c="pro">2</td></tr>
+        <tr><td>تصاميم ستوري</td><td data-c="start">4</td><td data-c="grow">8</td><td data-c="pro">10</td></tr>
+        <tr><td>فيديو موشن</td><td data-c="start" class="no">—</td><td data-c="grow">2</td><td data-c="pro">4</td></tr>
+        <tr><td>تعديلات لكل تصميم</td><td data-c="start">2</td><td data-c="grow">2</td><td data-c="pro">2</td></tr>
+        <tr><td>السعر الشهري (ر.س)</td><td data-c="start" id="c-start">499</td><td data-c="grow" id="c-grow">999</td><td data-c="pro" id="c-pro">1,699</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <section class="sec rv">
     <h2>طريقة الشغل</h2>
     <div class="steps">
       <div class="step"><b>تعارف</b><p>محادثة قصيرة على الواتساب نفهم فيها النشاط والجمهور والهدف.</p></div>
@@ -161,7 +284,7 @@ h1,h2{text-wrap:balance;line-height:1.25}
     </div>
   </section>
 
-  <section class="sec">
+  <section class="sec rv">
     <h2>اللي نلتزم فيه</h2>
     <div class="promise">
       <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C8A24A" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span>ما نطلب كلمة مرور الحساب أبداً.</span></div>
@@ -170,13 +293,27 @@ h1,h2{text-wrap:balance;line-height:1.25}
     </div>
   </section>
 
-  <div class="foot">
+  <section class="sec rv">
+    <h2>أسئلة متكررة</h2>
+    <div class="faq">
+      <details><summary>وش الفرق بين المنشور والكاروسيل؟</summary><p>المنشور تصميم واحد، والكاروسيل مجموعة شرائح يتم تصفّحها بالسحب، وتناسب الشرح والخطوات والمقارنات.</p></details>
+      <details><summary>متى يبدأ الشغل؟</summary><p>بعد التحويل البنكي مباشرة، ونبدأ بمحادثة التعارف وجمع المواد.</p></details>
+      <details><summary>هل النشر على الحساب ضمن الباقة؟</summary><p>الباقات للتصميم، والتصاميم تُسلَّم جاهزة للنشر بمقاسات المنصات.</p></details>
+      <details><summary>وش معنى الملاحظة المجانية؟</summary><p>نظرة على الحساب الحالي وملاحظة عملية وحدة للتحسين، بلا أي التزام.</p></details>
+    </div>
+  </section>
+
+  <div class="foot rv">
     <p><b>الدفع:</b> تحويل بنكي قبل البدء، والشغل يبدأ بعد التحويل مباشرة.</p>
     <p>الواتساب: <a href="https://wa.me/966534189330">+966 53 418 9330</a></p>
   </div>
   <p class="acct">@bintodesign</p>
 </div>
+
+<div class="bar" id="bar" aria-live="polite"><div class="in"><p>الباقة المختارة<b id="bar-n">باقة النمو · <em>999</em> ر.س</b></p><a id="bar-w" href="https://wa.me/966534189330">طلب الباقة</a></div></div>
+
 <script>
+document.documentElement.classList.add('js');
 /* ===== الأسعار: التعديل هنا فقط =====
    offer = سعر العرض، base = السعر بعد العرض، until = نهاية العرض */
 const UNTIL='2026-11-30T23:59:59+03:00';
@@ -185,20 +322,86 @@ const PLANS={
   grow:{name:'باقة النمو',offer:999,base:1500},
   pro:{name:'باقة الاحتراف',offer:1699,base:2500}
 };
+const WA='https://wa.me/966534189330?text=';
 const fmt=n=>n.toLocaleString('en-US');
-const live=Date.now()<new Date(UNTIL).getTime();
+const $=id=>document.getElementById(id);
+const end=new Date(UNTIL).getTime();
+const live=Date.now()<end;
+const price=k=>live?PLANS[k].offer:PLANS[k].base;
+const msg=k=>WA+encodeURIComponent('السلام عليكم، طلب «'+PLANS[k].name+'» لتصميم إنستقرام ('+fmt(price(k))+' ريال شهرياً). وش الخطوة الجاية؟');
+
 for(const k in PLANS){
-  const p=PLANS[k],price=live?p.offer:p.base;
-  document.getElementById('p-'+k).textContent=fmt(price);
-  document.getElementById('s-'+k).textContent=fmt(p.base);
-  const msg='السلام عليكم، طلب «'+p.name+'» لتصميم إنستقرام ('+fmt(price)+' ريال شهرياً). وش الخطوة الجاية؟';
-  document.getElementById('w-'+k).href='https://wa.me/966534189330?text='+encodeURIComponent(msg);
+  const p=PLANS[k];
+  $('p-'+k).textContent=fmt(price(k));$('p-'+k).dataset.n=price(k);
+  $('s-'+k).textContent=fmt(p.base);$('v-'+k).textContent=fmt(p.base-p.offer);
+  $('c-'+k).textContent=fmt(price(k));
+  $('w-'+k).href=msg(k);
 }
 if(!live){
   document.querySelectorAll('[data-o],[data-a]').forEach(e=>e.hidden=true);
-  document.getElementById('plansub').hidden=true;
-  document.getElementById('topnote').textContent='باقات تصميم إنستقرام';
+  $('timer').hidden=true;
+  $('plansub').textContent='ضغطة على الباقة تختارها.';
+  $('topnote').textContent='باقات تصميم إنستقرام';
 }
+
+/* العدّاد */
+function tick(){
+  const d=Math.max(0,end-Date.now());
+  if(d<=0){$('timer').hidden=true;return}
+  const s=Math.floor(d/1000);
+  $('td').textContent=Math.floor(s/86400);
+  $('th').textContent=String(Math.floor(s%86400/3600)).padStart(2,'0');
+  $('tm').textContent=String(Math.floor(s%3600/60)).padStart(2,'0');
+  $('ts').textContent=String(s%60).padStart(2,'0');
+}
+if(live){tick();setInterval(tick,1000)}
+
+/* اختيار الباقة */
+const cards=[...document.querySelectorAll('.card')];
+let current=null;
+function select(k,scroll){
+  current=k;
+  cards.forEach(c=>{const on=c.dataset.k===k;c.classList.toggle('sel',on);c.setAttribute('aria-checked',on)});
+  document.querySelectorAll('#cmp [data-c]').forEach(c=>c.classList.toggle('hl',c.dataset.c===k));
+  $('bar-n').innerHTML=PLANS[k].name+' · <em>'+fmt(price(k))+'</em> ر.س';
+  $('bar-w').href=msg(k);
+  $('bar').classList.add('on');
+  if(scroll){document.querySelector('.card[data-k="'+k+'"]').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'center'})}
+}
+cards.forEach(c=>{
+  c.addEventListener('click',e=>{if(!e.target.closest('.pick'))select(c.dataset.k)});
+  c.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();select(c.dataset.k)}});
+});
+
+/* وش يناسبكم */
+const ans={};
+document.querySelectorAll('.chips').forEach(g=>{
+  g.addEventListener('click',e=>{
+    const b=e.target.closest('.chip');if(!b)return;
+    g.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',x===b));
+    ans[g.dataset.q]=+b.dataset.v;
+    if('posts' in ans&&'motion' in ans){
+      const k=['start','grow','pro'][Math.max(ans.posts,ans.motion)];
+      document.querySelectorAll('.fit').forEach(f=>f.remove());
+      const f=document.createElement('span');f.className='fit';f.textContent='يناسبكم';
+      document.querySelector('.card[data-k="'+k+'"]').appendChild(f);
+      $('ans').innerHTML='الأنسب لكم: <b>'+PLANS[k].name+'</b> <a href="#plans">عرض الباقة ←</a>';
+      select(k,true);
+    }
+  });
+});
+
+/* الظهور عند التمرير + عدّ الأسعار */
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+function countUp(el){
+  const n=+el.dataset.n;if(reduce||!n)return;
+  const t0=performance.now();
+  (function f(t){const p=Math.min(1,(t-t0)/900),e=1-Math.pow(1-p,3);el.textContent=fmt(Math.round(n*e));if(p<1)requestAnimationFrame(f)})(t0);
+}
+if('IntersectionObserver' in window){
+  const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');en.target.querySelectorAll('.price b').forEach(countUp);io.unobserve(en.target)}}),{threshold:.15});
+  document.querySelectorAll('.rv').forEach((el,i)=>{if(el.classList.contains('card'))el.style.transitionDelay=(cards.indexOf(el)*120)+'ms';io.observe(el)});
+}else{document.querySelectorAll('.rv').forEach(el=>el.classList.add('in'))}
 </script>
 </body>
 </html>
