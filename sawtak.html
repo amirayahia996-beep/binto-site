@@ -189,6 +189,7 @@ input[type=range]::-moz-range-thumb{width:46px;height:46px;border-radius:50%;bac
 <script>
 document.documentElement.classList.add('js');
 const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+let touched=false;
 const $=id=>document.getElementById(id);
 const CLICHE=['يسعدني أن أعلن عن انضمامي لفريق متميز في رحلة جديدة نحو التميز.','بكل فخر نحتفل بإنجاز جديد يعكس رؤيتنا الطموحة.','شغوف بتقديم حلول متكاملة تحقق قيمة مضافة لعملائنا الكرام.','نسعى دائماً نحو الريادة في بيئة عمل محفزة.','شكراً لشركاء النجاح على مسيرة حافلة بالإنجازات.','نؤمن بأن النجاح رحلة وليس وجهة.'];
 const WORDS=['يسعدني','أعلن','بكل','فخر','شغوف','التميز','الريادة','متميز','متكاملة','مضافة','الكرام','رحلة','الطموحة','شركاء','نسعى','دائماً','إنجاز','حافلة','وجهة','محفزة','النجاح','أفضل','الخدمات','سعينا','إطار','نحو','قيمة'];
@@ -225,7 +226,7 @@ function render(){
  document.documentElement.style.setProperty('--v',v);
  bars.forEach((b,i)=>{b.style.height=(4+Math.abs(Math.sin(i*.55+v*6))*28*v)+'px'});
  $('done').classList.toggle('on',v>=.98);
- $('hint').style.opacity=(typeof touched!=='undefined'&&touched&&v>0.05)?0:1;
+ $('hint').style.opacity=(touched&&v>0.05)?0:1;
  const W=vol.clientWidth;$('ring').style.right=(v*(W-52))+'px';
 }
 const vol=$('vol');
@@ -233,7 +234,6 @@ vol.addEventListener('input',()=>{v=vol.value/100;render()});
 render();
 
 /* المايك يحاول يتحرك لين أحد يلمسه */
-let touched=false;
 ['pointerdown','keydown','touchstart'].forEach(ev=>vol.addEventListener(ev,()=>{touched=true;$('knob').classList.add('used')},{passive:true}));
 function tease(){if(touched||reduce)return;const t0=performance.now();
  (function go(t){if(touched)return;const p=Math.min(1,(t-t0)/1400);const s=Math.sin(p*Math.PI);v=.16*s;vol.value=v*100;render();
