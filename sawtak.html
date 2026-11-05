@@ -10,143 +10,144 @@
 @font-face{font-family:"Tajawal";src:url("/fonts/Tajawal-Bold.ttf");font-weight:700}
 @font-face{font-family:"Tajawal";src:url("/fonts/Tajawal-ExtraBold.ttf");font-weight:800}
 :root{--night:#062B2C;--teal:#0B3D3F;--teal2:#2F6B6E;--gold:#C8A24A;--rose:#CFA2A2;--sand:#F6F2ED;--ink:#1F2328;--line:#D9D2CB;
---soft:rgba(246,242,237,.72);--f:"Tajawal",system-ui,"Segoe UI",Tahoma,sans-serif;--ease:cubic-bezier(.2,.8,.2,1);color-scheme:dark}
+--soft:rgba(246,242,237,.72);--f:"Tajawal",system-ui,"Segoe UI",Tahoma,sans-serif;--ease:cubic-bezier(.2,.8,.2,1);--v:0;color-scheme:dark}
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--night);color:var(--sand)}
-body{font-family:var(--f);font-size:17px;line-height:1.7;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));overflow-x:hidden}
+body{font-family:var(--f);font-size:17px;line-height:1.7;overflow-x:hidden}
 h1,h2,h3,p{margin:0}
-button{font:inherit;cursor:pointer}
+button,input{font:inherit}
 :focus-visible{outline:3px solid var(--gold);outline-offset:3px}
-.wrap{max-width:1080px;margin-inline:auto;padding-block:28px 56px;display:grid;gap:56px}
+.pad{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:1080px;margin-inline:auto}
 
-/* شريط الكلمات المكررة */
-.cliche{position:relative;overflow:hidden;border-block:1px solid var(--teal2);padding:10px 0;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)))}
-.track{display:flex;gap:28px;width:max-content;animation:run 38s linear infinite}
-.track span{font-size:15px;font-weight:500;color:var(--soft);white-space:nowrap;position:relative}
-.track span::after{content:"";position:absolute;inset:50% -4px auto -4px;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:right;animation:strike 6s var(--ease) infinite}
-.track span:nth-child(3n)::after{animation-delay:1.2s}.track span:nth-child(3n+1)::after{animation-delay:2.6s}
-@keyframes run{to{transform:translateX(50%)}}
-@keyframes strike{0%,30%{transform:scaleX(0)}45%,85%{transform:scaleX(1)}100%{transform:scaleX(0)}}
+/* ===== المسرح: جدار منشورات متشابهة ===== */
+.stage{position:relative;min-height:100svh;display:grid;align-content:center;gap:22px;padding-block:28px 40px;overflow:hidden;isolation:isolate}
+.wall{position:absolute;inset:-40px;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;z-index:-1;
+ opacity:calc(1 - var(--v) * .92);filter:blur(calc(var(--v) * 4px));transition:opacity .2s,filter .2s;animation:feed 60s linear infinite}
+@keyframes feed{to{transform:translateY(-50%)}}
+.mini{background:var(--teal);border:1px solid var(--teal2);border-radius:14px;padding:14px;display:grid;gap:10px;opacity:.55}
+.mini .h{display:flex;gap:8px;align-items:center}
+.mini .h i{width:30px;height:30px;border-radius:50%;background:var(--teal2);flex:none}
+.mini .h b{display:block;height:8px;width:70px;border-radius:4px;background:var(--teal2)}
+.mini p{font-size:14px;line-height:1.6;color:var(--soft)}
+.veil{position:absolute;inset:0;background:var(--night);opacity:.55;z-index:-1}
 
-/* الهيرو */
-.hero{display:grid;gap:18px;justify-items:start;position:relative}
-.wave{position:absolute;left:0;top:50%;transform:translateY(-50%);display:flex;align-items:center;gap:7px;height:220px}
-.wave i{display:block;width:9px;border-radius:5px;background:var(--teal2);animation:wv 1.6s ease-in-out infinite}
-.wave i:nth-child(4n+1){background:var(--gold)}
-@keyframes wv{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1)}}
-@media (max-width:860px){.wave{display:none}}
+.head{display:grid;gap:10px;justify-items:center;text-align:center}
 .tag{background:var(--rose);color:var(--night);font-weight:700;font-size:14px;padding:4px 14px;border-radius:6px}
-.hero h1{display:grid;gap:4px}
-.hero .l{font-size:min(60px,10.4vw);font-weight:500;white-space:nowrap}
-.hero .b{font-size:min(56px,9.8vw);font-weight:800;white-space:nowrap;line-height:1.15}
+.head h1{display:grid;gap:2px}
+.head .l{font-size:min(54px,9.4vw);font-weight:500;white-space:nowrap}
+.head .b{font-size:min(52px,9vw);font-weight:800;white-space:nowrap;line-height:1.15}
 .m{position:relative;display:inline-block;z-index:0}
 .m::before{content:"";position:absolute;inset:52% -6px 12% -6px;background:var(--gold);z-index:-1;transform-origin:right;animation:bar .9s .4s var(--ease) both}
 @keyframes bar{from{transform:scaleX(0)}}
-.hero p{max-width:52ch;color:var(--soft);font-size:clamp(17px,2vw,20px)}
-.hero p b{color:var(--sand)}
-.pills{display:flex;gap:8px;flex-wrap:wrap}
-.pills span{border:1px solid var(--teal2);border-radius:999px;padding:4px 14px;font-size:14px;font-weight:700;color:var(--sand)}
-.pills span::before{content:"✓ ";color:var(--gold)}
+.counter{font-size:15px;color:var(--soft);min-height:1.7em}
+.counter b{color:var(--gold);font-variant-numeric:tabular-nums}
 
-/* المختبر */
-.lab{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:28px;align-items:center}
-@media (max-width:860px){.lab{grid-template-columns:1fr}}
-.lab h2{font-size:clamp(24px,3.4vw,34px);font-weight:800}
-.lab .side{display:grid;gap:16px}
-.lab .side p{color:var(--soft)}
-.roles{display:flex;gap:8px;flex-wrap:wrap}
-.role{background:transparent;color:var(--sand);border:1.5px solid var(--teal2);border-radius:999px;padding:8px 16px;font-weight:700;font-size:15px;transition:background .2s,border-color .2s,color .2s}
-.role:hover{border-color:var(--gold)}
-.role[aria-pressed="true"]{background:var(--sand);color:var(--night);border-color:var(--sand)}
-.seg{display:inline-grid;grid-template-columns:1fr 1fr;background:var(--teal);border:1px solid var(--teal2);border-radius:999px;padding:4px;position:relative;justify-self:start}
-.seg button{position:relative;z-index:1;background:none;border:0;color:var(--soft);font-weight:800;font-size:15px;padding:9px 18px;border-radius:999px;transition:color .3s}
-.seg button[aria-pressed="true"]{color:var(--night)}
-.seg i{position:absolute;inset:4px auto 4px 4px;width:calc(50% - 4px);background:var(--gold);border-radius:999px;transition:transform .45s var(--ease)}
-.seg[data-v="plain"] i{transform:translateX(0)}
-.seg[data-v="voice"] i{transform:translateX(100%)}
-.seg[data-v="plain"] i{background:var(--line)}
-
-/* بطاقة المنشور */
-.post{background:var(--sand);color:var(--ink);border-radius:14px;padding:20px 20px 16px;display:grid;gap:14px;position:relative;min-height:360px;align-content:start}
-.post .ex{position:absolute;top:14px;left:14px;font-size:12px;font-weight:700;color:var(--teal2);border:1px solid var(--line);border-radius:6px;padding:1px 8px}
+/* البطاقة */
+.card{justify-self:center;width:min(560px,100%);background:var(--sand);color:var(--ink);border-radius:14px;padding:20px;display:grid;gap:12px;position:relative;
+ border:3px solid color-mix(in srgb,var(--gold) calc(var(--v)*100%),var(--line));transform:scale(calc(.97 + var(--v)*.03));transition:transform .2s}
+.card .ex{position:absolute;top:14px;left:14px;font-size:12px;font-weight:700;color:var(--teal2);border:1px solid var(--line);border-radius:6px;padding:1px 8px}
 .who{display:flex;gap:12px;align-items:center}
 .av{width:48px;height:48px;border-radius:50%;background:var(--teal);color:var(--gold);display:grid;place-items:center;font-weight:800;font-size:20px;flex:none}
 .who b{display:block;font-size:16px;color:var(--teal)}
 .who small{display:block;font-size:13px;color:var(--teal2);line-height:1.4}
-.txt{font-size:clamp(17px,1.9vw,19px);line-height:1.85;min-height:7.4em}
-.txt .w{transition:color .3s,opacity .5s}
-.txt .w.x{color:var(--teal2);text-decoration:line-through;text-decoration-color:var(--gold);text-decoration-thickness:2px}
-.txt .w.gone{opacity:0}
-.txt.voice{font-weight:500}
-.caret{display:inline-block;width:2px;height:1.1em;background:var(--gold);vertical-align:-3px;margin-inline-start:2px;animation:blink 1s steps(1) infinite}
-@keyframes blink{50%{opacity:0}}
-.bar{display:flex;gap:18px;border-top:1px solid var(--line);padding-top:10px;color:var(--teal2);font-size:14px;font-weight:700}
-.verdict{font-size:15px;font-weight:800;color:var(--teal);min-height:1.6em;transition:opacity .4s}
-.verdict.hide{opacity:0}
-.verdict em{font-style:normal;position:relative;z-index:0}
-.verdict em::before{content:"";position:absolute;inset:55% -3px 8% -3px;background:var(--gold);z-index:-1}
+.txt{font-size:clamp(17px,2.1vw,19px);line-height:1.85;min-height:7.6em}
+.txt .old{color:var(--teal2);text-decoration:line-through;text-decoration-color:var(--gold);text-decoration-thickness:2px}
+.txt .new{color:var(--ink);font-weight:500}
+.wave{display:flex;align-items:center;gap:4px;height:34px}
+.wave i{display:block;width:5px;border-radius:3px;background:var(--gold);height:4px;transition:height .25s var(--ease)}
+.card .bar{display:flex;gap:18px;border-top:1px solid var(--line);padding-top:10px;color:var(--teal2);font-size:14px;font-weight:700}
 
-/* الخطوات */
-.sec{display:grid;gap:18px}
+/* السحّاب */
+.knob{justify-self:center;width:min(560px,100%);display:grid;gap:8px}
+.ends{display:flex;justify-content:space-between;font-size:14px;font-weight:800;color:var(--soft)}
+.ends span:last-child{color:var(--gold)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:56px;background:transparent;cursor:grab;direction:rtl}
+input[type=range]:active{cursor:grabbing}
+input[type=range]::-webkit-slider-runnable-track{height:12px;border-radius:999px;background:linear-gradient(to left,var(--gold) calc(var(--v)*100%),var(--teal2) calc(var(--v)*100%))}
+input[type=range]::-moz-range-track{height:12px;border-radius:999px;background:var(--teal2)}
+input[type=range]::-moz-range-progress{height:12px;border-radius:999px;background:var(--gold)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:52px;height:52px;margin-top:-20px;border-radius:50%;background:var(--gold);border:4px solid var(--night);
+ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26' viewBox='0 0 24 24' fill='none' stroke='%23062B2C' stroke-width='2.2' stroke-linecap='round'%3E%3Crect x='9' y='3' width='6' height='11' rx='3'/%3E%3Cpath d='M5 11a7 7 0 0 0 14 0M12 18v3'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center}
+input[type=range]::-moz-range-thumb{width:46px;height:46px;border-radius:50%;background:var(--gold);border:4px solid var(--night)}
+.knob.nudge input{animation:nudge 1.6s var(--ease) 2}
+@keyframes nudge{0%,100%{transform:none}40%{transform:translateX(-14px)}70%{transform:translateX(4px)}}
+.hint{text-align:center;font-size:15px;color:var(--soft);transition:opacity .4s}
+.hint b{color:var(--gold)}
+
+/* أدوات المسرح */
+.tools{justify-self:center;width:min(560px,100%);display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:center}
+.chip{background:transparent;color:var(--sand);border:1.5px solid var(--teal2);border-radius:999px;padding:7px 16px;font-weight:700;font-size:15px;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.chip:hover{border-color:var(--gold)}
+.chip[aria-pressed="true"]{background:var(--sand);color:var(--night);border-color:var(--sand)}
+.name{background:var(--teal);border:1.5px solid var(--teal2);color:var(--sand);border-radius:999px;padding:7px 16px;width:200px;font-weight:700;font-size:15px}
+.name::placeholder{color:var(--soft)}
+
+.done{justify-self:center;margin-top:-8px;text-align:center;display:grid;gap:12px;justify-items:center;opacity:0;transform:translateY(10px);transition:opacity .5s,transform .5s;pointer-events:none}
+.done.on{opacity:1;transform:none;pointer-events:auto}
+.done p{font-size:clamp(20px,2.6vw,26px);font-weight:800}
+.down{color:var(--soft);font-size:15px;text-decoration:none;border-bottom:1px solid var(--teal2)}
+
+/* بعد المسرح */
+.sec{display:grid;gap:18px;padding-block:56px 0}
 .sec h2{font-size:clamp(24px,3.4vw,32px);font-weight:800}
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:12px;counter-reset:s;list-style:none;margin:0;padding:0}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:12px;counter-reset:s;list-style:none;margin:0;padding:0}
 .steps li{counter-increment:s;border:1px solid var(--teal2);border-radius:14px;padding:18px;display:grid;gap:6px;background:var(--teal)}
 .steps li::before{content:counter(s);font-size:30px;font-weight:800;color:var(--gold);line-height:1}
 .steps b{font-size:18px}.steps p{font-size:15px;color:var(--soft)}
-
-/* الختام */
-.end{border:1px solid var(--teal2);border-radius:14px;padding:clamp(24px,5vw,44px);display:grid;gap:16px;justify-items:center;text-align:center;background:var(--teal)}
+.end{margin-block:56px;border:1px solid var(--teal2);border-radius:14px;padding:clamp(24px,5vw,44px);display:grid;gap:16px;justify-items:center;text-align:center;background:var(--teal)}
 .end h2{font-size:clamp(26px,4vw,40px);font-weight:800}
 .end p{color:var(--soft);max-width:44ch}
 .cta{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--night);text-decoration:none;font-weight:800;font-size:18px;border-radius:999px;padding:14px 28px;transition:transform .25s var(--ease)}
 .cta:hover{transform:translateY(-2px)}
-.links{display:flex;gap:18px;flex-wrap:wrap;justify-content:center}
 .links a{color:var(--soft);font-size:15px;text-underline-offset:4px}
-
 .js .rv{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
 .js .rv.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.js .rv{opacity:1;transform:none}}
 </style>
 </head>
 <body>
-<div class="wrap">
 
-  <div class="cliche" aria-hidden="true"><div class="track" id="track"></div></div>
+<section class="stage pad" id="stage" aria-labelledby="h">
+  <div class="wall" id="wall" aria-hidden="true"></div>
+  <div class="veil" aria-hidden="true"></div>
 
-  <header class="hero">
+  <div class="head">
     <span class="tag">لينكدإن بصوت صاحبه</span>
-    <h1><span class="l">نفـــــس الخبـــــر،</span><span class="b">بصوت <span class="m">مختلف</span></span></h1>
-    <p>أغلب منشورات لينكدإن تنكتب بنفس الكلمات. نكتب المنشور <b>بصوت صاحب الحساب</b>، من قصصه وقراراته الحقيقية.</p>
-    <div class="pills"><span>بدون تسجيل</span><span>بدون كاميرا</span><span>اعتماد قبل النشر</span></div>
+    <h1 id="h"><span class="l">نفـــس الخبـــر،</span><span class="b">بصوت <span class="m">مختلف</span></span></h1>
+    <p class="counter" id="counter">كلمات مكررة في المنشور: <b id="cnt">0</b></p>
+  </div>
+
+  <article class="card" aria-live="polite">
+    <span class="ex">مثال توضيحي</span>
+    <div class="who"><span class="av" id="av">ع</span><div><b id="nm">صاحب الحساب</b><small id="rl">مدير عيادة أسنان</small></div></div>
+    <p class="txt" id="txt"></p>
     <div class="wave" id="wave" aria-hidden="true"></div>
-  </header>
+    <div class="bar" aria-hidden="true"><span>أعجبني</span><span>تعليق</span><span>إعادة نشر</span></div>
+  </article>
 
-  <section class="lab rv" aria-labelledby="lab-h">
-    <div class="side">
-      <h2 id="lab-h">الفرق في منشور واحد</h2>
-      <p>اختيار المجال، ثم ضغطة على «بصوت صاحبه» توضّح الفرق.</p>
-      <div class="roles" id="roles">
-        <button class="role" data-r="0" aria-pressed="true">عيادة</button>
-        <button class="role" data-r="1" aria-pressed="false">متجر إلكتروني</button>
-        <button class="role" data-r="2" aria-pressed="false">مبيعات</button>
-      </div>
-      <div class="seg" id="seg" data-v="plain" role="group" aria-label="نسخة المنشور">
-        <i aria-hidden="true"></i>
-        <button data-v="voice" aria-pressed="false">بصوت صاحبه ✦</button>
-        <button data-v="plain" aria-pressed="true">المعتاد</button>
-      </div>
-    </div>
-    <article class="post" aria-live="polite">
-      <span class="ex">مثال توضيحي</span>
-      <div class="who"><span class="av" id="av">ع</span><div><b id="name">صاحب الحساب</b><small id="title">مدير عيادة أسنان</small></div></div>
-      <p class="txt" id="txt"></p>
-      <p class="verdict hide" id="verdict">نفس الخبر. <em>كلام صاحبه.</em></p>
-      <div class="bar" aria-hidden="true"><span>أعجبني</span><span>تعليق</span><span>إعادة نشر</span></div>
-    </article>
-  </section>
+  <div class="knob nudge" id="knob">
+    <input type="range" id="vol" min="0" max="100" value="0" step="1" aria-label="مستوى الصوت: من الكلام المعتاد إلى صوت صاحب الحساب">
+    <div class="ends"><span>المعتاد</span><span>بصوت صاحبه</span></div>
+  </div>
+  <p class="hint" id="hint">سحب المايك لليسار <b>يرفع الصوت</b> ←</p>
+  <div class="done" id="done">
+    <p>نفس الخبر. كلام صاحبه.</p>
+    <a class="down" href="#how">وش المطلوب منكم؟ ↓</a>
+  </div>
 
-  <section class="sec rv">
-    <h2>طريقة الشغل</h2>
+  <div class="tools">
+    <button class="chip" data-r="0" aria-pressed="true">عيادة</button>
+    <button class="chip" data-r="1" aria-pressed="false">متجر إلكتروني</button>
+    <button class="chip" data-r="2" aria-pressed="false">مبيعات</button>
+    <input class="name" id="name" type="text" maxlength="28" placeholder="اسم الحساب (اختياري)" aria-label="اسم يظهر على المنشور، يبقى في هذي الصفحة بس">
+  </div>
+
+</section>
+
+<div class="wrap pad">
+  <section class="sec rv" id="how">
+    <h2>المطلوب منكم: جواب، مو منشور</h2>
     <ol class="steps">
       <li><b>3 أسئلة على الواتساب</b><p>كل أسبوع أسئلة قصيرة عن الشغل والمواقف والقرارات.</p></li>
       <li><b>الجواب على راحتكم</b><p>كتابة أو رسالة صوتية، وقت ما يناسب. ما يحتاج تسجيل الحين.</p></li>
@@ -161,55 +162,65 @@ button{font:inherit;cursor:pointer}
     <a class="cta" href="https://wa.me/966534189330?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%AE%D8%B7%D8%A9%20%D9%84%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9%20%D8%AD%D8%B3%D8%A7%D8%A8%D9%8A%20%D9%81%D9%8A%20%D9%84%D9%8A%D9%86%D9%83%D8%AF%D8%A5%D9%86%20%D9%88%D9%83%D8%AA%D8%A7%D8%A8%D8%A9%20%D8%A7%D9%84%D9%85%D8%AD%D8%AA%D9%88%D9%89%20%D8%A8%D8%B5%D9%88%D8%AA%D9%8A.%20%D9%88%D8%B4%20%D8%A7%D9%84%D8%AE%D8%B7%D9%88%D8%A9%20%D8%A7%D9%84%D8%A3%D9%88%D9%84%D9%89%D8%9F" target="_blank" rel="noopener">طلب خطة لينكدإن على الواتساب</a>
     <div class="links"><a href="/p">عرض الباقات</a></div>
   </section>
-
 </div>
+
 <script>
 document.documentElement.classList.add('js');
 const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
-const CLICHE=['شغوف','يسعدني أن أعلن','شريك نجاح','رؤية طموحة','بكل فخر','حلول متكاملة','التميز','قيمة مضافة','نسعى دائماً','الريادة','رحلة النجاح','عملاؤنا الكرام','نحو المستقبل','فريق متميز','بيئة عمل محفزة'];
-const tr=document.getElementById('track');
-tr.innerHTML=[...CLICHE,...CLICHE].map(w=>'<span>'+w+'</span>').join('');
-const wv=document.getElementById('wave');const HS=[40,70,120,90,160,200,130,180,100,150,210,120,80,140,60,100,50];wv.innerHTML=HS.map((x,i)=>'<i style="height:'+x+'px;animation-delay:'+(i*.09)+'s"></i>').join('');
-
+const $=id=>document.getElementById(id);
+const CLICHE=['يسعدني أن أعلن عن انضمامي لفريق متميز في رحلة جديدة نحو التميز.','بكل فخر نحتفل بإنجاز جديد يعكس رؤيتنا الطموحة.','شغوف بتقديم حلول متكاملة تحقق قيمة مضافة لعملائنا الكرام.','نسعى دائماً نحو الريادة في بيئة عمل محفزة.','شكراً لشركاء النجاح على مسيرة حافلة بالإنجازات.','نؤمن بأن النجاح رحلة وليس وجهة.'];
+const WORDS=['يسعدني','أعلن','بكل','فخر','شغوف','التميز','الريادة','متميز','متكاملة','مضافة','الكرام','رحلة','الطموحة','شركاء','نسعى','دائماً','إنجاز','حافلة','وجهة','محفزة','النجاح','أفضل','الخدمات','سعينا','إطار','نحو','قيمة'];
 const R=[
- {av:'ع',title:'مدير عيادة أسنان',
+ {av:'ع',role:'مدير عيادة أسنان',
   plain:'يسعدني أن أعلن عن افتتاح فرعنا الجديد، في إطار سعينا الدائم لتقديم أفضل الخدمات والتميز لعملائنا الكرام. شكراً لفريقنا المتميز.',
   voice:'أول مراجعة في الفرع الجديد سألتني: ليش هنا بالذات؟ قلت لها: لأن نص مراجعينا كانوا يسوقون ساعة عشان يوصلون لنا. اليوم صاروا على بعد عشر دقايق.'},
- {av:'م',title:'صاحب متجر إلكتروني',
+ {av:'م',role:'صاحب متجر إلكتروني',
   plain:'بكل فخر نحتفل بمرور عام على انطلاقتنا، بفضل الله ثم بفضل عملائنا الكرام. نسعى دائماً نحو الريادة وتقديم قيمة مضافة.',
   voice:'أكثر سؤال وصلنا هالسنة: وش الفرق بين المقاسين؟ فصوّرنا القطعة على ثلاث مقاسات وحطيناها في صفحة المنتج. من بعدها صار السؤال نادر.'},
- {av:'ر',title:'مدير مبيعات',
+ {av:'ر',role:'مدير مبيعات',
   plain:'شغوف بتحقيق الأهداف وبناء علاقات طويلة الأمد مع العملاء، وأؤمن بأن النجاح رحلة وليس وجهة.',
   voice:'خسرت صفقة كبيرة لأني رديت على الإيميل بعد يومين. من بعدها عندي قاعدة وحدة: أي عميل يسأل، يوصله رد خلال ساعة، حتى لو كان الرد «أشيك وأرجع لك».'}
 ];
-const txt=document.getElementById('txt'),seg=document.getElementById('seg'),ver=document.getElementById('verdict');
-let cur=0,mode='plain',run=0;
-const wrapWords=s=>s.split(' ').map(w=>'<span class="w">'+w+'</span>').join(' ');
-function showPlain(){run++;mode='plain';setSeg();ver.classList.add('hide');txt.classList.remove('voice');txt.innerHTML=wrapWords(R[cur].plain)}
-function setSeg(){seg.dataset.v=mode;seg.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.v===mode))}
-async function toVoice(){if(mode==='voice')return;const id=++run;mode='voice';setSeg();
- const ws=[...txt.querySelectorAll('.w')];
- if(!reduce){for(const w of ws){if(id!==run)return;w.classList.add('x');await sleep(45)}
-  await sleep(350);ws.forEach(w=>w.classList.add('gone'));await sleep(450)}
- if(id!==run)return;txt.classList.add('voice');txt.textContent='';
- const s=R[cur].voice;const c=document.createElement('span');c.className='caret';
- if(reduce){txt.textContent=s}else{const out=document.createElement('span');txt.append(out,c);
-  for(let i=0;i<s.length;i++){if(id!==run)return;out.textContent=s.slice(0,i+1);await sleep(s[i]===' '?28:18)}c.remove()}
- ver.classList.remove('hide')}
-const sleep=ms=>new Promise(r=>setTimeout(r,ms));
-seg.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;b.dataset.v==='voice'?toVoice():showPlain()});
-document.getElementById('roles').addEventListener('click',e=>{const b=e.target.closest('.role');if(!b)return;
- cur=+b.dataset.r;document.querySelectorAll('.role').forEach(x=>x.setAttribute('aria-pressed',x===b));
- document.getElementById('av').textContent=R[cur].av;document.getElementById('title').textContent=R[cur].title;showPlain()});
-showPlain();
 
-/* أول مرة تظهر البطاقة: التحويل يشتغل لحاله */
-let auto=false;
-if('IntersectionObserver' in window){
- const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');
-   if(en.target.classList.contains('lab')&&!auto){auto=true;setTimeout(toVoice,1400)}io.unobserve(en.target)}}),{threshold:.3});
- document.querySelectorAll('.rv').forEach(el=>io.observe(el));
-}else document.querySelectorAll('.rv').forEach(el=>el.classList.add('in'));
+/* جدار المنشورات */
+const wall=$('wall');
+const card=t=>'<div class="mini"><div class="h"><i></i><b></b></div><p>'+t+'</p></div>';
+let cards='';for(let i=0;i<40;i++)cards+=card(CLICHE[i%CLICHE.length]);wall.innerHTML=cards;
+
+/* الموجة */
+const wv=$('wave');for(let i=0;i<34;i++){const b=document.createElement('i');wv.appendChild(b)}
+const bars=[...wv.children];
+
+let cur=0,v=0;
+function render(){
+ const r=R[cur],P=r.plain.split(' '),V=r.voice.split(' ');
+ const k=Math.round(v*V.length), cut=Math.round(v*P.length);
+ const oldPart=P.slice(cut).join(' '), newPart=V.slice(0,k).join(' ');
+ $('txt').innerHTML=(newPart?'<span class="new">'+newPart+'</span>'+(oldPart?' ':''):'')+(oldPart?'<span class="old">'+oldPart+'</span>':'');
+ // عداد الكلمات المكررة المتبقية
+ const left=P.slice(cut).filter(w=>WORDS.some(c=>w.includes(c))).length;
+ $('cnt').textContent=left;
+ document.documentElement.style.setProperty('--v',v);
+ bars.forEach((b,i)=>{b.style.height=(4+Math.abs(Math.sin(i*.55+v*6))*28*v)+'px'});
+ $('done').classList.toggle('on',v>=.98);
+ $('hint').style.opacity=v>0.05?0:1;
+}
+const vol=$('vol');
+vol.addEventListener('input',()=>{v=vol.value/100;$('knob').classList.remove('nudge');render()});
+document.querySelectorAll('.chip').forEach(b=>b.addEventListener('click',()=>{
+ cur=+b.dataset.r;document.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',x===b));
+ $('rl').textContent=R[cur].role;if(!$('name').value.trim())$('av').textContent=R[cur].av;render()}));
+$('name').addEventListener('input',e=>{const n=e.target.value.trim();$('nm').textContent=n||'صاحب الحساب';$('av').textContent=n?n[0]:R[cur].av});
+render();
+
+/* عرض تلقائي إذا ما فيه تفاعل خلال 4 ثواني */
+let touched=false;['pointerdown','keydown','input'].forEach(ev=>vol.addEventListener(ev,()=>touched=true));
+if(!reduce)setTimeout(()=>{if(touched)return;let t0=performance.now();
+ (function go(t){if(touched)return;const p=Math.min(1,(t-t0)/2600);v=.62*(1-Math.pow(1-p,3));vol.value=v*100;render();
+  if(p<1)requestAnimationFrame(go);else setTimeout(()=>{if(touched)return;const t1=performance.now();
+   (function back(t){if(touched)return;const q=Math.min(1,(t-t1)/900);v=.62*(1-q);vol.value=v*100;render();if(q<1)requestAnimationFrame(back);else $('knob').classList.add('nudge')})(t1)},1400)})(t0)},4000);
+
+if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}}),{threshold:.2});document.querySelectorAll('.rv').forEach(el=>io.observe(el))}else document.querySelectorAll('.rv').forEach(el=>el.classList.add('in'));
 </script>
 </body>
 </html>
