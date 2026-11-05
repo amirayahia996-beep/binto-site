@@ -10,15 +10,15 @@
 @font-face{font-family:"Tajawal";src:url("/fonts/Tajawal-Medium.ttf");font-weight:500}
 @font-face{font-family:"Tajawal";src:url("/fonts/Tajawal-Bold.ttf");font-weight:700}
 @font-face{font-family:"Tajawal";src:url("/fonts/Tajawal-ExtraBold.ttf");font-weight:800}
-:root{--night:#062B2C;--teal:#0B3D3F;--teal2:#2F6B6E;--gold:#C8A24A;--rose:#CFA2A2;--sand:#F6F2ED;--ink:#1F2328;--line:#D9D2CB;--mute:#5E7A7A;
+:root{--night:#062B2C;--teal:#0B3D3F;--teal2:#2F6B6E;--gold:#C8A24A;--rose:#CFA2A2;--sand:#F6F2ED;--ink:#1F2328;--line:#D9D2CB;--mute:#2F6B6E;--soft:rgba(246,242,237,.75);
 --f:"Tajawal",system-ui,"Segoe UI",Tahoma,sans-serif;color-scheme:light}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 .card{position:relative}
 .card .k .badge{display:none}
-.stamp{position:absolute;top:-18px;left:18px;width:92px;height:92px;border-radius:999px;background:#B4483F;color:#fff;display:grid;place-items:center;text-align:center;line-height:1;transform:rotate(-10deg);box-shadow:0 0 0 4px var(--sand)}
+.stamp{position:absolute;top:-18px;left:18px;width:92px;height:92px;border-radius:999px;background:var(--rose);color:var(--night);display:grid;place-items:center;text-align:center;line-height:1;transform:rotate(-10deg);border:4px solid var(--sand)}
 .stamp b{display:block;font-size:30px;font-weight:800}.stamp span{display:block;font-size:14px;font-weight:700;margin-top:4px}
-.card.main .stamp{background:var(--gold);color:var(--night);box-shadow:0 0 0 4px var(--sand)}
+.card.main .stamp{background:var(--gold);color:var(--night);border-color:var(--night)}
 
 html,body{margin:0;background:var(--sand);color:var(--ink)}
 body{font-family:var(--f);font-size:17px;line-height:1.7;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
@@ -33,42 +33,42 @@ h1,h2{text-wrap:balance;line-height:1.2}
 .hero .tag{justify-self:start;background:var(--rose);color:var(--night);font-weight:700;font-size:14px;padding:4px 14px;border-radius:6px}
 .hero h1{font-size:clamp(32px,5.4vw,56px);font-weight:800}
 .hero h1 em{font-style:normal;color:var(--gold)}
-.hero p{font-size:clamp(17px,2vw,20px);max-width:52ch;color:#DCE7E6}
+.hero p{font-size:clamp(17px,2vw,20px);max-width:52ch;color:var(--soft)}
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr));gap:18px;align-items:stretch}
-.card{background:#fff;border:2px solid var(--line);border-radius:22px;padding:28px;display:grid;gap:18px;grid-template-rows:auto auto 1fr auto;min-width:0}
+.card{background:var(--sand);border:2px solid var(--line);border-radius:22px;padding:28px;display:grid;gap:18px;grid-template-rows:auto auto 1fr auto;min-width:0}
 .card.main{border-color:var(--gold);background:var(--night);color:var(--sand)}
 .card .k{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .card h2{font-size:26px;font-weight:800}
 .badge{font-size:13px;font-weight:800;padding:4px 12px;border-radius:999px;background:var(--gold);color:var(--night);white-space:nowrap}
-.badge.soft{background:#EFE9E2;color:var(--teal)}
+.badge.soft{background:var(--sand);color:var(--teal);border:1px solid var(--line)}
 .price{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
 .price b{font-size:56px;font-weight:800;line-height:1;color:var(--teal);font-variant-numeric:tabular-nums}
 .card.main .price b{color:var(--gold)}
-.price s{font-size:24px;font-weight:700;color:#B4483F;text-decoration-thickness:2px;font-variant-numeric:tabular-nums}
+.price s{font-size:24px;font-weight:700;color:var(--teal2);text-decoration-thickness:2px;font-variant-numeric:tabular-nums}
 .card.main .price s{color:var(--rose)}
 .free{display:inline-block;font-size:12px;font-weight:800;background:var(--rose);color:var(--night);padding:1px 8px;border-radius:999px;margin-inline-start:6px;vertical-align:2px}
 .offer{justify-self:start;font-size:13px;font-weight:800;color:var(--night);background:var(--gold);padding:4px 12px;border-radius:6px}
 .price span{font-size:17px;font-weight:500;color:var(--mute)}
-.card.main .price span{color:#AFC6C5}
-.for{font-size:16px;color:var(--mute)}.card.main .for{color:#AFC6C5}
+.card.main .price span{color:var(--soft)}
+.for{font-size:16px;color:var(--mute)}.card.main .for{color:var(--soft)}
 ul{list-style:none;margin:0;padding:0;display:grid;gap:10px}
 li{display:grid;grid-template-columns:24px 1fr;gap:10px;align-items:start;font-size:17px}
 li svg{margin-top:5px}
 li b{font-weight:800}
 .terms{font-size:14px;color:var(--mute);border-top:1px solid var(--line);padding-top:12px}
-.card.main .terms{color:#AFC6C5;border-color:var(--teal2)}
+.card.main .terms{color:var(--soft);border-color:var(--teal2)}
 .pick{display:block;text-align:center;text-decoration:none;font-weight:800;font-size:18px;border-radius:999px;padding:14px 20px;background:var(--teal);color:var(--sand)}
 .card.main .pick{background:var(--gold);color:var(--night)}
 .pick:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 .sec{display:grid;gap:16px}
 .sec h2{font-size:26px;font-weight:800;color:var(--teal)}
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,200px),1fr));gap:12px;counter-reset:s}
-.step{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;display:grid;gap:6px;align-content:start}
+.step{background:var(--sand);border:1px solid var(--line);border-radius:16px;padding:18px;display:grid;gap:6px;align-content:start}
 .steps.id .step::before{content:"";display:block;width:28px;height:6px;border-radius:3px;background:var(--rose)}
 .step::before{counter-increment:s;content:counter(s);font-size:30px;font-weight:800;color:var(--gold);line-height:1}
 .step b{font-size:18px;color:var(--teal)}.step p{font-size:15px;color:var(--mute)}
 .promise{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:12px}
-.promise div{display:flex;gap:12px;align-items:flex-start;background:#EFE9E2;border-radius:14px;padding:14px 16px;font-size:16px}
+.promise div{display:flex;gap:12px;align-items:flex-start;background:var(--sand);border:1px solid var(--line);border-radius:14px;padding:14px 16px;font-size:16px}
 .promise svg{flex:none;margin-top:4px}
 .foot{background:var(--teal);color:var(--sand);border-radius:20px;padding:22px 26px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
 .foot p{font-size:16px}.foot b{color:var(--gold)}
@@ -128,57 +128,56 @@ li b{font-weight:800}
   <header class="hero">
     <svg class="fl" viewBox="0 0 200 200" aria-hidden="true"><g fill="#CFA2A2" stroke="#C8A24A" stroke-width="2"><ellipse cx="100" cy="52" rx="27" ry="46" transform="rotate(45 100 100)"/><ellipse cx="100" cy="52" rx="27" ry="46" transform="rotate(135 100 100)"/><ellipse cx="100" cy="52" rx="27" ry="46" transform="rotate(225 100 100)"/><ellipse cx="100" cy="52" rx="27" ry="46" transform="rotate(315 100 100)"/></g><rect x="91" y="91" width="18" height="18" fill="#C8A24A"/></svg>
     <span class="tag">لينكدإن بصوتك</span>
-    <h1>أنت تتكلم.<br><em>نحن نكتب وننشر.</em></h1>
-    <p>منشورات لينكدإن بصوتك أنت، من كلامك وقراراتك الحقيقية. اختر الباقة اللي تناسبك، واضغط «اختر» ويوصلنا طلبك على الواتساب.</p>
+    <h1>الكلام منكم،<br><em>والكتابة والنشر علينا.</em></h1>
+    <p>منشورات لينكدإن بصوتكم، من كلامكم وقراراتكم الحقيقية. كل أسبوع أسئلة بسيطة على الواتساب، والجواب كتابة أو رسالة صوتية على راحتكم. وطلب الباقة بضغطة توصل للواتساب.</p>
   </header>
   <section class="sec">
-    <h2>هويتك على لينكدإن</h2>
+    <h2>هوية الحساب على لينكدإن</h2>
     <div class="steps id">
-      <div class="step"><b>ألوانك</b><p>من مجالك وشخصيتك: 3 إلى 4 ألوان تميّزك عن غيرك.</p></div>
-      <div class="step"><b>خطك</b><p>خط عربي يناسب نبرتك: رسمي، أو قريب، أو جريء.</p></div>
-      <div class="step"><b>بانرك</b><p>بانر حسابك بنفس الهوية، أول شي يشوفه الزائر.</p></div>
-      <div class="step"><b>كل تصاميمك</b><p>تمشي على هويتك، فيعرف الناس منشورك قبل ما يقرأ اسمك.</p></div>
+      <div class="step"><b>الألوان</b><p>من المجال والشخصية: 3 إلى 4 ألوان تميّز الحساب عن غيره.</p></div>
+      <div class="step"><b>الخط</b><p>خط عربي يناسب النبرة: رسمي، أو قريب، أو جريء.</p></div>
+      <div class="step"><b>البانر</b><p>بانر الحساب بنفس الهوية، أول شي يشوفه الزائر.</p></div>
+      <div class="step"><b>كل التصاميم</b><p>بنفس الهوية، فيُعرف المنشور قبل قراءة الاسم.</p></div>
     </div>
   </section>
 </div>
 <div class="page p2">
-  <div class="ptitle"><span class="tag2">الباقات</span><h2>اختر الباقة اللي تناسبك</h2></div>
+  <div class="ptitle"><span class="tag2">الباقات</span><h2>الباقات</h2></div>
   <div class="cards">
     <article class="card">
       <div class="stamp" id="st-trial"><div><b>30%</b><span>خصم</span></div></div>
-      <div class="head"><h2>تجربة شهر</h2><p class="for">تجرّب الطريقة قبل ما تلتزم.</p></div>
+      <div class="head"><h2>تجربة شهر</h2><p class="for">تجربة الطريقة قبل أي التزام.</p></div>
       <div class="pricebox"><span class="offer" id="o-trial">عرض لفترة محدودة</span><div class="price"><b id="p-trial">0</b><span>ريال · مرة واحدة</span><s id="s-trial">0</s></div></div>
-      <div class="rows"><div class="row"><span>المنشورات</span><b>5 (4 + 1 مجاناً)</b></div><div class="row"><span>التصاميم</span><b>2</b></div><div class="row"><span>هوية بصرية خاصة فيك</span><b><i class="ok" aria-label="مشمول">✓</i></b></div><div class="row"><span>بانر لينكدإن</span><b><i class="ok" aria-label="مشمول">✓</i></b></div><div class="row"><span>تحسين العنوان والنبذة</span><b><i class="ok" aria-label="مشمول">✓</i></b></div><div class="row"><span>المكالمات</span><b>تعارف 20 دقيقة</b></div></div>
+      <div class="rows"><div class="row"><span>المنشورات</span><b>5 (4 + 1 مجاناً)</b></div><div class="row"><span>التصاميم</span><b>2</b></div><div class="row"><span>هوية بصرية خاصة بالحساب</span><b><i class="ok" aria-label="مشمول">✓</i></b></div><div class="row"><span>بانر لينكدإن</span><b><i class="ok" aria-label="مشمول">✓</i></b></div><div class="row"><span>تحسين العنوان والنبذة</span><b><i class="ok" aria-label="مشمول">✓</i></b></div><div class="row"><span>المكالمات</span><b>تعارف 20 دقيقة</b></div></div>
       <p class="terms">شهر واحد، بدون أي التزام بعده.</p>
-      <a class="pick" id="w-trial" href="https://wa.me/966534189330">اختر تجربة الشهر</a>
+      <a class="pick" id="w-trial" href="https://wa.me/966534189330">طلب تجربة الشهر</a>
     </article>
     <article class="card main">
       <div class="stamp" id="st-basic"><div><b>30%</b><span>خصم</span></div></div>
       <div class="head"><h2>الباقة الأساسية</h2><p class="for">حضور ثابت كل أسبوع.</p></div>
       <div class="pricebox"><span class="offer" id="o-basic">عرض لفترة محدودة</span><div class="price"><b id="p-basic">0</b><span>ريال · شهرياً</span><s id="s-basic">0</s></div></div>
-      <div class="rows"><div class="row"><span>المنشورات</span><b>9 (8 + 1 مجاناً)</b></div><div class="row"><span>التصاميم</span><b>كاروسيل + 4</b></div><div class="row"><span>هوية بصرية خاصة فيك</span><b><i class="ok" aria-label="مشمول">✓</i></b></div><div class="row"><span>بانر لينكدإن</span><b><i class="ok" aria-label="مشمول">✓</i></b></div><div class="row"><span>تحسين العنوان والنبذة</span><b><i class="ok" aria-label="مشمول">✓</i></b></div><div class="row"><span>المكالمات</span><b>شهرية + ملخص أداء</b></div></div>
+      <div class="rows"><div class="row"><span>المنشورات</span><b>9 (8 + 1 مجاناً)</b></div><div class="row"><span>التصاميم</span><b>كاروسيل + 4</b></div><div class="row"><span>هوية بصرية خاصة بالحساب</span><b><i class="ok" aria-label="مشمول">✓</i></b></div><div class="row"><span>بانر لينكدإن</span><b><i class="ok" aria-label="مشمول">✓</i></b></div><div class="row"><span>تحسين العنوان والنبذة</span><b><i class="ok" aria-label="مشمول">✓</i></b></div><div class="row"><span>المكالمات</span><b>شهرية + ملخص أداء</b></div></div>
       <p class="terms">شهري بدون حد أدنى، والإلغاء بإشعار قبل 14 يوماً.</p>
-      <a class="pick" id="w-basic" href="https://wa.me/966534189330">اختر الباقة الأساسية</a>
+      <a class="pick" id="w-basic" href="https://wa.me/966534189330">طلب الباقة الأساسية</a>
     </article>
   </div>
   <p class="small">أسعار العرض لفترة محدودة، وبعدها ترجع الأسعار للسعر الأصلي.</p>
 </div>
 <div class="page p3">
   <section class="sec">
-    <h2>كيف نشتغل معك</h2>
+    <h2>طريقة الشغل</h2>
     <div class="steps">
-      <div class="step"><b>تعارف</b><p>مكالمة قصيرة نفهم فيها قصتك ومواقفك وجمهورك.</p></div>
-      <div class="step"><b>كلامك</b><p>كل أسبوع نسألك أسئلة بسيطة، وإجاباتك هي المادة.</p></div>
-      <div class="step"><b>نكتب ونصمم</b><p>نحوّل كلامك لمنشورات بصوتك، مع التصميم.</p></div>
-      <div class="step"><b>توافق ثم ننشر</b><p>يوصلك كل منشور قبل نشره، وتعتمده أو تعدّله.</p></div>
+      <div class="step"><b>تعارف</b><p>مكالمة قصيرة نفهم فيها القصة والمواقف والجمهور.</p></div>
+      <div class="step"><b>الأسئلة</b><p>كل أسبوع أسئلة بسيطة على الواتساب، والجواب كتابة أو رسالة صوتية.</p></div>
+      <div class="step"><b>نكتب ونصمم</b><p>نحوّل الإجابات لمنشورات بنفس الصوت، مع التصميم.</p></div>
+      <div class="step"><b>اعتماد ثم نشر</b><p>كل منشور يوصل للاعتماد أو التعديل قبل نشره.</p></div>
     </div>
   </section>
   <section class="sec">
     <h2>اللي نلتزم فيه</h2>
     <div class="promise">
-      <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B3D3F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span>ما ينزل أي منشور بدون موافقتك.</span></div>
-      <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B3D3F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span>ما نطلب كلمة مرور حسابك أبداً.</span></div>
-      <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B3D3F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span>لا قصص مختلقة ولا أرقام بدون مصدر.</span></div>
+      <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B3D3F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span>ما ينزل أي منشور بدون موافقتكم.</span></div>
+      <div><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B3D3F" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg><span>ما نطلب كلمة مرور الحساب أبداً.</span></div>
     </div>
   </section>
   <div class="foot">
