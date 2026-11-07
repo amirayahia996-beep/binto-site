@@ -34,7 +34,18 @@ button,input{font:inherit}
 
 .head{display:grid;gap:10px;justify-items:center;text-align:center}
 .tag{background:var(--rose);color:var(--night);font-weight:700;font-size:14px;padding:4px 14px;border-radius:6px}
-.head h1{display:grid;gap:2px}
+.head h1{display:grid;gap:2px;position:relative;cursor:pointer;outline:none}
+.head h1 .w1,.head h1 .w2,.head h1 .w3,.head h1 .w4{display:inline-block}
+.intro.go .w1{animation:inR .6s var(--ease) both}
+.intro.go .w2{animation:inR .6s .15s var(--ease) both}
+.intro.go .w3{animation:drop .7s .55s cubic-bezier(.3,1.6,.5,1) both}
+.intro.go .w4{animation:drop .7s .75s cubic-bezier(.3,1.6,.5,1) both}
+.intro.go .m::before{animation:bar .8s 1.2s var(--ease) both}
+@keyframes inR{from{opacity:0;transform:translateX(30px);filter:blur(6px)}}
+@keyframes drop{from{opacity:0;transform:translateY(-40px) scale(.8)}}
+#diff{transform-origin:center bottom;transform:scaleY(calc(1 + var(--amp,0)))}
+.eq{display:flex;gap:5px;justify-content:center;align-items:flex-end;height:26px;margin-top:6px}
+.eq i{display:block;width:6px;border-radius:3px;background:var(--gold);height:4px;transition:height .12s}
 .head .l{font-size:min(54px,9.4vw);font-weight:500;white-space:nowrap}
 .head .b{font-size:min(52px,9vw);font-weight:800;white-space:nowrap;line-height:1.15}
 .m{position:relative;display:inline-block;z-index:0}
@@ -149,6 +160,18 @@ input[type=range]::-moz-range-thumb{width:46px;height:46px;border-radius:50%;bac
 .end p{color:var(--soft);max-width:44ch}
 .cta{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--night);text-decoration:none;font-weight:800;font-size:18px;border-radius:999px;padding:14px 28px;transition:transform .25s var(--ease)}
 .cta:hover{transform:translateY(-2px)}
+.chatcta{display:flex;align-items:flex-end;gap:10px;text-decoration:none;width:min(460px,100%);direction:rtl}
+.bub{flex:1;background:var(--sand);color:var(--ink);border-radius:14px;border-start-end-radius:4px;padding:12px 14px 8px;text-align:right;font-size:16px;line-height:1.6;min-height:74px;display:grid;align-content:space-between;transition:transform .25s var(--ease)}
+.bub small{justify-self:start;font-size:11px;color:var(--teal2);opacity:0;transition:opacity .3s}
+.chatcta.sent .bub small{opacity:1}
+.caret2{display:inline-block;width:2px;height:1em;background:var(--gold);vertical-align:-2px;animation:blink 1s steps(1) infinite}
+.chatcta.sent .caret2{display:none}
+.send{width:58px;height:58px;flex:none;border-radius:50%;background:var(--gold);display:grid;place-items:center;transform:scale(.6);opacity:.4;transition:transform .4s cubic-bezier(.3,1.6,.5,1),opacity .3s}
+.chatcta.ready .send{transform:scale(1);opacity:1;animation:sendp 1.6s ease-in-out infinite}
+@keyframes sendp{50%{transform:scale(1.1)}}
+.chatcta:hover .bub{transform:translateY(-3px)}
+.chatcta:active .send{transform:scale(.9)}
+.tapnote{font-size:13px;color:var(--soft)}
 .links a{color:var(--soft);font-size:15px;text-underline-offset:4px}
 .js .rv{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
 .js .rv.in{opacity:1;transform:none}
@@ -163,7 +186,7 @@ input[type=range]::-moz-range-thumb{width:46px;height:46px;border-radius:50%;bac
 
   <div class="head">
     <span class="tag">منشورات لينكدإن بأسلوبك</span>
-    <h1 id="h"><span class="l">نفـــس الخبـــر،</span><span class="b">بصوت <span class="m">مختلف</span></span></h1>
+    <h1 id="h" class="intro" tabindex="0" aria-label="نفس الخبر، بصوت مختلف"><span class="l"><span class="w1">نفـــس</span> <span class="w2">الخبـــر،</span></span><span class="b"><span class="w3">بصوت</span> <span class="m w4" id="diff">مختلف</span></span><span class="eq" id="eq" aria-hidden="true"></span></h1>
     <p class="counter" id="counter">كلمات مكررة في المنشور: <b id="cnt">0</b></p>
   </div>
 
@@ -207,10 +230,14 @@ input[type=range]::-moz-range-thumb{width:46px;height:46px;border-radius:50%;bac
     <button class="again" id="replay" hidden>إعادة المحادثة ↻</button>
   </section>
 
-  <section class="end rv">
+  <section class="end rv" id="end">
     <h2>جاهزين لأول منشور بصوتكم؟</h2>
-    <p>أول خطوة رسالة واتساب، ونرسل بعدها أول 3 أسئلة.</p>
-    <a class="cta" href="https://wa.me/966534189330?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%AE%D8%B7%D8%A9%20%D9%84%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9%20%D8%AD%D8%B3%D8%A7%D8%A8%D9%8A%20%D9%81%D9%8A%20%D9%84%D9%8A%D9%86%D9%83%D8%AF%D8%A5%D9%86%20%D9%88%D9%83%D8%AA%D8%A7%D8%A8%D8%A9%20%D8%A7%D9%84%D9%85%D8%AD%D8%AA%D9%88%D9%89%20%D8%A8%D8%B5%D9%88%D8%AA%D9%8A.%20%D9%88%D8%B4%20%D8%A7%D9%84%D8%AE%D8%B7%D9%88%D8%A9%20%D8%A7%D9%84%D8%A3%D9%88%D9%84%D9%89%D8%9F" target="_blank" rel="noopener">طلب خطة لينكدإن على الواتساب</a>
+    <p>ضغطة وحدة، والرسالة جاهزة على الواتساب.</p>
+    <a class="chatcta" id="chatcta" href="https://wa.me/966534189330?text=%D8%A7%D9%84%D8%B3%D9%84%D8%A7%D9%85%20%D8%B9%D9%84%D9%8A%D9%83%D9%85%D8%8C%20%D8%A3%D8%A8%D8%BA%D9%89%20%D8%AE%D8%B7%D8%A9%20%D9%84%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9%20%D8%AD%D8%B3%D8%A7%D8%A8%D9%8A%20%D9%81%D9%8A%20%D9%84%D9%8A%D9%86%D9%83%D8%AF%D8%A5%D9%86%20%D9%88%D9%83%D8%AA%D8%A7%D8%A8%D8%A9%20%D8%A7%D9%84%D9%85%D8%AD%D8%AA%D9%88%D9%89%20%D8%A8%D8%B5%D9%88%D8%AA%D9%8A.%20%D9%88%D8%B4%20%D8%A7%D9%84%D8%AE%D8%B7%D9%88%D8%A9%20%D8%A7%D9%84%D8%A3%D9%88%D9%84%D9%89%D8%9F" target="_blank" rel="noopener" aria-label="إرسال طلب خطة لينكدإن على الواتساب">
+      <span class="bub" id="bub"><span class="typed" id="typed"></span><span class="caret2" aria-hidden="true"></span><small>الآن ✓✓</small></span>
+      <span class="send" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24"><path d="M3 11 21 3l-8 18-2-8z" fill="#062B2C"/></svg></span>
+    </a>
+    <span class="tapnote">الضغط على الرسالة يفتح الواتساب</span>
   </section>
 </div>
 
@@ -259,6 +286,11 @@ function render(){
  const W=vol.clientWidth;$('ring').style.right=(v*(W-52))+'px';
 }
 const vol=$('vol');
+const hh=$('h');function intro(){hh.classList.remove('go');void hh.offsetWidth;hh.classList.add('go')}
+intro();hh.addEventListener('click',intro);hh.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();intro()}});
+const eq=$('eq');for(let i=0;i<13;i++)eq.appendChild(document.createElement('i'));const eqb=[...eq.children];
+(function beat(t){const a=.25+v*.75;eqb.forEach((b,i)=>{b.style.height=(4+Math.abs(Math.sin(t/220+i*.7))*22*a)+'px'});
+ document.documentElement.style.setProperty('--amp',(Math.sin(t/180)*.04*(0.3+v)).toFixed(3));if(!reduce)requestAnimationFrame(beat)})(0);
 vol.addEventListener('input',()=>{v=vol.value/100;render()});
 render();
 
@@ -292,6 +324,12 @@ async function playChat(from=0){const id=++chatRun;msgs.innerHTML='';$('replay')
  mark(3,true);$('replay').hidden=false}
 $('replay').addEventListener('click',()=>playChat(0));
 steps.forEach((b,i)=>b.addEventListener('click',()=>playChat(i)));
+const MSG='السلام عليكم، أبغى خطة لإدارة حسابي في لينكدإن وكتابة المحتوى بأسلوبي.';
+let typedRun=0;async function typeMsg(){const id=++typedRun;const t=$('typed'),c=$('chatcta');c.classList.remove('ready','sent');t.textContent='';
+ if(reduce){t.textContent=MSG;c.classList.add('ready');return}
+ for(let i=0;i<MSG.length;i++){if(id!==typedRun)return;t.textContent=MSG.slice(0,i+1);await wait(32)}c.classList.add('ready')}
+$('chatcta').addEventListener('click',()=>$('chatcta').classList.add('sent'));
+if('IntersectionObserver' in window){const io2=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){typeMsg();io2.unobserve(en.target)}}),{threshold:.5});io2.observe($('end'))}else typeMsg();
 if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');if(en.target.id==='how')playChat(0);io.unobserve(en.target)}}),{threshold:.25});document.querySelectorAll('.rv').forEach(el=>io.observe(el))}else{document.querySelectorAll('.rv').forEach(el=>el.classList.add('in'));playChat(0)}
 </script>
 </body>
