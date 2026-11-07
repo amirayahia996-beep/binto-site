@@ -139,7 +139,7 @@ input[type=range]::-moz-range-thumb{width:46px;height:46px;border-radius:50%;bac
   </div>
 
   <article class="card" aria-live="polite">
-    <span class="ex">مثال توضيحي</span>
+    <span class="ex" id="ex">المنشور المعتاد</span>
     <div class="who"><span class="av" id="av">ع</span><div><b id="nm">اسم الحساب</b><small id="rl">مدير عيادة أسنان</small></div></div>
     <p class="txt" id="txt"></p>
     <div class="wave" id="wave" aria-hidden="true"></div>
@@ -148,12 +148,12 @@ input[type=range]::-moz-range-thumb{width:46px;height:46px;border-radius:50%;bac
 
   <div class="knob" id="knob">
     <div class="rail"><span class="ring" id="ring" aria-hidden="true"></span>
-    <input type="range" id="vol" min="0" max="100" value="0" step="1" aria-label="من الكلام العام إلى قصتك الحقيقية"></div>
-    <div class="ends"><span>كلام عام</span><span>قصتك</span></div>
+    <input type="range" id="vol" min="0" max="100" value="0" step="1" aria-label="من المنشور المعتاد إلى نفس الخبر بأسلوبك"></div>
+    <div class="ends"><span>المعتاد</span><span>بأسلوبك</span></div>
   </div>
   <p class="hint" id="hint">سحب المايك لليسار <b>يرفع الصوت</b> ←</p>
   <div class="done" id="done">
-    <p>نفس الخبر، بس صار قصتك.</p>
+    <p>نفس الخبر، صار واضح وقريب من الناس.</p>
     <a class="down" href="#how">وش المطلوب؟ ↓</a>
   </div>
 
@@ -195,7 +195,7 @@ const WORDS=['يسعدني','أعلن','بكل','فخر','شغوف','التمي�
 const R=[
  {av:'ع',role:'مدير عيادة أسنان',
   plain:'يسعدني أن أعلن عن افتتاح فرعنا الجديد، في إطار سعينا الدائم لتقديم أفضل الخدمات والتميز لعملائنا الكرام. شكراً لفريقنا المتميز.',
-  voice:'أول مراجعة في الفرع الجديد سألتني: ليش هنا بالذات؟ قلت لها: لأن نص مراجعينا كانوا يسوقون ساعة عشان يوصلون لنا. اليوم صاروا على بعد عشر دقايق.'},
+  voice:'افتتحنا اليوم فرعنا الجديد. اخترنا موقعه بعد ما لاحظنا إن كثير من مراجعينا يقطعون مسافة طويلة عشان يوصلون لنا، فقررنا نقرب منهم. شكراً لكل مراجع وثق فينا، وشكراً لفريق اشتغل شهور عشان هذا اليوم.'},
  {av:'م',role:'صاحب متجر إلكتروني',
   plain:'بكل فخر نحتفل بمرور عام على انطلاقتنا، بفضل الله ثم بفضل عملائنا الكرام. نسعى دائماً نحو الريادة وتقديم قيمة مضافة.',
   voice:'أكثر سؤال وصلنا هالسنة: وش الفرق بين المقاسين؟ فصوّرنا القطعة على ثلاث مقاسات وحطيناها في صفحة المنتج. من بعدها صار السؤال نادر.'},
@@ -225,6 +225,7 @@ function render(){
  document.documentElement.style.setProperty('--v',v);
  bars.forEach((b,i)=>{b.style.height=(4+Math.abs(Math.sin(i*.55+v*6))*28*v)+'px'});
  $('done').classList.toggle('on',v>=.98);
+ $('ex').textContent=v<.5?'المنشور المعتاد':'نفس الخبر بأسلوبك';
  $('hint').style.opacity=(touched&&v>0.05)?0:1;
  const W=vol.clientWidth;$('ring').style.right=(v*(W-52))+'px';
 }
