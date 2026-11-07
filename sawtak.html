@@ -129,6 +129,21 @@ input[type=range]::-moz-range-thumb{width:46px;height:46px;border-radius:50%;bac
 .st.on .box p{max-height:4em}
 .st.on .node{animation:glow 1.6s ease-in-out infinite}
 @keyframes glow{50%{transform:scale(1.14)}}
+.cap{display:none}
+@media (max-width:820px){
+ .stepwrap{order:-1}
+ .steps{grid-template-columns:repeat(4,1fr);gap:4px}
+ .steps::before,.steps::after{right:12.5%;left:12.5%;top:27px;bottom:auto;height:4px;width:auto}
+ .steps::after{left:auto;width:calc(75% * var(--p));height:4px;transition:width .6s var(--ease)}
+ .st{grid-template-columns:1fr;justify-items:center;text-align:center;gap:6px}
+ .st .box{border:0;background:none;padding:0;opacity:.6}
+ .st.on .box{background:none}
+ .st .box small{display:none}
+ .st .box b{font-size:13px;line-height:1.35}
+ .st .box p{display:none}
+ .cap{display:block;margin-top:12px;border:1px solid var(--gold);border-radius:14px;padding:10px 14px;background:var(--teal);font-size:15px;min-height:3.4em}
+ .cap b{color:var(--gold)}
+}
 .end{margin-block:56px;border:1px solid var(--teal2);border-radius:14px;padding:clamp(24px,5vw,44px);display:grid;gap:16px;justify-items:center;text-align:center;background:var(--teal)}
 .end h2{font-size:clamp(26px,4vw,40px);font-weight:800}
 .end p{color:var(--soft);max-width:44ch}
@@ -182,12 +197,12 @@ input[type=range]::-moz-range-thumb{width:46px;height:46px;border-radius:50%;bac
         <div class="ph-top"><span class="ph-dot" aria-hidden="true"></span><small id="ph-st">متصل</small></div>
         <div class="msgs" id="msgs"></div>
       </div>
-      <ol class="steps" id="steps">
-        <li><button class="st" data-s="0" aria-label="3 أسئلة على الواتساب"><span class="node"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 9h8M8 12h5"/></svg></span><span class="box"><small>الخطوة ١</small><b>3 أسئلة على الواتساب</b><p>كل أسبوع أسئلة قصيرة عن الشغل والمواقف والقرارات.</p></span></button></li>
-        <li><button class="st" data-s="1" aria-label="الجواب على الراحة"><span class="node"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></span><span class="box"><small>الخطوة ٢</small><b>الجواب على الراحة</b><p>كتابة أو رسالة صوتية، وقت ما يناسب.</p></span></button></li>
-        <li><button class="st" data-s="2" aria-label="نكتب ونصمم"><span class="node"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13 7l4 4"/></svg></span><span class="box"><small>الخطوة ٣</small><b>نكتب ونصمم</b><p>نحوّل الجواب لمنشور بنفس الأسلوب، مع التصميم.</p></span></button></li>
-        <li><button class="st" data-s="3" aria-label="اعتماد ثم نشر"><span class="node"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></span><span class="box"><small>الخطوة ٤</small><b>اعتماد ثم نشر</b><p>المنشور يوصل للاعتماد أو التعديل قبل ما ينزل.</p></span></button></li>
-      </ol>
+      <div class="stepwrap"><ol class="steps" id="steps">
+        <li><button class="st" data-s="0" aria-label="توصلك 3 أسئلة"><span class="node"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H8l-4 4z"/><path d="M8 9h8M8 12h5"/></svg></span><span class="box"><small>الخطوة ١</small><b>توصلك 3 أسئلة</b><p>كل أسبوع 3 أسئلة قصيرة على الواتساب عن شغلك ومواقفك.</p></span></button></li>
+        <li><button class="st" data-s="1" aria-label="ترد بصوتك أو بالكتابة"><span class="node"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></span><span class="box"><small>الخطوة ٢</small><b>ترد بصوتك أو بالكتابة</b><p>رسالة صوتية أو نص، في الوقت اللي يناسبك.</p></span></button></li>
+        <li><button class="st" data-s="2" aria-label="نكتب المنشور ونصممه"><span class="node"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M13 7l4 4"/></svg></span><span class="box"><small>الخطوة ٣</small><b>نكتب المنشور ونصممه</b><p>نحوّل ردك لمنشور بأسلوبك، مع تصميم جاهز.</p></span></button></li>
+        <li><button class="st" data-s="3" aria-label="توافق وينزل"><span class="node"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l5 5L20 7"/></svg></span><span class="box"><small>الخطوة ٤</small><b>توافق وينزل</b><p>يوصلك المنشور قبل نشره للموافقة أو التعديل.</p></span></button></li>
+      </ol><p class="cap" id="cap" aria-live="polite"></p></div>
     </div>
     <button class="again" id="replay" hidden>إعادة المحادثة ↻</button>
   </section>
@@ -266,7 +281,7 @@ const SCRIPT=[
 ];
 let chatRun=0;const wait=ms=>new Promise(r=>setTimeout(r,ms));
 const ol=$('steps');
-function mark(s,finished){steps.forEach((l,i)=>{l.classList.toggle('on',!finished&&i===s);l.classList.toggle('past',finished?true:i<s)});ol.style.setProperty('--p',finished?1:s/3)}
+function mark(s,finished){const c=$('cap'),cur=steps[Math.min(s,3)];c.innerHTML='<b>الخطوة '+'١٢٣٤'[Math.min(s,3)]+':</b> '+cur.querySelector('p').textContent;steps.forEach((l,i)=>{l.classList.toggle('on',!finished&&i===s);l.classList.toggle('past',finished?true:i<s)});ol.style.setProperty('--p',finished?1:s/3)}
 function addMsg(m){const d=document.createElement('div');d.className='msg '+m.cls;d.innerHTML=m.html;msgs.appendChild(d)}
 async function playChat(from=0){const id=++chatRun;msgs.innerHTML='';$('replay').hidden=true;
  SCRIPT.filter(m=>m.s<from).forEach(addMsg);
