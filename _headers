@@ -14,9 +14,11 @@
   X-Robots-Tag: noindex, nofollow
 /p
   X-Robots-Tag: noindex, nofollow
-/new
+/ip
   X-Robots-Tag: noindex, nofollow
-/new.html
+/instagram-packages
+  X-Robots-Tag: noindex, nofollow
+/instagram-packages.html
   X-Robots-Tag: noindex, nofollow
 /feed/*
   X-Robots-Tag: noindex, nofollow
