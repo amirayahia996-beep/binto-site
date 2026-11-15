@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <title>باقات لينكدإن بصوتك</title>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-868R70M59M"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-868R70M59M');</script>
 <meta name="description" content="الكلام منكم، والكتابة والنشر علينا: منشورات لينكدإن بصوتكم مع التصميم.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Binto design">
@@ -216,6 +218,11 @@ for(const k in OFFER){const o=OFFER[k];const price=Math.round(o.base*(100-o.disc
   else{sEl.hidden=true;oEl.hidden=true}
   const msg='السلام عليكم، اخترت «'+o.name+'» لكتابة لينكدإن ('+price+' ريال'+o.unit+'). وش الخطوة الجاية؟';
   document.getElementById('w-'+k).href='https://wa.me/966534189330?text='+encodeURIComponent(msg);}
+</script>
+<script>
+/* تتبّع: كل ضغطة على رابط واتساب تُسجَّل بمكانها في الصفحة */
+document.addEventListener('click',e=>{const a=e.target.closest('a[href*="wa.me"]');if(!a||!window.gtag)return;
+ const box=a.closest('article,section,.bar,.end');gtag('event','whatsapp_click',{page:location.pathname,where:(a.id||(box&&(box.id||box.className))||'page').toString().slice(0,40),label:a.textContent.trim().slice(0,40)})},true);
 </script>
 </body>
 </html>

@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <title>صوتك</title>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-868R70M59M"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-868R70M59M');</script>
 <meta name="description" content="منشورات لينكدإن بأسلوبك. المطلوب منك جواب بس، والمنشور علينا.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Binto design">
@@ -345,6 +347,16 @@ let typedRun=0;async function typeMsg(){const id=++typedRun;const t=$('typed'),c
 $('chatcta').addEventListener('click',()=>$('chatcta').classList.add('sent'));
 if('IntersectionObserver' in window){const io2=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){typeMsg();io2.unobserve(en.target)}}),{threshold:.5});io2.observe($('end'))}else typeMsg();
 if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');if(en.target.id==='how')playChat(0);io.unobserve(en.target)}}),{threshold:.25});document.querySelectorAll('.rv').forEach(el=>io.observe(el))}else{document.querySelectorAll('.rv').forEach(el=>el.classList.add('in'));playChat(0)}
+</script>
+<script>
+/* تتبّع: كل ضغطة على رابط واتساب تُسجَّل بمكانها في الصفحة */
+document.addEventListener('click',e=>{const a=e.target.closest('a[href*="wa.me"]');if(!a||!window.gtag)return;
+ const box=a.closest('article,section,.bar,.end');gtag('event','whatsapp_click',{page:location.pathname,where:(a.id||(box&&(box.id||box.className))||'page').toString().slice(0,40),label:a.textContent.trim().slice(0,40)})},true);
+</script>
+<script>
+/* صوتك: تسجيل أول استخدام للسحّاب ووصوله للنهاية */
+(function(){const r=document.getElementById('vol');if(!r)return;let s=0,d=0;r.addEventListener('input',()=>{if(!window.gtag)return;
+ if(!s){s=1;gtag('event','voice_slider_start',{page:location.pathname})}if(!d&&r.value>=98){d=1;gtag('event','voice_slider_done',{page:location.pathname})}})})();
 </script>
 </body>
 </html>

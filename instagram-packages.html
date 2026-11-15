@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow, noarchive">
 <title>باقات تصميم إنستقرام</title>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-868R70M59M"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-868R70M59M');</script>
 <meta name="description" content="كتابة المحتوى والتصاميم بهوية علامتك كل شهر: منشورات وكاروسيل وستوري وموشن، وملف جاهز للنشر.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Binto design">
@@ -418,6 +420,11 @@ if('IntersectionObserver' in window){
   const io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');en.target.querySelectorAll('.price b').forEach(countUp);io.unobserve(en.target)}}),{threshold:.15});
   document.querySelectorAll('.rv').forEach((el,i)=>{if(el.classList.contains('card'))el.style.transitionDelay=(cards.indexOf(el)*120)+'ms';io.observe(el)});
 }else{document.querySelectorAll('.rv').forEach(el=>el.classList.add('in'))}
+</script>
+<script>
+/* تتبّع: كل ضغطة على رابط واتساب تُسجَّل بمكانها في الصفحة */
+document.addEventListener('click',e=>{const a=e.target.closest('a[href*="wa.me"]');if(!a||!window.gtag)return;
+ const box=a.closest('article,section,.bar,.end');gtag('event','whatsapp_click',{page:location.pathname,where:(a.id||(box&&(box.id||box.className))||'page').toString().slice(0,40),label:a.textContent.trim().slice(0,40)})},true);
 </script>
 </body>
 </html>
