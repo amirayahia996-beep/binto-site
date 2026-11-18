@@ -22,3 +22,7 @@
   X-Robots-Tag: noindex, nofollow
 /feed/*
   X-Robots-Tag: noindex, nofollow
+/bandar
+  X-Robots-Tag: noindex, nofollow
+/bandar/*
+  X-Robots-Tag: noindex, nofollow
